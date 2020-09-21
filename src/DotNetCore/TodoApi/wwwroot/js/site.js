@@ -87,9 +87,14 @@ function _displayItems(data) {
 
         let editButton = button.cloneNode(false);
         editButton.innerText = 'Edit';
-        editButton.setAttribute('onlick', `deleteItem(${item.id})`)
+        editButton.setAttribute('onclick', `displayEditForm(${item.id})`);
+
+        let deleteButton = button.cloneNode(false);
+        deleteButton.innerText = 'Delete';
+        deleteButton.setAttribute('onclick', `deleteItem(${item.id})`);
 
         let tr = tBody.insertRow();
+
         let td1 = tr.insertCell(0);
         td1.appendChild(isCompleteCheckbox);
 
@@ -99,6 +104,7 @@ function _displayItems(data) {
 
         let td3 = tr.insertCell(2);
         td3.appendChild(editButton);
+
         let td4 = tr.insertCell(3);
         td4.appendChild(deleteButton);
     });
