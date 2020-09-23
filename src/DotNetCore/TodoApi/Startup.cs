@@ -11,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.OpenApi.Models;
 using TodoApi.Models;
 
 namespace TodoApi
@@ -35,6 +36,14 @@ namespace TodoApi
                 .AddNewtonsoftJson(setupAction=> {
                     setupAction.UseMemberCasing();
                 });
+            services.AddSwaggerGen(options =>
+            {
+                options.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Title = "todo api",
+                    Version = "v1"
+                });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -49,6 +58,11 @@ namespace TodoApi
             app.UseDefaultFiles();
             app.UseStaticFiles();
 
+            app.UseSwagger();
+            app.UseSwaggerUI(option =>
+            {
+                option.SwaggerEndpoint("/swagger/v1/swagger.json", "to do api");
+            });
             app.UseRouting();
 
             app.UseAuthorization();
