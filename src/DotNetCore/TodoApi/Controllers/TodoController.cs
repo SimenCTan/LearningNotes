@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using TodoApi.Models;
 using System.Collections.Generic;
+using TodoApi.DIServices;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -16,11 +17,20 @@ namespace TodoApi.Controllers
     {
         private readonly TodoContext _todoContext;
         private readonly ILogger<TodoController> _logger;
+        private readonly IOperationTransien _operationTransien;
+        private readonly IOperationScope _operationScope;
+        private readonly IOperationSingleton _operationSingleton;
         public TodoController(TodoContext todoContext,
-            ILogger<TodoController> logger)
+            ILogger<TodoController> logger,
+            IOperationTransien operationTransien,
+            IOperationScope operationScope,
+            IOperationSingleton operationSingleton)
         {
             _todoContext = todoContext;
             _logger = logger;
+            _operationTransien = operationTransien;
+            _operationScope = operationScope;
+            _operationSingleton = operationSingleton;
         }
 
         // GET api/<TodoController>/5
@@ -28,6 +38,9 @@ namespace TodoApi.Controllers
         public async Task<ActionResult<TodoItem>> Get(int id)
         {
             var todoItem = await _todoContext.TodoItems.Where(m => m.Id == id).FirstOrDefaultAsync();
+            _logger.LogInformation($"transient id is {_operationTransien.OperationId}");
+            _logger.LogInformation($"scope id is {_operationScope.OperationId}");
+            _logger.LogInformation($"singleton id is {_operationSingleton.OperationId}");
             return Ok(todoItem);
         }
 
