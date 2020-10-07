@@ -1,11 +1,8 @@
 ﻿using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
+using TodoApi.DIServices;
 
 namespace TodoApi.Middlewares
 {
@@ -18,10 +15,15 @@ namespace TodoApi.Middlewares
         }
 
         public async Task Invoke(HttpContext httpContext,
-            ILogger<RequestSetOptionsMiddleware> logger)
+            ILogger<RequestSetOptionsMiddleware> logger,
+            IOperationTransien operationTransien,
+            IOperationScope operationScope,
+            IOperationSingleton operationSingleton)
         {
             var option = httpContext.Request.Query["option"];
-            logger.LogInformation("test");
+            logger.LogInformation($"transient id is {operationTransien.OperationId}");
+            logger.LogInformation($"scope id is {operationScope.OperationId}");
+            logger.LogInformation($"singleton id is {operationSingleton.OperationId}");
             if (!string.IsNullOrEmpty(option))
             {
                 httpContext.Items["option"] = WebUtility.HtmlEncode(option);
