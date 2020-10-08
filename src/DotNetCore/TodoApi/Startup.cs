@@ -1,10 +1,12 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using System;
 using TodoApi.DIServices;
 using TodoApi.Middlewares;
 using TodoApi.Models;
@@ -52,6 +54,27 @@ namespace TodoApi
             {
                 app.UseDeveloperExceptionPage();
             }
+            else
+            {
+                app.UseHsts();
+            }
+
+            app.Use(async (context, next) =>
+            {
+                Console.WriteLine($"This is a middlerware");
+                await next.Invoke();
+            });
+
+            // branch
+            app.Map("/swagger", HandRequestDel);
+            app.MapWhen(context => context.Request.Headers.ContainsKey("Query"), HandRequestDel);
+            app.Run( async context =>
+            {
+                await context.Response.WriteAsync($"This is terminal middlerware");
+            });
+
+            // cors
+            app.UseCors();
 
             app.UseHttpsRedirection();
             app.UseDefaultFiles();
@@ -69,6 +92,14 @@ namespace TodoApi
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+            });
+        }
+
+        public static void HandRequestDel(IApplicationBuilder app)
+        {
+            app.Run(async context =>
+            {
+                await context.Response.WriteAsync($"This is a map middlerware");
             });
         }
     }
