@@ -29,6 +29,7 @@ namespace TodoApi
             {
                 option.UseInMemoryDatabase("TodoList");
             });
+            Configuration.GetSection("Logging");
             services.AddTransient<IStartupFilter, RequestSetOptionsStartUpFilter>();
             services.AddControllers()
                 .AddNewtonsoftJson(setupAction=> {
