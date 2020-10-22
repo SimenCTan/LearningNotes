@@ -91,7 +91,7 @@ namespace RedisLock
                 ConnectTimeout = 5000,
                 DefaultDatabase = 1,
                 AbortOnConnectFail = false,
-                Password = "fOZjBrPrl6RNrpAngYuI"
+                Password = "*****"
             };
             redisConnectionOptions.EndPoints.Add("localhost", 6379);
             var connection =  ConnectionMultiplexer.Connect(redisConnectionOptions);
