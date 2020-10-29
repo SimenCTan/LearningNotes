@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -8,6 +9,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 using TodoApi.DIServices;
+using TodoApi.Extensions;
 
 namespace TodoApi
 {
@@ -64,6 +66,9 @@ namespace TodoApi
                     // xml file
                     configBuilder.AddXmlFile("myxmlfile.xml", optional: false, reloadOnChange: true)
                         .AddXmlFile($"myxmlfile.{hostContext.HostingEnvironment.EnvironmentName}.xml", optional: true, reloadOnChange: true);
+
+                    // ef config
+                    configBuilder.AddEFConfiguration(options => options.UseInMemoryDatabase("InMemoryDb"));
 
                     configBuilder.AddEnvironmentVariables();
 
