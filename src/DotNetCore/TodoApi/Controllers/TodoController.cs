@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using TodoApi.Models;
 using System.Collections.Generic;
 using TodoApi.DIServices;
+using Microsoft.Extensions.Options;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -20,23 +21,35 @@ namespace TodoApi.Controllers
         private readonly IOperationTransien _operationTransien;
         private readonly IOperationScope _operationScope;
         private readonly IOperationSingleton _operationSingleton;
+        private readonly PositionOptions _positionOptions;
+        private readonly TopItemSettings _monthTopItem;
+        private readonly TopItemSettings _yearTopItem;
+        private readonly MyConfigOptions _myConfigOptions;
         public TodoController(TodoContext todoContext,
             ILogger<TodoController> logger,
             IOperationTransien operationTransien,
             IOperationScope operationScope,
-            IOperationSingleton operationSingleton)
+            IOperationSingleton operationSingleton,
+            IOptionsMonitor<PositionOptions> optionsMonitor,
+            IOptionsSnapshot<TopItemSettings> namedOptionsAccessor,
+            IOptions<MyConfigOptions> options)
         {
             _todoContext = todoContext;
             _logger = logger;
             _operationTransien = operationTransien;
             _operationScope = operationScope;
             _operationSingleton = operationSingleton;
+            _positionOptions = optionsMonitor.CurrentValue;
+            _monthTopItem = namedOptionsAccessor.Get(TopItemSettings.Month);
+            _yearTopItem = namedOptionsAccessor.Get(TopItemSettings.Year);
+            _myConfigOptions = options.Value;
         }
 
         // GET api/<TodoController>/5
         [HttpGet("{id}")]
         public async Task<ActionResult<TodoItem>> Get(int id)
         {
+            _logger.LogInformation($"{_positionOptions.Name}");
             var todoItem = await _todoContext.TodoItems.Where(m => m.Id == id).FirstOrDefaultAsync();
             _logger.LogInformation($"transient id is {_operationTransien.OperationId}");
             _logger.LogInformation($"scope id is {_operationScope.OperationId}");

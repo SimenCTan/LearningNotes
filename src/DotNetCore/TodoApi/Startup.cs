@@ -47,6 +47,15 @@ namespace TodoApi
             services.AddScoped<IOperationScope, Operation>();
             services.AddSingleton<IOperationSingleton, Operation>();
             services.Configure<PositionOptions>(Configuration.GetSection(PositionOptions.Position));
+
+            // IConfigureNamedOptions
+            services.Configure<TopItemSettings>(TopItemSettings.Month, Configuration.GetSection("TopItem:Month"));
+            services.Configure<TopItemSettings>(TopItemSettings.Year, Configuration.GetSection("TopItem:Year"));
+
+            // di config
+            services.AddOptions<MyConfigOptions>()
+                .Bind(Configuration.GetSection(MyConfigOptions.MyConfig))
+                .ValidateDataAnnotations();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -68,12 +77,12 @@ namespace TodoApi
             });
 
             // branch
-            app.Map("/swagger", HandRequestDel);
+            // app.Map("/swagger", HandRequestDel);
             app.MapWhen(context => context.Request.Headers.ContainsKey("Query"), HandRequestDel);
-            app.Run( async context =>
-            {
-                await context.Response.WriteAsync($"This is terminal middlerware");
-            });
+            //app.Run(async context =>
+            //{
+            //    await context.Response.WriteAsync($"This is terminal middlerware");
+            //});
 
             // cors
             app.UseCors();
