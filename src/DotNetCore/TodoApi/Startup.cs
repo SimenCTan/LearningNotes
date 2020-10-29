@@ -15,9 +15,11 @@ namespace TodoApi
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        private readonly IWebHostEnvironment env;
+        public Startup(IConfiguration configuration,IWebHostEnvironment webHost)
         {
             Configuration = configuration;
+            env = webHost;
         }
 
         public IConfiguration Configuration { get; }
@@ -45,6 +47,7 @@ namespace TodoApi
             });
             services.AddTransient<IOperationTransien, Operation>();
             services.AddScoped<IOperationScope, Operation>();
+
             services.AddSingleton<IOperationSingleton, Operation>();
             services.Configure<PositionOptions>(Configuration.GetSection(PositionOptions.Position));
 
@@ -59,7 +62,7 @@ namespace TodoApi
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app)
         {
             if (env.IsDevelopment())
             {
