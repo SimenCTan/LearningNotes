@@ -4,6 +4,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Threading.Tasks;
 using TodoApi.DIServices;
 
@@ -30,14 +32,45 @@ namespace TodoApi
             await host.RunAsync();
         }
 
-        public static IHostBuilder CreateHostBuilder(string[] args) =>
-            Host.CreateDefaultBuilder(args)
+        public static IHostBuilder CreateHostBuilder(string[] args)
+        {
+            var Dict = new Dictionary<string, string>
+            {
+               {"MyKey", "Dictionary MyKey Value"},
+               {"Position:Title", "Dictionary_Title"},
+               {"Position:Name", "Dictionary_Name" },
+               {"Logging:LogLevel:Default", "Warning"}
+            };
+
+            return Host.CreateDefaultBuilder(args)
                 .ConfigureAppConfiguration((hostContext, configBuilder) =>
                 {
-                    configBuilder.AddJsonFile("appsettings.json", optional: false)
-                    .AddJsonFile($"appsettings.{hostContext.HostingEnvironment.EnvironmentName}.json", optional: true)
-                    .AddCommandLine(args)
-                    .AddEnvironmentVariables();
+                    configBuilder.AddInMemoryCollection(Dict);
+
+                    // set config dirctory
+                    configBuilder.SetBasePath(Path.Combine(AppContext.BaseDirectory, "Configs"));
+
+                    //clear
+                    configBuilder.Sources.Clear();
+
+                    // ini file
+                    configBuilder.AddIniFile("myinifile.ini", optional: false, reloadOnChange: true)
+                        .AddIniFile($"myinifile.{hostContext.HostingEnvironment.EnvironmentName}.ini", optional: true, reloadOnChange: true);
+
+                    // json file
+                    configBuilder.AddJsonFile("appsettings.json", reloadOnChange: true, optional: false)
+                    .AddJsonFile($"appsettings.{hostContext.HostingEnvironment.EnvironmentName}.json", reloadOnChange: true, optional: true);
+
+                    // xml file
+                    configBuilder.AddXmlFile("myxmlfile.xml", optional: false, reloadOnChange: true)
+                        .AddXmlFile($"myxmlfile.{hostContext.HostingEnvironment.EnvironmentName}.xml", optional: true, reloadOnChange: true);
+
+                    configBuilder.AddEnvironmentVariables();
+
+                    if (args != null)
+                    {
+                        configBuilder.AddCommandLine(args);
+                    }
                 })
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
@@ -49,13 +82,13 @@ namespace TodoApi
                     //webBuilder.UseSetting(WebHostDefaults.HostingStartupAssembliesKey, "assembly1;assembly2");
                     webBuilder.UseStartup<Startup>();
                 })
-                .ConfigureLogging((hostContext,configBuilder)=>
+                .ConfigureLogging((hostContext, configBuilder) =>
                 {
                     configBuilder.ClearProviders();
                     //configBuilder.AddConfiguration(hostContext.Configuration.GetSection("Logging"));
                     //configBuilder.AddConsole();
                 });
-
+        }
 
         //public static IHostBuilder CreateGenerateBuilder(string[] args) =>
         //    Host.CreateDefaultBuilder(args)

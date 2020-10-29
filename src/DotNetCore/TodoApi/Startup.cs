@@ -46,6 +46,7 @@ namespace TodoApi
             services.AddTransient<IOperationTransien, Operation>();
             services.AddScoped<IOperationScope, Operation>();
             services.AddSingleton<IOperationSingleton, Operation>();
+            services.Configure<PositionOptions>(Configuration.GetSection(PositionOptions.Position));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
