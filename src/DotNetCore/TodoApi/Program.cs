@@ -91,7 +91,28 @@ namespace TodoApi
                 {
                     configBuilder.ClearProviders();
                     //configBuilder.AddConfiguration(hostContext.Configuration.GetSection("Logging"));
-                    //configBuilder.AddConsole();
+                    configBuilder.AddConsole(options => options.IncludeScopes = true);
+                    configBuilder.SetMinimumLevel(LogLevel.Information);
+                    configBuilder.AddFilter((provider, category, logLevel) =>
+                    {
+                        // add log filter
+                        if (provider.Contains("ConsoleLoggerProvider")
+                        && category.Contains("Controller")
+                        && logLevel >= LogLevel.Information)
+                        {
+                            return true;
+                        }
+                        else if (provider.Contains("ConsoleLoggerProvider")
+                        && category.Contains("Microsoft")
+                        && logLevel >= LogLevel.Information)
+                        {
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                    });
                 });
         }
 

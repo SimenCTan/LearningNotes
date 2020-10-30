@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using System;
 using TodoApi.DIServices;
@@ -49,6 +50,13 @@ namespace TodoApi
             services.AddScoped<IOperationScope, Operation>();
 
             services.AddSingleton<IOperationSingleton, Operation>();
+
+            // config logger
+            //services.AddSingleton<IMyService>((container) =>
+            //{
+            //    var logger = container.GetRequiredService<ILogger<MyService>>();
+            //    return new MyService() { Logger = logger };
+            //});
             services.Configure<PositionOptions>(Configuration.GetSection(PositionOptions.Position));
 
             // IConfigureNamedOptions
@@ -62,7 +70,7 @@ namespace TodoApi
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app)
+        public void Configure(IApplicationBuilder app,ILogger<Startup> logger)
         {
             if (env.IsDevelopment())
             {
@@ -72,7 +80,7 @@ namespace TodoApi
             {
                 app.UseHsts();
             }
-
+            logger.LogInformation("test logger");
             app.Use(async (context, next) =>
             {
                 Console.WriteLine($"This is a middlerware");
