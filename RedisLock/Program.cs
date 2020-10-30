@@ -1,4 +1,5 @@
-﻿using StackExchange.Redis;
+﻿using Microsoft.Extensions.Logging;
+using StackExchange.Redis;
 using System;
 using System.Threading.Tasks;
 
@@ -9,6 +10,9 @@ namespace RedisLock
         static void Main(string[] args)
         {
             Console.WriteLine("redis lock start");
+            var logger = GetLogger();
+            logger.LogInformation("Example log message");
+            logger.LogInformation("test");
             var lockKey = "lock:eat";
             var timespan = TimeSpan.FromSeconds(5);
             Parallel.For(0, 5,  x =>
@@ -42,6 +46,19 @@ namespace RedisLock
             Console.WriteLine("end");
             Console.Read();
 
+        }
+
+        private static ILogger GetLogger()
+        {
+            using var loggerFactory = LoggerFactory.Create(builder =>
+            {
+                builder
+                    .AddFilter("Microsoft", LogLevel.Warning)
+                    .AddFilter("System", LogLevel.Warning)
+                    .AddFilter("LoggingConsoleApp.Program", LogLevel.Debug)
+                    .AddConsole();
+            });
+            return loggerFactory.CreateLogger<Program>();
         }
 
         private  static bool AcquireLock(string key, string value, TimeSpan expiration)
