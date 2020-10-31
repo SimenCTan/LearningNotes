@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Routing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -8,6 +9,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using System;
+using System.Threading.Tasks;
 using TodoApi.CustomLoggers;
 using TodoApi.DIServices;
 using TodoApi.Middlewares;
@@ -68,6 +70,10 @@ namespace TodoApi
             services.AddOptions<MyConfigOptions>()
                 .Bind(Configuration.GetSection(MyConfigOptions.MyConfig))
                 .ValidateDataAnnotations();
+
+            // server add health check
+            services.AddHealthChecks()
+                .AddPrivateMemoryHealthCheck(1024L * 1024L * 256L);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -134,12 +140,49 @@ namespace TodoApi
                 option.SwaggerEndpoint("/swagger/v1/swagger.json", "to do api");
             });
             app.UseRouting();
-
+            app.UseAuthentication();
             app.UseAuthorization();
+
+            // query endpoints
+            app.Use(next => httpContext =>
+            {
+                var endPoints = httpContext.GetEndpoint();
+                if (endPoints is null)
+                {
+                    return Task.CompletedTask;
+                }
+                Console.WriteLine($"Endpoints:{endPoints.DisplayName}");
+                if (endPoints is RouteEndpoint routeEndpoint)
+                {
+                    Console.WriteLine($"Endpoint has route pattern:" + routeEndpoint.RoutePattern.RawText);
+                }
+                foreach (var metadata in endPoints.Metadata)
+                {
+                    Console.WriteLine($"Endpoint has metadata: {metadata}");
+                }
+                return next(httpContext);
+            });
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapGet("/hello/{name:alpha}", async context =>
+                {
+                    var name = context.Request.RouteValues["name"];
+                    await context.Response.WriteAsync($"hello{name}");
+                });
+
+                // Configure the Health Check endpoint and require an authorized user.
+                endpoints.MapHealthChecks("/healthz");
+            });
+
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapGet("/hello/{name:alpha}", async context =>
+                {
+                    var name = context.Request.RouteValues["name"];
+                    await context.Response.WriteAsync($"hello{name}");
+                });
             });
         }
 
