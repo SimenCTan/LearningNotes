@@ -7,6 +7,7 @@ using TodoApi.Models;
 using System.Collections.Generic;
 using TodoApi.DIServices;
 using Microsoft.Extensions.Options;
+using System;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -50,10 +51,12 @@ namespace TodoApi.Controllers
         public async Task<ActionResult<TodoItem>> Get(int id)
         {
             _logger.LogInformation($"{_positionOptions.Name}");
+            Console.WriteLine("ggg");
             var todoItem = await _todoContext.TodoItems.Where(m => m.Id == id).FirstOrDefaultAsync();
             _logger.LogInformation($"transient id is {_operationTransien.OperationId}");
             _logger.LogInformation($"scope id is {_operationScope.OperationId}");
             _logger.LogInformation($"singleton id is {_operationSingleton.OperationId}");
+            _logger.LogWarning($"test");
             return Ok(todoItem);
         }
 

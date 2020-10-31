@@ -8,6 +8,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using System;
+using TodoApi.CustomLoggers;
 using TodoApi.DIServices;
 using TodoApi.Middlewares;
 using TodoApi.Models;
@@ -70,8 +71,33 @@ namespace TodoApi
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app,ILogger<Startup> logger)
+        public void Configure(IApplicationBuilder app,ILogger<Startup> logger,ILoggerFactory loggerFactory)
         {
+            // Default registration.
+            loggerFactory.AddProvider(new ColorConsoleLoggerProvider(
+                                      new ColorConsoleLoggerConfiguration
+                                      {
+                                          LogLevel = LogLevel.Error,
+                                          Color = ConsoleColor.Red
+                                      }));
+
+            // Custom registration with default values.
+            loggerFactory.AddColorConsoleLogger();
+
+            // Custom registration with a new configuration instance.
+            loggerFactory.AddColorConsoleLogger(new ColorConsoleLoggerConfiguration
+            {
+                LogLevel = LogLevel.Debug,
+                Color = ConsoleColor.Gray
+            });
+
+            // Custom registration with a configuration object.
+            loggerFactory.AddColorConsoleLogger(c =>
+            {
+                c.LogLevel = LogLevel.Information;
+                c.Color = ConsoleColor.Blue;
+            });
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
