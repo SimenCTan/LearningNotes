@@ -14,6 +14,7 @@ using TodoApi.CustomLoggers;
 using TodoApi.DIServices;
 using TodoApi.Middlewares;
 using TodoApi.Models;
+using TodoApi.Transformers;
 
 namespace TodoApi
 {
@@ -41,6 +42,10 @@ namespace TodoApi
                 .AddNewtonsoftJson(setupAction=> {
                     setupAction.UseMemberCasing();
                 });
+            services.AddRouting(options =>
+            {
+                options.ConstraintMap["slugify"] = typeof(SlugifyParameterTransformer);
+            });
             services.AddSwaggerGen(options =>
             {
                 options.SwaggerDoc("v1", new OpenApiInfo
@@ -74,6 +79,7 @@ namespace TodoApi
             // server add health check
             services.AddHealthChecks()
                 .AddPrivateMemoryHealthCheck(1024L * 1024L * 256L);
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -140,6 +146,7 @@ namespace TodoApi
                 option.SwaggerEndpoint("/swagger/v1/swagger.json", "to do api");
             });
             app.UseRouting();
+            app.UseMiddleware<ProductsLinkMiddleware>();
             app.UseAuthentication();
             app.UseAuthorization();
 
