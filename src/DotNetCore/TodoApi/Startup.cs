@@ -12,6 +12,7 @@ using System;
 using System.Threading.Tasks;
 using TodoApi.CustomLoggers;
 using TodoApi.DIServices;
+using TodoApi.Extensions;
 using TodoApi.Middlewares;
 using TodoApi.Models;
 using TodoApi.Transformers;
@@ -85,6 +86,16 @@ namespace TodoApi
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app,ILogger<Startup> logger,ILoggerFactory loggerFactory)
         {
+            int count = 0;
+            app.Use(next => async context =>
+            {
+                using (new MyStopwatch(logger, $"Time {++count}"))
+                {
+                    await next(context);
+                }
+
+            });
+
             // Default registration.
             loggerFactory.AddProvider(new ColorConsoleLoggerProvider(
                                       new ColorConsoleLoggerConfiguration
@@ -147,8 +158,25 @@ namespace TodoApi
             });
             app.UseRouting();
             app.UseMiddleware<ProductsLinkMiddleware>();
+
+            app.Use(next => async context =>
+            {
+                using (new MyStopwatch(logger, $"Time {++count}"))
+                {
+                    await next(context);
+                }
+            });
+
             app.UseAuthentication();
             app.UseAuthorization();
+
+            app.Use(next => async context =>
+            {
+                using (new MyStopwatch(logger, $"Time {++count}"))
+                {
+                    await next(context);
+                }
+            });
 
             // query endpoints
             app.Use(next => httpContext =>
@@ -169,6 +197,8 @@ namespace TodoApi
                 }
                 return next(httpContext);
             });
+
+
 
             app.UseEndpoints(endpoints =>
             {
