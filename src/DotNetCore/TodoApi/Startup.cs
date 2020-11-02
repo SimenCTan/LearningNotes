@@ -1,14 +1,19 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
+using Microsoft.AspNetCore.StaticFiles;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using System;
+using System.IO;
 using System.Threading.Tasks;
 using TodoApi.CustomLoggers;
 using TodoApi.DIServices;
@@ -77,6 +82,16 @@ namespace TodoApi
                 .Bind(Configuration.GetSection(MyConfigOptions.MyConfig))
                 .ValidateDataAnnotations();
 
+            //auth
+            //services.AddAuthorization(option =>
+            //{
+            //    option.FallbackPolicy = new AuthorizationPolicyBuilder()
+            //                    .RequireAuthenticatedUser()
+            //                    .Build();
+            //});
+
+            services.AddDirectoryBrowser();
+
             // server add health check
             services.AddHealthChecks()
                 .AddPrivateMemoryHealthCheck(1024L * 1024L * 256L);
@@ -86,6 +101,37 @@ namespace TodoApi
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app,ILogger<Startup> logger,ILoggerFactory loggerFactory)
         {
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+            }
+            else
+            {
+                app.UseExceptionHandler(errorApp =>
+                {
+                    errorApp.Run(async context =>
+                    {
+                        context.Response.StatusCode = 500;
+                        context.Response.ContentType = "text/html";
+
+                        await context.Response.WriteAsync("<html lang=\"en\"><body>\r\n");
+                        await context.Response.WriteAsync("ERROR!<br><br>\r\n");
+
+                        var exceptionHandlerPathFeature =
+                            context.Features.Get<IExceptionHandlerPathFeature>();
+
+                        if (exceptionHandlerPathFeature?.Error is FileNotFoundException)
+                        {
+                            await context.Response.WriteAsync("File error thrown!<br><br>\r\n");
+                        }
+
+                        await context.Response.WriteAsync("<a href=\"/\">Home</a><br>\r\n");
+                        await context.Response.WriteAsync("</body></html>\r\n");
+                        await context.Response.WriteAsync(new string(' ', 512)); // IE padding
+                    });
+                });
+                app.UseHsts();
+            }
             int count = 0;
             app.Use(next => async context =>
             {
@@ -149,14 +195,39 @@ namespace TodoApi
 
             app.UseHttpsRedirection();
             app.UseDefaultFiles();
-            app.UseStaticFiles();
-
+           
             app.UseSwagger();
             app.UseSwaggerUI(option =>
             {
                 option.SwaggerEndpoint("/swagger/v1/swagger.json", "to do api");
             });
             app.UseRouting();
+            var options = new DefaultFilesOptions();
+            options.DefaultFileNames.Clear();
+            options.DefaultFileNames.Add("mydefault.html");
+            app.UseDefaultFiles(options);
+
+            // Set up custom content types - associating file extension to MIME type
+            var provider = new FileExtensionContentTypeProvider();
+            // Add new mappings
+            provider.Mappings[".myapp"] = "application/x-msdownload";
+            provider.Mappings[".htm3"] = "text/html";
+            provider.Mappings[".image"] = "image/png";
+            // Replace an existing mapping
+            provider.Mappings[".rtf"] = "application/x-msdownload";
+            // Remove MP4 videos.
+            provider.Mappings.Remove(".mp4");
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                FileProvider = new PhysicalFileProvider(Path.Combine(env.ContentRootPath, "MyStaticFiles")),
+                RequestPath = "/staticfiles",
+                OnPrepareResponse = ctx =>
+                {
+                    ctx.Context.Response.Headers.Append("Cache-Control", $"public, max-age={6000}");
+                },
+                ContentTypeProvider = provider
+            });
+
             app.UseMiddleware<ProductsLinkMiddleware>();
 
             app.Use(next => async context =>
@@ -170,6 +241,7 @@ namespace TodoApi
             app.UseAuthentication();
             app.UseAuthorization();
 
+            
             app.Use(next => async context =>
             {
                 using (new MyStopwatch(logger, $"Time {++count}"))
