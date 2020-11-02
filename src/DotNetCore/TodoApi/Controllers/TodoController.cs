@@ -8,6 +8,8 @@ using System.Collections.Generic;
 using TodoApi.DIServices;
 using Microsoft.Extensions.Options;
 using System;
+using Microsoft.AspNetCore.Authorization;
+using System.IO;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -109,5 +111,14 @@ namespace TodoApi.Controllers
             await _todoContext.SaveChangesAsync();
             return Ok(todoItem);
         }
+
+        //[Authorize]
+        //public IActionResult BannerImage()
+        //{
+        //    var filePath = Path.Combine(
+        //        AppContext.BaseDirectory, "MyStaticFiles", "images", "red-rose.jpg");
+
+        //    return PhysicalFile(filePath, "image/jpeg");
+        //}
     }
 }
