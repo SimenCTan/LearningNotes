@@ -92,6 +92,8 @@ namespace TodoApi
 
             services.AddDirectoryBrowser();
 
+            // httpclient
+            services.AddHttpClient();
             // server add health check
             services.AddHealthChecks()
                 .AddPrivateMemoryHealthCheck(1024L * 1024L * 256L);
