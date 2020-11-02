@@ -18,6 +18,7 @@ using System.Threading.Tasks;
 using TodoApi.CustomLoggers;
 using TodoApi.DIServices;
 using TodoApi.Extensions;
+using TodoApi.HttpClientRequests;
 using TodoApi.Middlewares;
 using TodoApi.Models;
 using TodoApi.Transformers;
@@ -27,7 +28,7 @@ namespace TodoApi
     public class Startup
     {
         private readonly IWebHostEnvironment env;
-        public Startup(IConfiguration configuration,IWebHostEnvironment webHost)
+        public Startup(IConfiguration configuration, IWebHostEnvironment webHost)
         {
             Configuration = configuration;
             env = webHost;
@@ -45,7 +46,8 @@ namespace TodoApi
             Configuration.GetSection("Logging");
             services.AddTransient<IStartupFilter, RequestSetOptionsStartUpFilter>();
             services.AddControllers()
-                .AddNewtonsoftJson(setupAction=> {
+                .AddNewtonsoftJson(setupAction =>
+                {
                     setupAction.UseMemberCasing();
                 });
             services.AddRouting(options =>
@@ -93,7 +95,12 @@ namespace TodoApi
             services.AddDirectoryBrowser();
 
             // httpclient
-            services.AddHttpClient();
+            services.AddHttpClient("externalservice", c =>
+            {
+                // Assume this is an "external" service which requires an API KEY
+                c.BaseAddress = new Uri("https://localhost:5001/");
+            })
+            .AddHttpMessageHandler<ValidateHeaderHandler>();
             // server add health check
             services.AddHealthChecks()
                 .AddPrivateMemoryHealthCheck(1024L * 1024L * 256L);
@@ -101,7 +108,7 @@ namespace TodoApi
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app,ILogger<Startup> logger,ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, ILogger<Startup> logger, ILoggerFactory loggerFactory)
         {
             if (env.IsDevelopment())
             {
@@ -197,7 +204,7 @@ namespace TodoApi
 
             app.UseHttpsRedirection();
             app.UseDefaultFiles();
-           
+
             app.UseSwagger();
             app.UseSwaggerUI(option =>
             {
@@ -243,7 +250,7 @@ namespace TodoApi
             app.UseAuthentication();
             app.UseAuthorization();
 
-            
+
             app.Use(next => async context =>
             {
                 using (new MyStopwatch(logger, $"Time {++count}"))
