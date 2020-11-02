@@ -10,6 +10,9 @@ using Microsoft.Extensions.Options;
 using System;
 using Microsoft.AspNetCore.Authorization;
 using System.IO;
+using System.Net.Http;
+using System.Text.Json;
+using System.Text;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -28,6 +31,7 @@ namespace TodoApi.Controllers
         private readonly TopItemSettings _monthTopItem;
         private readonly TopItemSettings _yearTopItem;
         private readonly MyConfigOptions _myConfigOptions;
+        private readonly IHttpClientFactory _clientFactory;
         public TodoController(TodoContext todoContext,
             ILogger<TodoController> logger,
             IOperationTransien operationTransien,
@@ -35,7 +39,8 @@ namespace TodoApi.Controllers
             IOperationSingleton operationSingleton,
             IOptionsMonitor<PositionOptions> optionsMonitor,
             IOptionsSnapshot<TopItemSettings> namedOptionsAccessor,
-            IOptions<MyConfigOptions> options)
+            IOptions<MyConfigOptions> options,
+            IHttpClientFactory httpClientFactory)
         {
             _todoContext = todoContext;
             _logger = logger;
@@ -46,6 +51,7 @@ namespace TodoApi.Controllers
             _monthTopItem = namedOptionsAccessor.Get(TopItemSettings.Month);
             _yearTopItem = namedOptionsAccessor.Get(TopItemSettings.Year);
             _myConfigOptions = options.Value;
+            _clientFactory = httpClientFactory;
         }
 
         // GET api/<TodoController>/5
@@ -110,6 +116,42 @@ namespace TodoApi.Controllers
             _todoContext.Remove(todoItem);
             await _todoContext.SaveChangesAsync();
             return Ok(todoItem);
+        }
+
+        [HttpPost("ClientPost")]
+        public async Task OnPost([FromBody] TodoItem todoItem)
+        {
+            var todoItemJson = new StringContent(
+        JsonSerializer.Serialize(todoItem),Encoding.UTF8,
+        "application/json");
+
+            using var httpResponse =
+                await _clientFactory.CreateClient().PostAsync("/api/TodoItems", todoItemJson);
+
+            httpResponse.EnsureSuccessStatusCode();
+        }
+
+        [HttpPut("ClientPut")]
+        public async Task SaveItemAsync(TodoItem todoItem)
+        {
+            var todoItemJson = new StringContent(
+                JsonSerializer.Serialize(todoItem),
+                Encoding.UTF8,
+                "application/json");
+
+            using var httpResponse =
+                await _clientFactory.CreateClient().PutAsync($"/api/TodoItems/{todoItem.Id}", todoItemJson);
+
+            httpResponse.EnsureSuccessStatusCode();
+        }
+
+        [HttpDelete("ClientDelete")]
+        public async Task DeleteItemAsync(long itemId)
+        {
+            using var httpResponse =
+                await _clientFactory.CreateClient().DeleteAsync($"/api/TodoItems/{itemId}");
+
+            httpResponse.EnsureSuccessStatusCode();
         }
 
         //[Authorize]
