@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using TodoApi.Models;
@@ -37,13 +38,26 @@ namespace TodoApi.Controllers
             .ToArray();
         }
 
+        /// <summary>
+        /// ddd
+        /// </summary>
+        /// <param name="strkey"></param>
+        /// <returns></returns>
         [HttpGet("GetSummaries")]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public IActionResult GetSummaries([FromQuery] string strkey)
         {
             var str = Summaries.Where(m => m == strkey);
             return Ok(str);
         }
 
+        /// <summary>
+        /// save test gogo
+        /// </summary>
+        /// <param name="todoItem1"></param>
+        /// <param name="todoItem2"></param>
+        /// <returns></returns>
         [HttpPost("SaveTodo")]
         public IActionResult SaveTodo(int todoItem1, [FromBody] TodoItem todoItem2)
         {
@@ -52,6 +66,7 @@ namespace TodoApi.Controllers
 
         [HttpPost("CreateProduct")]
         [Consumes("application/xml")]
+        [Produces("application/json")]
         public IActionResult CreateProduct([FromBody]TodoItem product)
         {
             return Ok();

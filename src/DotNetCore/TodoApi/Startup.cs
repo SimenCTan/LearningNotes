@@ -14,6 +14,8 @@ using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using System;
 using System.IO;
+using System.Reflection;
+using System.Security.Policy;
 using System.Threading.Tasks;
 using TodoApi.CustomLoggers;
 using TodoApi.DIServices;
@@ -67,8 +69,24 @@ namespace TodoApi
                 options.SwaggerDoc("v1", new OpenApiInfo
                 {
                     Title = "todo api",
-                    Version = "v1"
+                    Version = "v1",
+                    Description="web api learn",
+                    Contact = new OpenApiContact {
+                        Name="simen",
+                        Email="api@code.com",
+                        Url=new Uri("https://twitter.com/")
+                    },
+                    License = new OpenApiLicense
+                    {
+                        Name="MIT",
+                        Url=new Uri("https://twitter.com/")
+                    }
                 });
+
+                // Set the comments path for the Swagger JSON and UI.
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                options.IncludeXmlComments(xmlPath);
             });
             services.AddTransient<IOperationTransien, Operation>();
             services.AddScoped<IOperationScope, Operation>();
@@ -217,6 +235,7 @@ namespace TodoApi
             app.UseSwaggerUI(option =>
             {
                 option.SwaggerEndpoint("/swagger/v1/swagger.json", "to do api");
+                //option.InjectStylesheet("/swagger-ui/custom.css");
             });
             app.UseRouting();
             var options = new DefaultFilesOptions();
