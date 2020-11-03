@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using TodoApi.Models;
 
 namespace TodoApi.Controllers
 {
@@ -35,5 +36,27 @@ namespace TodoApi.Controllers
             })
             .ToArray();
         }
+
+        [HttpGet("GetSummaries")]
+        public IActionResult GetSummaries([FromQuery] string strkey)
+        {
+            var str = Summaries.Where(m => m == strkey);
+            return Ok(str);
+        }
+
+        [HttpPost("SaveTodo")]
+        public IActionResult SaveTodo(int todoItem1, [FromBody] TodoItem todoItem2)
+        {
+            return Ok();
+        }
+
+        [HttpPost("CreateProduct")]
+        [Consumes("application/xml")]
+        public IActionResult CreateProduct([FromBody]TodoItem product)
+        {
+            return Ok();
+        }
+
+
     }
 }
