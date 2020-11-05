@@ -162,5 +162,31 @@ namespace TodoApi.Controllers
 
         //    return PhysicalFile(filePath, "image/jpeg");
         //}
+
+        [HttpGet("syncget")]
+        public IEnumerable<TodoItem> GetTodoItems()
+        {
+            var todoItems = _todoContext.TodoItems.ToList();
+            foreach (var item in todoItems)
+            {
+                if (item.IsComplete)
+                {
+                    yield return item;
+                }
+            }
+        }
+
+        [HttpGet("asyncget")]
+        public async IAsyncEnumerable<TodoItem> GetTodoItemsAsync()
+        {
+            var todoItems =  _todoContext.TodoItems.AsAsyncEnumerable();
+            await foreach (var item in todoItems)
+            {
+                if (item.IsComplete)
+                {
+                    yield return item;
+                }
+            }
+        }
     }
 }
