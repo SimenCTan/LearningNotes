@@ -13,6 +13,7 @@ using System.IO;
 using System.Net.Http;
 using System.Text.Json;
 using System.Text;
+using Microsoft.AspNetCore.Http;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -164,6 +165,10 @@ namespace TodoApi.Controllers
         //}
 
         [HttpGet("syncget")]
+        [ProducesDefaultResponseType]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public IEnumerable<TodoItem> GetTodoItems()
         {
             var todoItems = _todoContext.TodoItems.ToList();
