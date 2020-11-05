@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net.Mime;
 using TodoApi.Models;
 
 namespace TodoApi.Controllers
@@ -59,6 +59,7 @@ namespace TodoApi.Controllers
         /// <param name="todoItem2"></param>
         /// <returns></returns>
         [HttpPost("SaveTodo")]
+        [Consumes(MediaTypeNames.Application.Json)]
         public IActionResult SaveTodo(int todoItem1, [FromBody] TodoItem todoItem2)
         {
             return Ok();
