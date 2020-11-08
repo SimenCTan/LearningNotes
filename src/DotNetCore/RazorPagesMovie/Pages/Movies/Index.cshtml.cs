@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using RazorPagesMovie.Data;
+using RazorPagesMovie.Filters;
 
 namespace RazorPagesMovie.Pages.Models
 {
+    [AddHeader("Author","Risk")]
     public class IndexModel : PageModel
     {
         private readonly RazorPagesMovieContext _context;

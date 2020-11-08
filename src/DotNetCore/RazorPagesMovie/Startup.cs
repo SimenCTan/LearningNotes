@@ -10,6 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using RazorPagesMovie.Data;
+using RazorPagesMovie.Filters;
 
 namespace RazorPagesMovie
 {
@@ -25,7 +26,15 @@ namespace RazorPagesMovie
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddRazorPages();
+            services.AddRazorPages(options =>
+            {
+                options.Conventions.AddFolderApplicationModelConvention("/Movies",
+                    model => model.Filters.Add(new SampleAsyncPageFilter(Configuration)));
+            });
+            //.AddMvcOptions(option =>
+            //{
+            //    option.Filters.Add(new SampleAsyncPageFilter(Configuration));
+            //});
 
             services.AddDbContext<RazorPagesMovieContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("RazorPagesMovieContext")));
