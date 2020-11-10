@@ -15,5 +15,7 @@ namespace MvcMovies.Data
         }
 
         public DbSet<Movie> Movie { get; set; }
+
+        public DbSet<BrainstormSession> BrainstormSessions { get; set; }
     }
 }

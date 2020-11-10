@@ -9,6 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using MvcMovies.Data;
+using MvcMovies.Data.Repositories;
 
 namespace MvcMovies
 {
@@ -26,6 +27,7 @@ namespace MvcMovies
         {
             services.AddControllersWithViews();
             services.AddMovieDbContextService(Configuration);
+            services.AddScoped<IBrainstormSessionRepository, EFStormSessionRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
