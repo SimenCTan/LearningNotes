@@ -22,7 +22,22 @@ namespace MvcMovies.Data
                 new Movie { ReleaseDate = DateTime.Now, Genre = "Ghostbusters", Price = 7.90M, Title = "MvcMovie", Rating = "Mvc" },
                 new Movie { ReleaseDate = DateTime.Now, Genre = "Ghostbusters", Price = 8.90M, Title = "MvcMovie", Rating = "Mvc" }
             };
+
+            var idea = new Idea()
+            {
+                DateCreated = new DateTime(2016, 8, 1),
+                Description = "Totally awesome idea",
+                Name = "Awesome idea"
+            };
+            var session = new BrainstormSession()
+            {
+                Name = "Test Session 1",
+                DateCreated = new DateTime(2016, 8, 1)
+            };
+            session.AddIdea(idea);
+
             movieContext.Movie.AddRange(movies);
+            movieContext.BrainstormSessions.Add(session);
             movieContext.SaveChanges();
         }
     }

@@ -13,12 +13,11 @@ namespace MvcMovies.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
         private readonly IBrainstormSessionRepository _sessionRepository;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(IBrainstormSessionRepository brainstormSessionRepository)
         {
-            _logger = logger;
+            _sessionRepository = brainstormSessionRepository;
         }
 
         public async Task<IActionResult> Index()
@@ -32,7 +31,7 @@ namespace MvcMovies.Controllers
                 Name = session.Name,
                 IdeaCount = session.Ideas.Count
             });
-            return View();
+            return View(model);
         }
 
         public IActionResult Privacy()
