@@ -32,7 +32,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MvcMovies", "src\DotNetCore
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DotNetCoreTest", "DotNetCoreTest", "{51C7BAF7-0840-4266-9CAE-B07B4FA299A9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcXUnitTest", "tests\DotNetCoreTest\MvcXUnitTest\MvcXUnitTest.csproj", "{DD47CE47-F8F6-4FC1-BD48-BDAF085DF11D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MvcXUnitTest", "tests\DotNetCoreTest\MvcXUnitTest\MvcXUnitTest.csproj", "{DD47CE47-F8F6-4FC1-BD48-BDAF085DF11D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetCoreWithAngular", "src\DotNetCore\NetCoreWithAngular\NetCoreWithAngular.csproj", "{851822CD-ACD4-4484-8593-F3A65A2A2F58}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -60,6 +62,10 @@ Global
 		{DD47CE47-F8F6-4FC1-BD48-BDAF085DF11D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DD47CE47-F8F6-4FC1-BD48-BDAF085DF11D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DD47CE47-F8F6-4FC1-BD48-BDAF085DF11D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{851822CD-ACD4-4484-8593-F3A65A2A2F58}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{851822CD-ACD4-4484-8593-F3A65A2A2F58}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{851822CD-ACD4-4484-8593-F3A65A2A2F58}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{851822CD-ACD4-4484-8593-F3A65A2A2F58}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -74,6 +80,7 @@ Global
 		{BC04810B-446E-4CA3-80D1-1DA4B99D3C8A} = {6E444B13-A50E-45AD-A7CB-11A970610D42}
 		{51C7BAF7-0840-4266-9CAE-B07B4FA299A9} = {3988B127-43E6-4D6D-A543-75906666686C}
 		{DD47CE47-F8F6-4FC1-BD48-BDAF085DF11D} = {51C7BAF7-0840-4266-9CAE-B07B4FA299A9}
+		{851822CD-ACD4-4484-8593-F3A65A2A2F58} = {6E444B13-A50E-45AD-A7CB-11A970610D42}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A461A971-35E2-4950-800B-5D8599E972BD}
