@@ -16,6 +16,7 @@ namespace MvcMovies
     {
         public static void Main(string[] args)
         {
+            AppContext.SetSwitch("Microsoft.AspNetCore.Routing.UseCorrectCatchAllBehavior",true);
             var host = CreateHostBuilder(args).Build();
             using var service = host.Services.CreateScope();
             var serviceProvider = service.ServiceProvider;

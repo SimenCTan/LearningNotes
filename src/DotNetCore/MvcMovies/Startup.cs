@@ -51,6 +51,16 @@ namespace MvcMovies
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
+                    pattern: "blog/{*article}",
+                    name: "blog",
+                    defaults: new { controller = "blog", action = "article" }
+                    );
+                endpoints.MapAreaControllerRoute(name: "blog_route", areaName: "Blog", pattern: "Manage/{controller}/{action}/{id?}",
+                    defaults: new { area = "Blog" }, constraints: new { area = "Blog" });
+                endpoints.MapAreaControllerRoute(name: "duck_route",
+                                     areaName: "Duck",
+                                     pattern: "Manage/{controller}/{action}/{id?}");
+                endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
