@@ -40,6 +40,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetCoreWithReact", "src\Dot
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetCoreWithReactRedux", "src\DotNetCore\NetCoreWithReactRedux\NetCoreWithReactRedux.csproj", "{46C08763-F542-4F6C-AB3F-0C62C36A2F06}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetCoreWithGrunt", "src\DotNetCore\DotNetCoreWithGrunt\DotNetCoreWithGrunt.csproj", "{14AF0D89-FCEE-43AA-8279-420B5A2ECF51}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -78,6 +80,10 @@ Global
 		{46C08763-F542-4F6C-AB3F-0C62C36A2F06}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{46C08763-F542-4F6C-AB3F-0C62C36A2F06}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{46C08763-F542-4F6C-AB3F-0C62C36A2F06}.Release|Any CPU.Build.0 = Release|Any CPU
+		{14AF0D89-FCEE-43AA-8279-420B5A2ECF51}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{14AF0D89-FCEE-43AA-8279-420B5A2ECF51}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{14AF0D89-FCEE-43AA-8279-420B5A2ECF51}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{14AF0D89-FCEE-43AA-8279-420B5A2ECF51}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -95,6 +101,7 @@ Global
 		{851822CD-ACD4-4484-8593-F3A65A2A2F58} = {6E444B13-A50E-45AD-A7CB-11A970610D42}
 		{60AB81B7-7828-49F6-A258-911529915D26} = {6E444B13-A50E-45AD-A7CB-11A970610D42}
 		{46C08763-F542-4F6C-AB3F-0C62C36A2F06} = {6E444B13-A50E-45AD-A7CB-11A970610D42}
+		{14AF0D89-FCEE-43AA-8279-420B5A2ECF51} = {6E444B13-A50E-45AD-A7CB-11A970610D42}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A461A971-35E2-4950-800B-5D8599E972BD}
