@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using MvcMovies.ApplicationConvention;
 using MvcMovies.Data;
 using MvcMovies.Data.Repositories;
 
@@ -25,7 +26,7 @@ namespace MvcMovies
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
+            //services.AddControllersWithViews();
             services.AddMovieDbContextService(Configuration);
             services.AddScoped<IBrainstormSessionRepository, EFStormSessionRepository>();
             services.AddDistributedMemoryCache();
@@ -35,6 +36,11 @@ namespace MvcMovies
                 options.Cookie.Name = ".AdventureWorks.Session";
                 options.Cookie.HttpOnly = true;
                 options.Cookie.IsEssential = true;
+            });
+            services.AddMvc(option =>
+            {
+                option.Conventions.Add(new ApplicationDescription("My Application Description"));
+                option.Conventions.Add(new CustomActionNameAttribute("My Controller Description"));
             });
         }
 

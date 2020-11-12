@@ -5,12 +5,14 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using MvcMovies.ApplicationConvention;
 using MvcMovies.Data.Entities;
 using MvcMovies.Data.Repositories;
 using MvcMovies.Models;
 
 namespace MvcMovies.Controllers
 {
+    [ControllerDescription("controller description")]
     public class HomeController : Controller
     {
         private readonly IBrainstormSessionRepository _sessionRepository;
@@ -20,6 +22,8 @@ namespace MvcMovies.Controllers
             _sessionRepository = brainstormSessionRepository;
         }
 
+        [ActionDescription("Action Description")]
+        [CustomActionName("Index")]
         public async Task<IActionResult> Index()
         {
             var sessionList = await _sessionRepository.ListAsync();
@@ -31,6 +35,7 @@ namespace MvcMovies.Controllers
                 Name = session.Name,
                 IdeaCount = session.Ideas.Count
             });
+            var text = ControllerContext.ActionDescriptor.Properties["description"];
             return View(model);
         }
 
