@@ -11,6 +11,8 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using RazorPagesMovie.Data;
 using RazorPagesMovie.Filters;
+using System.Reflection;
+using Microsoft.AspNetCore.Mvc.ApplicationParts;
 
 namespace RazorPagesMovie
 {
@@ -46,6 +48,12 @@ namespace RazorPagesMovie
                 options.Cookie.HttpOnly = true;
                 options.Cookie.IsEssential = true;
             });
+
+            var assembly = typeof(Startup).GetTypeInfo().Assembly;
+            // This creates an AssemblyPart, but does not create any related parts for items such as views.
+            var part = new AssemblyPart(assembly);
+            services.AddControllersWithViews()
+                .ConfigureApplicationPartManager(apm => apm.ApplicationParts.Add(part));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
