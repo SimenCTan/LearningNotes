@@ -20,6 +20,7 @@
         <input type="submit" value="Filter" />
     </p>
 </form>
+@await Component.InvokeAsync("PriorityList", new { maxPriority = 40, maxId = 7 })
 
 <table class="table">
     <thead>
