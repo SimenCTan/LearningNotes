@@ -41,7 +41,11 @@ namespace MvcMovies
             {
                 option.Conventions.Add(new ApplicationDescription("My Application Description"));
                 option.Conventions.Add(new CustomActionNameAttribute("My Controller Description"));
-            });
+            })
+            .AddRazorOptions(option=> {
+                option.ViewLocationFormats.Add("/{0}.cshtml");
+            })
+            .SetCompatibilityVersion(Microsoft.AspNetCore.Mvc.CompatibilityVersion.Version_3_0);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
