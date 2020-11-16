@@ -14,6 +14,7 @@ using System.Net.Http;
 using System.Text.Json;
 using System.Text;
 using Microsoft.AspNetCore.Http;
+using TodoApi.Filters;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -21,6 +22,7 @@ namespace TodoApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [AddHeader("Author","Simen")]
     public class TodoController : ControllerBase
     {
         private readonly TodoContext _todoContext;
@@ -59,6 +61,7 @@ namespace TodoApi.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<TodoItem>> Get(int id)
         {
+            throw new Exception($"test exception");
             _logger.LogInformation($"{_positionOptions.Name}");
             Console.WriteLine("ggg");
             var todoItem = await _todoContext.TodoItems.Where(m => m.Id == id).FirstOrDefaultAsync();

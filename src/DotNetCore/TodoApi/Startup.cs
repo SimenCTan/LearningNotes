@@ -20,6 +20,7 @@ using System.Threading.Tasks;
 using TodoApi.CustomLoggers;
 using TodoApi.DIServices;
 using TodoApi.Extensions;
+using TodoApi.Filters;
 using TodoApi.HttpClientRequests;
 using TodoApi.Middlewares;
 using TodoApi.Models;
@@ -47,7 +48,7 @@ namespace TodoApi
             });
             Configuration.GetSection("Logging");
             services.AddTransient<IStartupFilter, RequestSetOptionsStartUpFilter>();
-            services.AddControllers()
+            services.AddControllers(options=>options.Filters.Add(typeof(MySampleActionFilter)))
                 .AddNewtonsoftJson(setupAction =>
                 {
                     setupAction.UseMemberCasing();
@@ -130,6 +131,9 @@ namespace TodoApi
             // server add health check
             services.AddHealthChecks()
                 .AddPrivateMemoryHealthCheck(1024L * 1024L * 256L);
+
+            services.AddScoped<MyActionFilterAttribute>();
+            services.AddScoped<AddHeaderResultServiceFilter>();
 
         }
 
