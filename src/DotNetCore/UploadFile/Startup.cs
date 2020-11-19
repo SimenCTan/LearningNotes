@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using UploadFile.Filters;
 
 namespace UploadFile
 {
@@ -23,7 +24,24 @@ namespace UploadFile
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddRazorPages();
+            services.AddRazorPages(options =>
+            {
+                options.Conventions.AddPageApplicationModelConvention("/StreamedSingleFileUploadDb",
+                    model =>
+                    {
+                        model.Filters.Add(new GenerateAntiforgeryTokenCookieAttribute());
+                        model.Filters.Add(new DisableFormValueModelBindingAttribute());
+                    });
+                options.Conventions
+                .AddPageApplicationModelConvention("/StreamedSingleFileUploadPhysical",
+                    model =>
+                    {
+                        model.Filters.Add(
+                            new GenerateAntiforgeryTokenCookieAttribute());
+                        model.Filters.Add(
+                            new DisableFormValueModelBindingAttribute());
+                    });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
