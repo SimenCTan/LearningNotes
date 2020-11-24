@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations;
 using System.IO;
 using System.Linq;
 using System.Net;
-using System.Net.Http.Headers;
+using Microsoft.Net.Http.Headers;
 using System.Reflection;
 using System.Threading.Tasks;
 
@@ -168,7 +168,7 @@ namespace UploadFile.Utilities
                         $"The file exceeds {megabyteSizeLimit:N1} MB.");
                     }
                     else if (!IsValidFileExtensionAndSignature(
-                        contentDisposition.FileName, memoryStream,
+                        contentDisposition.FileName.Value, memoryStream,
                         permittedExtensions))
                     {
                         modelState.AddModelError("File",
