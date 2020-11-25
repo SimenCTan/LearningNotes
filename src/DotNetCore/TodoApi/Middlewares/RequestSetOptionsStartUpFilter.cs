@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 
 namespace TodoApi.Middlewares
+
 {
     public class RequestSetOptionsStartUpFilter : IStartupFilter
     {
