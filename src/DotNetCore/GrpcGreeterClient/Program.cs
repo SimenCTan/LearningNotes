@@ -13,9 +13,16 @@ namespace GrpcGreeterClient
         {
             using var channel = GrpcChannel.ForAddress("https://localhost:5001");
             var client = new  Greeter.GreeterClient(channel);
-            var reply = await client.SayHelloAsync(new HelloRequest { Name = "GrpcGreeterClient" });
-            Console.WriteLine("Greeting: " + reply.Message);
-
+            try
+            {
+                var reply = await client.SayHelloAsync(new HelloRequest { Name = "GrpcGreeterClient" }, deadline: DateTime.UtcNow.AddSeconds(2));
+                Console.WriteLine("Greeting: " + reply.Message);
+            }
+            catch (RpcException ex) when (ex.StatusCode == StatusCode.DeadlineExceeded)
+            {
+                Console.WriteLine("Greeting timeout.");
+            }
+            
             // stream from service
             try
             {
@@ -30,7 +37,7 @@ namespace GrpcGreeterClient
                     }
                 }
             }
-            catch (Exception ex)
+            catch (RpcException ex)
             {
                 Console.WriteLine($"request cancel by client {ex.Message}");
             }
@@ -41,7 +48,10 @@ namespace GrpcGreeterClient
             {
                 await clientCall.RequestStream.WriteAsync(new ExampleRequest { PageIndex = i, PageSize = i, IsDescending = false });
             }
+            
             await clientCall.RequestStream.CompleteAsync();
+            var clientResponse = clientCall.GetTrailers();
+            Console.WriteLine($"client end meta data {clientResponse.GetValue("my-trailer-name")}");
 
             // both stream
             using var bothstream = client.StreamingBothWays();
