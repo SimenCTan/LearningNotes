@@ -42,9 +42,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotNetCoreWithGrunt", "src\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UploadFile", "src\DotNetCore\UploadFile\UploadFile.csproj", "{38C9CF16-4257-4D42-83D3-B6A4CB8CEBCB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrpcGreeter", "src\DotNetCore\GrpcGreeter\GrpcGreeter.csproj", "{DF5A54CE-5E73-4BBE-B978-6A221A6C7F1E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GrpcGreeter", "src\DotNetCore\GrpcGreeter\GrpcGreeter.csproj", "{DF5A54CE-5E73-4BBE-B978-6A221A6C7F1E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrpcGreeterClient", "src\DotNetCore\GrpcGreeterClient\GrpcGreeterClient.csproj", "{5402DF5E-D213-42B1-9E03-B73C526B55CF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GrpcGreeterClient", "src\DotNetCore\GrpcGreeterClient\GrpcGreeterClient.csproj", "{5402DF5E-D213-42B1-9E03-B73C526B55CF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtoLib", "src\DotNetCore\ProtoLib\ProtoLib.csproj", "{DA0B64B9-F829-420B-9EAF-F6CE63E7E67B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -100,6 +102,10 @@ Global
 		{5402DF5E-D213-42B1-9E03-B73C526B55CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5402DF5E-D213-42B1-9E03-B73C526B55CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5402DF5E-D213-42B1-9E03-B73C526B55CF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DA0B64B9-F829-420B-9EAF-F6CE63E7E67B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA0B64B9-F829-420B-9EAF-F6CE63E7E67B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA0B64B9-F829-420B-9EAF-F6CE63E7E67B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA0B64B9-F829-420B-9EAF-F6CE63E7E67B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -120,6 +126,7 @@ Global
 		{38C9CF16-4257-4D42-83D3-B6A4CB8CEBCB} = {6E444B13-A50E-45AD-A7CB-11A970610D42}
 		{DF5A54CE-5E73-4BBE-B978-6A221A6C7F1E} = {6E444B13-A50E-45AD-A7CB-11A970610D42}
 		{5402DF5E-D213-42B1-9E03-B73C526B55CF} = {6E444B13-A50E-45AD-A7CB-11A970610D42}
+		{DA0B64B9-F829-420B-9EAF-F6CE63E7E67B} = {6E444B13-A50E-45AD-A7CB-11A970610D42}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A461A971-35E2-4950-800B-5D8599E972BD}

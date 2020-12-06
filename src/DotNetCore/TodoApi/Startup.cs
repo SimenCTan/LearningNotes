@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using ProtoLib;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Hosting;
@@ -25,6 +26,8 @@ using TodoApi.HttpClientRequests;
 using TodoApi.Middlewares;
 using TodoApi.Models;
 using TodoApi.Transformers;
+using GrpcGreeter;
+using Grpc.Net.Client;
 
 namespace TodoApi
 {
@@ -134,7 +137,11 @@ namespace TodoApi
 
             services.AddScoped<MyActionFilterAttribute>();
             services.AddScoped<AddHeaderResultServiceFilter>();
-
+            services
+                .AddGrpcClient<Greeter.GreeterClient>(o =>
+                {
+                    o.Address = new Uri("https://localhost:5001");
+                }).EnableCallContextPropagation(option=>option.SuppressContextNotFoundErrors=true);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
