@@ -17,6 +17,16 @@ namespace GrpcGreeter
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddGrpc();
+            services.AddCors(option =>
+            {
+                option.AddPolicy("AllowAll", builder =>
+                {
+                    builder.AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()
+                    .WithExposedHeaders("Grpc-Status", "Grpc-Message", "Grpc-Encoding", "Grpc-Accept-Encoding");
+                });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -28,10 +38,13 @@ namespace GrpcGreeter
             }
 
             app.UseRouting();
+            // Must be added between UseRouting and UseEndpoints
+            app.UseGrpcWeb(new GrpcWebOptions { DefaultEnabled = true });
+            app.UseCors();
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapGrpcService<GreeterService>();
+                endpoints.MapGrpcService<GreeterService>().EnableGrpcWeb().RequireCors("AllowAll");
 
                 endpoints.MapGet("/", async context =>
                 {
