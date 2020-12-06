@@ -11,7 +11,11 @@ namespace GrpcGreeterClient
     {
         static async Task Main(string[] args)
         {
-            using var channel = GrpcChannel.ForAddress("https://localhost:5001");
+            using var channel = GrpcChannel.ForAddress("https://localhost:5001", new GrpcChannelOptions
+            {
+                MaxSendMessageSize = 10 * 1024 * 1024,
+                ThrowOperationCanceledOnCancellation = true
+            }) ;
             var client = new  Greeter.GreeterClient(channel);
             try
             {
@@ -37,7 +41,7 @@ namespace GrpcGreeterClient
                     }
                 }
             }
-            catch (RpcException ex)
+            catch (OperationCanceledException ex)
             {
                 Console.WriteLine($"request cancel by client {ex.Message}");
             }
@@ -50,8 +54,8 @@ namespace GrpcGreeterClient
             }
             
             await clientCall.RequestStream.CompleteAsync();
-            var clientResponse = clientCall.GetTrailers();
-            Console.WriteLine($"client end meta data {clientResponse.GetValue("my-trailer-name")}");
+            //var clientResponse = clientCall.GetTrailers();
+            //Console.WriteLine($"client end meta data {clientResponse.GetValue("my-trailer-name")}");
 
             // both stream
             using var bothstream = client.StreamingBothWays();

@@ -16,7 +16,11 @@ namespace GrpcGreeter
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddGrpc();
+            services.AddGrpc(option=> {
+                option.EnableDetailedErrors = true;
+                option.MaxReceiveMessageSize = 10 * 1024 * 1024;
+                option.MaxSendMessageSize = 2 * 1024 * 1024;
+            });
             services.AddCors(option =>
             {
                 option.AddPolicy("AllowAll", builder =>
