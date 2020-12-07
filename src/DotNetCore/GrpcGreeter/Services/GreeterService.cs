@@ -1,4 +1,5 @@
 ﻿using Grpc.Core;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Threading.Tasks;
@@ -21,6 +22,7 @@ namespace GrpcGreeter
             });
         }
 
+        [Authorize]
         public override async Task StreamingFromService(ExampleRequest request, IServerStreamWriter<ExampleResponse> responseStream, ServerCallContext context)
         {
             while (!context.CancellationToken.IsCancellationRequested)
@@ -30,6 +32,7 @@ namespace GrpcGreeter
             }
         }
 
+        [Authorize]
         public override async Task<ExampleResponse> StreamingFromClient(IAsyncStreamReader<ExampleRequest> requestStream, ServerCallContext context)
         {
             while (await requestStream.MoveNext())
@@ -40,6 +43,7 @@ namespace GrpcGreeter
             return new ExampleResponse { Age = 99 };
         }
 
+        [Authorize]
         public override async Task StreamingBothWays(IAsyncStreamReader<ExampleRequest> requestStream, IServerStreamWriter<ExampleResponse> responseStream, ServerCallContext context)
         {
             await foreach (var message in requestStream.ReadAllAsync())
