@@ -1,6 +1,7 @@
 ﻿using Grpc.Core;
 using Grpc.Net.Client;
 using GrpcGreeter;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Net.Http;
 using System.Threading;
@@ -109,10 +110,15 @@ namespace GrpcGreeterClient
                 }
                 return Task.CompletedTask;
             });
+            var loggerFactory = LoggerFactory.Create(logging =>
+            {
+                logging.SetMinimumLevel(LogLevel.Debug);
+            });
             var channel = GrpcChannel.ForAddress(address, new GrpcChannelOptions
             {
                 Credentials = ChannelCredentials.Create(new SslCredentials(), credentials),
-                ThrowOperationCanceledOnCancellation = true
+                ThrowOperationCanceledOnCancellation = true,
+                LoggerFactory = loggerFactory
             });
             return channel;
         }
