@@ -8,10 +8,10 @@ namespace GrpcGreeter
 {
     public class GreeterService : Greeter.GreeterBase
     {
-        private readonly ILogger<GreeterService> _logger;
-        public GreeterService(ILogger<GreeterService> logger)
+        private readonly ILogger _logger;
+        public GreeterService(ILoggerFactory logger)
         {
-            _logger = logger;
+            _logger = logger.CreateLogger<GreeterService>();
         }
 
         public override Task<HelloReply> SayHello(HelloRequest request, ServerCallContext context)

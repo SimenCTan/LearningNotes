@@ -46,7 +46,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GrpcGreeter", "src\DotNetCo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GrpcGreeterClient", "src\DotNetCore\GrpcGreeterClient\GrpcGreeterClient.csproj", "{5402DF5E-D213-42B1-9E03-B73C526B55CF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtoLib", "src\DotNetCore\ProtoLib\ProtoLib.csproj", "{DA0B64B9-F829-420B-9EAF-F6CE63E7E67B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProtoLib", "src\DotNetCore\ProtoLib\ProtoLib.csproj", "{DA0B64B9-F829-420B-9EAF-F6CE63E7E67B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrpcUnitTest", "tests\DotNetCoreTest\GrpcUnitTest\GrpcUnitTest.csproj", "{AB8CC005-D145-4003-938A-A26DE3C43A19}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -106,6 +108,10 @@ Global
 		{DA0B64B9-F829-420B-9EAF-F6CE63E7E67B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DA0B64B9-F829-420B-9EAF-F6CE63E7E67B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DA0B64B9-F829-420B-9EAF-F6CE63E7E67B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AB8CC005-D145-4003-938A-A26DE3C43A19}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB8CC005-D145-4003-938A-A26DE3C43A19}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB8CC005-D145-4003-938A-A26DE3C43A19}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB8CC005-D145-4003-938A-A26DE3C43A19}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -127,6 +133,7 @@ Global
 		{DF5A54CE-5E73-4BBE-B978-6A221A6C7F1E} = {6E444B13-A50E-45AD-A7CB-11A970610D42}
 		{5402DF5E-D213-42B1-9E03-B73C526B55CF} = {6E444B13-A50E-45AD-A7CB-11A970610D42}
 		{DA0B64B9-F829-420B-9EAF-F6CE63E7E67B} = {6E444B13-A50E-45AD-A7CB-11A970610D42}
+		{AB8CC005-D145-4003-938A-A26DE3C43A19} = {51C7BAF7-0840-4266-9CAE-B07B4FA299A9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A461A971-35E2-4950-800B-5D8599E972BD}
