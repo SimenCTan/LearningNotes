@@ -30,9 +30,31 @@ namespace GrpcUnitTest.Helpers
             return _channel.Reader.ReadAllAsync();
         }
 
+        public async Task<T> ReadNextAsync()
+        {
+            if (await _channel.Reader.WaitToReadAsync())
+            {
+                _channel.Reader.TryRead(out var message);
+                return message;
+            }
+            else
+            {
+                return default;
+            }
+        }
+
+
         public Task WriteAsync(T message)
         {
-            throw new NotImplementedException();
+            if (_serverCallContext.CancellationToken.IsCancellationRequested)
+            {
+                return Task.FromCanceled(_serverCallContext.CancellationToken);
+            }
+            if (!_channel.Writer.TryWrite(message))
+            {
+                throw new InvalidOperationException("Unable to write message.");
+            }
+            return Task.CompletedTask;
         }
     }
 }
