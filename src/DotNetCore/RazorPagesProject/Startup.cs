@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using RazorPagesProject.Services;
+using System.Net.Http.Headers;
 
 namespace RazorPagesProject
 {
@@ -32,6 +33,11 @@ namespace RazorPagesProject
                 options.UseSqlServer(Configuration.GetConnectionString("MSSQL"));
             });
             services.AddScoped<IQuoteService, QuoteService>();
+            services.AddHttpClient<IGithubClient, GithubClient>(client =>
+            {
+                client.BaseAddress = new Uri("https://api.github.com");
+                client.DefaultRequestHeaders.UserAgent.Add(new ProductInfoHeaderValue("SimenCTan", "0.1.0"));
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
