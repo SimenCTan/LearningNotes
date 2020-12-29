@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
+using HealthChecksSample.Data;
 
 namespace HealthChecksSample
 {
@@ -31,13 +33,17 @@ namespace HealthChecksSample
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddHealthChecks()
+            services.AddHealthChecks().AddDbContextCheck<HealthCheckDbContext>()
                 .AddCheck("Foo", () =>
         HealthCheckResult.Healthy("Foo is OK!"), tags: new[] { "foo_tag" })
     .AddCheck("Bar", () =>
         HealthCheckResult.Unhealthy("Bar is unhealthy!"), tags: new[] { "bar_tag" })
     .AddCheck("Baz", () =>
         HealthCheckResult.Healthy("Baz is OK!"), tags: new[] { "baz_tag" });
+            services.AddDbContext<HealthCheckDbContext>(option =>
+            {
+                option.UseSqlServer(Configuration.GetConnectionString("MSSQL"));
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
