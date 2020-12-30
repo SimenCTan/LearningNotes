@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Identity.Pages
 {
-    [Authorize]
+    [Authorize(Roles = "Administrator, PowerUser")]
     public class PrivacyModel : PageModel
     {
         private readonly ILogger<PrivacyModel> _logger;

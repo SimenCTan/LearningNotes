@@ -34,7 +34,10 @@ namespace Identity
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
-            services.AddRazorPages();
+            services.AddRazorPages(options=> {
+                options.Conventions.AllowAnonymousToPage("/Contact");
+                options.Conventions.AuthorizeFolder("/Private");
+            });
             services.Configure<IdentityOptions>(options =>
             {
                 // Password settings.
@@ -66,9 +69,12 @@ namespace Identity
                 options.AccessDeniedPath = "/Identity/Account/AccessDenied";
                 options.SlidingExpiration = true;
             });
-            services.AddAuthorization(options => {
+            services.AddAuthorization(options =>
+            {
                 options.FallbackPolicy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
-            })
+                options.AddPolicy("RequireAdministratorRole",
+                        policy => policy.RequireRole("Administrator"));
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
