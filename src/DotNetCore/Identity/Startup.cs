@@ -1,4 +1,5 @@
 ﻿using Identity.Data;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -31,6 +32,7 @@ namespace Identity
                 options.UseSqlServer(
                     Configuration.GetConnectionString("MSSQL")));
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+                .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddRazorPages();
             services.Configure<IdentityOptions>(options =>
@@ -64,6 +66,9 @@ namespace Identity
                 options.AccessDeniedPath = "/Identity/Account/AccessDenied";
                 options.SlidingExpiration = true;
             });
+            services.AddAuthorization(options => {
+                options.FallbackPolicy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
+            })
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
