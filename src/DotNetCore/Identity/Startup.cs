@@ -1,4 +1,5 @@
 ﻿using Identity.Data;
+using Identity.Policies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -74,7 +75,10 @@ namespace Identity
                 options.FallbackPolicy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
                 options.AddPolicy("RequireAdministratorRole",
                         policy => policy.RequireRole("Administrator"));
+                options.AddPolicy("AtLeast21", policy =>
+                            policy.Requirements.Add(new MinimumAgeRequirement(21)));
             });
+            services.AddSingleton<IAuthorizationHandler, MinimumAgeHandler>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
