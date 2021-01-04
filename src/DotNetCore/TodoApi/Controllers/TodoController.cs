@@ -7,6 +7,7 @@ using TodoApi.Models;
 using System.Collections.Generic;
 using TodoApi.DIServices;
 using Microsoft.Extensions.Options;
+using Microsoft.Extensions.Caching.Memory;
 using System;
 using Microsoft.AspNetCore.Authorization;
 using System.IO;
@@ -15,6 +16,7 @@ using System.Text.Json;
 using System.Text;
 using Microsoft.AspNetCore.Http;
 using TodoApi.Filters;
+using TodoApi.Extensions;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -35,6 +37,7 @@ namespace TodoApi.Controllers
         private readonly TopItemSettings _yearTopItem;
         private readonly MyConfigOptions _myConfigOptions;
         private readonly IHttpClientFactory _clientFactory;
+        private readonly IMemoryCache _cache;
         public TodoController(TodoContext todoContext,
             ILogger<TodoController> logger,
             IOperationTransien operationTransien,
@@ -43,7 +46,8 @@ namespace TodoApi.Controllers
             IOptionsMonitor<PositionOptions> optionsMonitor,
             IOptionsSnapshot<TopItemSettings> namedOptionsAccessor,
             IOptions<MyConfigOptions> options,
-            IHttpClientFactory httpClientFactory)
+            IHttpClientFactory httpClientFactory,
+            IMemoryCache cache)
         {
             _todoContext = todoContext;
             _logger = logger;
@@ -55,6 +59,7 @@ namespace TodoApi.Controllers
             _yearTopItem = namedOptionsAccessor.Get(TopItemSettings.Year);
             _myConfigOptions = options.Value;
             _clientFactory = httpClientFactory;
+            _cache = cache;
         }
 
         // GET api/<TodoController>/5
@@ -76,6 +81,13 @@ namespace TodoApi.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<TodoItem>>> Get()
         {
+            DateTime cacheEntry;
+            if (!_cache.TryGetValue(CacheKeys.Entry, out cacheEntry))
+            {
+                cacheEntry = DateTime.Now;
+                var cacheEntryOptions = new MemoryCacheEntryOptions().SetSlidingExpiration(TimeSpan.FromSeconds(3));
+                _cache.Set(CacheKeys.Entry, cacheEntry, cacheEntryOptions);
+            }
             var todoItems = await _todoContext.TodoItems.ToListAsync();
             return Ok(todoItems);
         }
