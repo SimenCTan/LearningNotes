@@ -28,6 +28,8 @@ using TodoApi.Models;
 using TodoApi.Transformers;
 using GrpcGreeter;
 using Grpc.Net.Client;
+using Microsoft.AspNetCore.ResponseCompression;
+using System.Linq;
 
 namespace TodoApi
 {
@@ -160,6 +162,16 @@ namespace TodoApi
                 options.InstanceName = "SampleInstance";
             });
             #endregion
+
+
+            services.AddResponseCompression(options =>
+            {
+                options.Providers.Add<BrotliCompressionProvider>();
+                options.Providers.Add<GzipCompressionProvider>();
+                options.MimeTypes =
+                    ResponseCompressionDefaults.MimeTypes.Concat(
+                        new[] { "image/svg+xml", "application/json" });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
