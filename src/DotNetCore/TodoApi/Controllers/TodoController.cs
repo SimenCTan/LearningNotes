@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using TodoApi.DIServices;
 using Microsoft.Extensions.Options;
 using Microsoft.Extensions.Caching.Memory;
+using Microsoft.Extensions.Caching.Distributed;
 using System;
 using Microsoft.AspNetCore.Authorization;
 using System.IO;
@@ -38,6 +39,7 @@ namespace TodoApi.Controllers
         private readonly MyConfigOptions _myConfigOptions;
         private readonly IHttpClientFactory _clientFactory;
         private readonly IMemoryCache _cache;
+        private readonly IDistributedCache _distributedCache;
         public TodoController(TodoContext todoContext,
             ILogger<TodoController> logger,
             IOperationTransien operationTransien,
@@ -47,7 +49,8 @@ namespace TodoApi.Controllers
             IOptionsSnapshot<TopItemSettings> namedOptionsAccessor,
             IOptions<MyConfigOptions> options,
             IHttpClientFactory httpClientFactory,
-            IMemoryCache cache)
+            IMemoryCache cache,
+            IDistributedCache distributedCache)
         {
             _todoContext = todoContext;
             _logger = logger;
@@ -60,6 +63,7 @@ namespace TodoApi.Controllers
             _myConfigOptions = options.Value;
             _clientFactory = httpClientFactory;
             _cache = cache;
+            _distributedCache = distributedCache;
         }
 
         // GET api/<TodoController>/5
@@ -81,6 +85,7 @@ namespace TodoApi.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<TodoItem>>> Get()
         {
+            await _distributedCache.SetStringAsync("testdistributed", "ddd");
             DateTime cacheEntry;
             if (!_cache.TryGetValue(CacheKeys.Entry, out cacheEntry))
             {

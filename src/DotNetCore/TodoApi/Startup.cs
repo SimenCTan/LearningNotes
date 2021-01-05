@@ -144,6 +144,22 @@ namespace TodoApi
                 }).EnableCallContextPropagation(option=>option.SuppressContextNotFoundErrors=true);
 
             services.AddMemoryCache();
+
+            services.AddDistributedMemoryCache();
+            services.AddDistributedSqlServerCache(options =>
+            {
+                options.ConnectionString =
+                    Configuration.GetConnectionString("");
+                options.SchemaName = "dbo";
+                options.TableName = "TestCache";
+            });
+            #region snippet_AddStackExchangeRedisCache
+            services.AddStackExchangeRedisCache(options =>
+            {
+                options.Configuration =Configuration.GetConnectionString("Redis");
+                options.InstanceName = "SampleInstance";
+            });
+            #endregion
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
