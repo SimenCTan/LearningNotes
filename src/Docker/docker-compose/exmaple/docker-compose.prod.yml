@@ -1,0 +1,5 @@
+version: "3.9"
+services: 
+  web:
+    ports: 
+      - "1000:1000"

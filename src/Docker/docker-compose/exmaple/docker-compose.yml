@@ -1,0 +1,25 @@
+version: "3.9"
+services:
+  web:
+    build: .
+    ports:
+      - "5000:5000"
+    volumes:
+      - .:/code
+    env_file:
+      - ./.env
+    environment:
+      FLASK_ENV: development
+    networks: 
+      - frontend
+  redis:
+    image: "redis:alpine"
+  
+networks: 
+  frontend:
+    # use customer driver
+    driver: customer-driver-1
+    name: customer-name
+  backend:
+    # use customer driver
+    driver: customer-driver-2
