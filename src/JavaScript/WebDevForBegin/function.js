@@ -156,3 +156,22 @@ let functionName = function factorial(n) {
 };
 console.log(functionName(10));
 console.log(functionName.name);
+
+// function*关键字可以在表达式内部定义一个生成器函数。
+function* foo() {
+  yield "a";
+  yield "b";
+  yield "c";
+}
+let str = "";
+for (const val of foo()) {
+  str += val;
+}
+console.log(str);
+
+var x = function* (y) {
+  yield y * y;
+};
+console.log(x.name);
+const returnValue = x(10);
+console.log(returnValue.next().value);
