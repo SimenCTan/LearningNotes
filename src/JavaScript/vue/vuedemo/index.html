@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>vue demo</title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="./style.css"></style>
+        <script src="./vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            {{ message }}
+          </div>
+          <div id="app-2">
+              <span v-bind:title="message">
+                  查看span
+              </span>
+          </div>
+          <div id="app-3">
+              <p v-if="seen">you see me</p>
+          </div>
+          <div id="app-4">
+              <ol>
+                  <li v-for="todo in todos">
+                      {{todo.text}}
+                  </li>
+              </ol>
+          </div>
+          <div id="app-5">
+            <p>{{message}}</p>
+            <button v-on:click="reverseMessage">reverse info</button>
+          </div>
+          <div id="app-6">
+             <p>{{message}}</p> 
+             <input v-model="message">  
+          </div>
+          <div id="app-7">
+              <ol>
+                  <todo-item v-for="item in groceryList" v-bind:todo="item" v-bind:key="item.id"></todo-item>
+              </ol>
+          </div>
+        <script type="text/javascript" charset="utf-8">
+            var app = new Vue({
+            el: '#app',
+            data: {
+                message: 'Hello Vue!'
+            }
+            }) 
+            var app2=new Vue({
+                el:"#app-2",
+                data:{
+                    message:"hello vue"+new Date().toLocaleTimeString()
+                }
+            })
+            var app3=new Vue({
+                el:'#app-3',
+                data:{
+                    seen:true
+                }
+            })
+            var app4=new Vue({
+                el:"#app-4",
+                data:{
+                    todos:[
+                        {text:"ddd1"},
+                        {text:"ddd2"},
+                        {text:"ddd3"}
+                    ]
+                }
+            })
+            var app5=new Vue({
+                el:"#app-5",
+                data:{
+                    message:"hello vue js"
+                },
+                methods:{
+                    reverseMessage:function(){
+                        this.message=this.message.split(' ').reverse().join(' ')
+                    }
+                }
+            })
+            var app6=new Vue({
+                el:"#app-6",
+                data:{
+                    message:"hello vue"
+                }
+            })
+
+            Vue.component("todo-item",{
+                props:["todo"],
+                template:"<li>{{todo.text}}</li>"
+            })
+            var app7=new Vue({
+                el:"#app-7",
+                data:{
+                    groceryList: [
+      { id: 0, text: '蔬菜' },
+      { id: 1, text: '奶酪' },
+      { id: 2, text: '随便其它什么人吃的东西' }
+    ]
+                }
+            })
+
+            var data = {a:1};
+            var vm = new Vue({
+                el:"#app-9",
+                data:data
+            })
+            console.log(vm.$data===data);
+            console.log(vm.$el===document.getElementById("app-9"));
+            vm.$watch("a",function(newValue,oldValue){
+                console.log("old value "+oldValue+" change to new value :"+newValue);
+            })
+
+            var app10 = new Vue({
+                data:{a:1},
+                created:function(){
+                    console.log("a is: "+this.a);
+                }
+            })
+        </script>
+    </body>
+</html>
