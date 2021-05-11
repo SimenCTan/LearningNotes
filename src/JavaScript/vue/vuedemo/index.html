@@ -30,8 +30,8 @@
             <button v-on:click="reverseMessage">reverse info</button>
           </div>
           <div id="app-6">
-             <p>{{message}}</p> 
-             <input v-model="message">  
+             <p>{{message}}</p>
+             <input v-model="message">
           </div>
           <div id="app-7">
               <ol>
@@ -65,7 +65,7 @@
         <div id="app-14" >
             <ol>
                 <li v-for="(value,name,index) in object" v-bind:key="name"> {{value}} : {{name}} : {{index}}</li>
-            </ol>        
+            </ol>
         </div>
         <div id="app-15">
             <li v-for="n in evenNumbers">{{n}}</li>
@@ -81,8 +81,83 @@
                 </li>
             </ul>
         </div>
-        
+        <div id="app-17">
+            <blog-post v-bind:title="post.title"></blog-post>>
+        </div>
+        <base-input  v-model="username" required placeholder="Enter your name"></base-input>
+        <div>
+        <base-checkbox v-model="lovingVue"></base-checkbox>
+        </div>
+        <navigation-link url="/profile">
+            <!-- 添加一个 Font Awesome 图标 -->
+            <span class="fa fa-user"></span>
+            Your Profile
+          </navigation-link>
+          <navigation-link url="/profile">
+            Clicking here will send you to: {{ url }}
+            <!--
+            这里的 `url` 会是 undefined，因为其 (指该插槽的) 内容是
+            _传递给_ <navigation-link> 的而不是
+            在 <navigation-link> 组件*内部*定义的。
+            -->
+          </navigation-link>
         <script type="text/javascript" charset="utf-8">
+        Vue.component("navigation-link",{
+            props:["url"],
+            template:'<a v-bind:href="url" class="nav-link"><slot></slot></a>'
+        })
+        // vue.component("base-checkbox",{
+        //     model:{
+        //         prop:"checked",
+        //         event:change
+        //     },
+        //     props:{
+        //         checked:boolean
+        //     },
+        //     template:'<input type="checkbox" v-bind:checked="checked" v-on:change="$emit("change",$event.target.checked)">'
+        // })
+        Vue.component("base-input",{
+            inheritAttrs:false,
+            props:["label","value"],
+            computed:{
+                inputListeners:function(){
+                    var vm = this;
+                    return Object.assign({},this.$listeners,{input:function(event){
+                        vm.$emit("input",event.target.value)
+                    }})
+                }
+            },
+            template:'<label>{{label}} <input v-bind="$attrs" v-bind:value="value" v-on:inputListeners="$emit("input",$event.target.value)"> </label>'
+        })
+        Vue.component("blog-post",{
+            props:{title: String,
+                    likes: Number,
+                    isPublished: Boolean,
+                    commentIds: Array,
+                    author: Object,
+                    callback: Function,
+                    contactsPromise: Promise,
+                    propA:{
+                        type:Number,
+                        default:100
+                    },
+                propB:[String,Number],
+            propC:{
+                validator:function(value){
+                    return ["success","error","failed"].indexOf(value)!==-1;
+                }
+            } },
+            template:"<h3> {{title}} </h3>"
+        })
+        var app17=new Vue({
+            el:"#app-17",
+            data:{
+                post:{
+                    title:"post titles",
+                    author:"author name"
+                }
+            }
+        })
         Vue.component("todo-item",{
             template:
             '<li> {{title}} <button v-on:click="$emit(\'remove\')">Remove</button></li>',
@@ -145,7 +220,7 @@
             data: {
                 message: 'Hello Vue!'
             }
-            }) 
+            })
             var app2=new Vue({
                 el:"#app-2",
                 data:{
