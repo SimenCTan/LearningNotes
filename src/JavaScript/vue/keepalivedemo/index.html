@@ -3,12 +3,32 @@
   <head>
     <title>Vue Component Blog Post Example</title>
     <script src="./vue.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.5/TweenLite.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.14.1/lodash.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tween.js@16.3.4"></script>
     <link rel="stylesheet" type="txet/css" href="./style.css" />
     <link
       rel="stylesheet"
       type="text/css"
       href="https://cdn.jsdelivr.net/npm/animate.css@3.5.1"
     />
+    <style>
+      svg {
+        display: block;
+      }
+      polygon {
+        fill: #41b883;
+      }
+      circle {
+        fill: transparent;
+        stroke: #35495e;
+      }
+      input[type="range"] {
+        display: block;
+        width: 100%;
+        margin-bottom: 15px;
+      }
+    </style>
   </head>
   <body>
     <div id="dynamic-component-demo">
@@ -40,7 +60,252 @@
         <p v-if="show">hello</p>
       </transition>
     </div>
+    <div id="app-3">
+      <button v-on:click="add">Add</button>
+      <button v-on:click="remove">Remove</button>
+      <transition-group name="list" tag="p">
+        <span v-for="item in items" v-bind:key="item" class="list-item">
+          {{item}}
+        </span>
+      </transition-group>
+    </div>
+    <div id="flip-list-demo">
+      <button v-on:click="shuffle">Shuffle</button>
+      <transition-group name="flip-list" tag="ul">
+        <li v-for="item in items" v-bind:key="item">{{item}}</li>
+      </transition-group>
+    </div>
+    <div id="list-complete-demo" class="demo">
+      <button v-on:click="shuffle">Shuffle</button>
+      <button v-on:click="add">Add</button>
+      <button v-on:click="remove">Remove</button>
+      <transition-group name="list-complete" tag="p">
+        <span
+          v-for="item in items"
+          v-bind:key="item"
+          class="list-complete-item"
+        >
+          {{ item }}
+        </span>
+      </transition-group>
+    </div>
+
+    <div id="app">
+      <svg width="200" height="200">
+        <polygon :points="points"></polygon>
+        <circle cx="100" cy="100" r="90"></circle>
+      </svg>
+      <label>Sides: {{ sides }}</label>
+      <input type="range" min="3" max="500" v-model.number="sides" />
+      <label>Minimum Radius: {{ minRadius }}%</label>
+      <input type="range" min="0" max="90" v-model.number="minRadius" />
+      <label>Update Interval: {{ updateInterval }} milliseconds</label>
+      <input type="range" min="10" max="2000" v-model.number="updateInterval" />
+    </div>
+    <div id="example-8">
+      <input v-model.number="firstNumber" type="number" step="20" /> +
+      <input v-model.number="secondNumber" type="number" step="20" /> = {{
+      result }}
+      <p>
+        <animated-integer v-bind:value="firstNumber"></animated-integer> +
+        <animated-integer v-bind:value="secondNumber"></animated-integer> =
+        <animated-integer v-bind:value="result"></animated-integer>
+      </p>
+    </div>
     <script>
+      // 这种复杂的补间动画逻辑可以被复用
+      // 任何整数都可以执行动画
+      // 组件化使我们的界面十分清晰
+      // 可以支持更多更复杂的动态过渡
+      // 策略。
+      // 所有的复杂度都已经从 Vue 的主实例中移除！
+      new Vue({
+        el: "#example-8",
+        data: {
+          firstNumber: 20,
+          secondNumber: 40,
+        },
+        computed: {
+          result: function () {
+            return this.firstNumber + this.secondNumber;
+          },
+        },
+      });
+      Vue.component("animated-integer", {
+        template: "<span>{{tweeningValue }}</span>",
+        props: {
+          value: {
+            type: Number,
+            required: true,
+          },
+        },
+        data: function () {
+          return {
+            tweeningValue: 0,
+          };
+        },
+        watch: {
+          value: function (newValue, oldValue) {
+            this.tween(oldValue, newValue);
+          },
+        },
+        mounted: function () {
+          this.tween(0, this.value);
+        },
+        methods: {
+          tween: function (startValue, endValue) {
+            var vm = this;
+            function animate() {
+              if (TWEEN.update()) {
+                requestAnimationFrame(animate);
+              }
+            }
+            new TWEEN.Tween({ tweeningValue: startValue })
+              .to({ tweeningValue: endValue }, 500)
+              .onUpdate(function () {
+                vm.tweeningValue = this.tweeningValue.toFixed(0);
+              })
+              .start();
+            animate();
+          },
+        },
+      });
+      function valueToPoint(value, index, total) {
+        var x = 0;
+        var y = -value * 0.9;
+        var angle = ((Math.PI * 2) / total) * index;
+        var cos = Math.cos(angle);
+        var sin = Math.sin(angle);
+        var tx = x * cos - y * sin + 100;
+        var ty = x * sin + y * cos + 100;
+        return { x: tx, y: ty };
+      }
+
+      function generatePoints(stats) {
+        var total = stats.length;
+        return stats
+          .map(function (stat, index) {
+            var point = valueToPoint(stat, index, total);
+            return point.x + "," + point.y;
+          })
+          .join(" ");
+      }
+      new Vue({
+        el: "#app",
+        data: function () {
+          var defaultSides = 10;
+          var stats = Array.apply(null, { length: defaultSides }).map(
+            function () {
+              return 100;
+            }
+          );
+          return {
+            stats: stats,
+            points: generatePoints(stats),
+            sides: defaultSides,
+            minRadius: 50,
+            interval: null,
+            updateInterval: 500,
+          };
+        },
+        watch: {
+          sides: function (newSides, oldSides) {
+            var sidesDifference = newSides - oldSides;
+            if (sidesDifference > 0) {
+              for (var i = 1; i <= sidesDifference; i++) {
+                this.stats.push(this.newRandomValue());
+              }
+            } else {
+              var absoluteSidesDifference = Math.abs(sidesDifference);
+              for (var i = 1; i <= absoluteSidesDifference; i++) {
+                this.stats.shift();
+              }
+            }
+          },
+          stats: function (newStats) {
+            TweenLite.to(this.$data, this.updateInterval / 1000, {
+              points: generatePoints(newStats),
+            });
+          },
+          updateInterval: function () {
+            this.resetInterval();
+          },
+        },
+        mounted: function () {
+          this.resetInterval();
+        },
+        methods: {
+          randomizeStats: function () {
+            var vm = this;
+            this.stats = this.stats.map(function () {
+              return vm.newRandomValue();
+            });
+          },
+          newRandomValue: function () {
+            return Math.ceil(
+              this.minRadius + Math.random() * (100 - this.minRadius)
+            );
+          },
+          resetInterval: function () {
+            var vm = this;
+            clearInterval(this.interval);
+            this.randomizeStats();
+            this.interval = setInterval(function () {
+              vm.randomizeStats();
+            }, this.updateInterval);
+          },
+        },
+      });
+      new Vue({
+        el: "#list-complete-demo",
+        data: {
+          items: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+          nextNum: 10,
+        },
+        methods: {
+          randomIndex: function () {
+            return Math.floor(Math.random() * this.items.length);
+          },
+          add: function () {
+            this.items.splice(this.randomIndex(), 0, this.nextNum++);
+          },
+          remove: function () {
+            this.items.splice(this.randomIndex(), 1);
+          },
+          shuffle: function () {
+            this.items = _.shuffle(this.items);
+          },
+        },
+      });
+      var app4 = new Vue({
+        el: "#flip-list-demo",
+        data: {
+          items: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+        },
+        methods: {
+          shuffle: function () {
+            this.items = _.shuffle(this.items);
+          },
+        },
+      });
+      var app3 = new Vue({
+        el: "#app-3",
+        data: {
+          items: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+          nextNum: 10,
+        },
+        methods: {
+          randomIndex: function () {
+            return Math.floor(Math.random() * this.items.length);
+          },
+          add: function () {
+            this.items.splice(this.randomIndex(), 0, this.nextNum++);
+          },
+          remove: function () {
+            this.items.splice(this.randomIndex(), 1);
+          },
+        },
+      });
       new Vue({
         el: "#example-3",
         data: {
