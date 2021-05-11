@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Vue Component Blog Post Example</title>
+    <script src="./vue.js"></script>
+    <link rel="stylesheet" type="txet/css" href="./style.css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/animate.css@3.5.1"
+    />
+  </head>
+  <body>
+    <div id="dynamic-component-demo">
+      <button
+        v-for="tab in tabs"
+        v-bind:key="tab"
+        v-bind:class="['tab-button',{active:currentTab===tab}]"
+        v-on:click="currentTab=tab"
+      >
+        {{tab}}
+      </button>
+      <keep-alive>
+        <component v-bind:is="currentTabComponent" class="tab"></component>
+      </keep-alive>
+    </div>
+    <div id="demo">
+      <button v-on:click="show = !show">Toggle</button>
+      <transition name="slide-fade">
+        <p v-if="show">hello</p>
+      </transition>
+    </div>
+    <div id="example-3">
+      <button @click="show = !show">Toggle render</button>
+      <transition
+        name="custom-classes-transition"
+        enter-active-class="animated tada"
+        leave-active-class="animated bounceOutRight"
+      >
+        <p v-if="show">hello</p>
+      </transition>
+    </div>
+    <script>
+      new Vue({
+        el: "#example-3",
+        data: {
+          show: true,
+        },
+      });
+      var app2 = new Vue({
+        el: "#demo",
+        data: {
+          show: true,
+        },
+      });
+
+      Vue.component("tab-posts", {
+        data: function () {
+          return {
+            posts: [
+              {
+                id: 1,
+                title: "Cat Ipsum",
+                content:
+                  "<p>Dont wait for the storm to pass, dance in the rain kick up litter decide to want nothing to do with my owner today demand to be let outside at once, and expect owner to wait for me as i think about it cat cat moo moo lick ears lick paws so make meme, make cute face but lick the other cats. Kitty poochy chase imaginary bugs, but stand in front of the computer screen. Sweet beast cat dog hate mouse eat string barf pillow no baths hate everything stare at guinea pigs. My left donut is missing, as is my right loved it, hated it, loved it, hated it scoot butt on the rug cat not kitten around</p>",
+              },
+              {
+                id: 2,
+                title: "Cat Ipsum2",
+                content:
+                  "<p>Dont wait for the storm to pass, dance in the rain kick up litter decide to want nothing to do with my owner today demand to be let outside at once, and expect owner to wait for me as i think about it cat cat moo moo lick ears lick paws so make meme, make cute face but lick the other cats. Kitty poochy chase imaginary bugs, but stand in front of the computer screen. Sweet beast cat dog hate mouse eat string barf pillow no baths hate everything stare at guinea pigs. My left donut is missing, as is my right loved it, hated it, loved it, hated it scoot butt on the rug cat not kitten around</p>",
+              },
+              {
+                id: 3,
+                title: "Cat Ipsum3",
+                content:
+                  "<p>Dont wait for the storm to pass, dance in the rain kick up litter decide to want nothing to do with my owner today demand to be let outside at once, and expect owner to wait for me as i think about it cat cat moo moo lick ears lick paws so make meme, make cute face but lick the other cats. Kitty poochy chase imaginary bugs, but stand in front of the computer screen. Sweet beast cat dog hate mouse eat string barf pillow no baths hate everything stare at guinea pigs. My left donut is missing, as is my right loved it, hated it, loved it, hated it scoot butt on the rug cat not kitten around</p>",
+              },
+            ],
+            selectedPost: null,
+          };
+        },
+        template: `
+  	<div class="posts-tab">
+      <ul class="posts-sidebar">
+        <li
+          v-for="post in posts"
+          v-bind:key="post.id"
+          v-bind:class="{ selected: post === selectedPost }"
+					v-on:click="selectedPost = post"
+        >
+          {{ post.title }}
+        </li>
+      </ul>
+      <div class="selected-post-container">
+      	<div
+        	v-if="selectedPost"
+          class="selected-post"
+        >
+          <h3>{{ selectedPost.title }}</h3>
+          <div v-html="selectedPost.content"></div>
+        </div>
+        <strong v-else>
+          Click on a blog title to the left to view it.
+        </strong>
+      </div>
+    </div>
+  `,
+      });
+
+      var app1 = new Vue({
+        el: "#dynamic-component-demo",
+        data: {
+          currentTab: "Posts",
+          tabs: ["Posts", "Archive"],
+        },
+        computed: {
+          currentTabComponent: function () {
+            return "tab-" + this.currentTab.toLowerCase();
+          },
+        },
+      });
+
+      Vue.component("async-example", {
+        function(resolve, reject) {
+          setTimeout(function () {
+            resolve({
+              template: "<div>I am async!</div>",
+            });
+          }, 1000);
+        },
+      });
+
+      Vue.component("async-webpack-example", function (resolve) {
+        // 这个特殊的 `require` 语法将会告诉 webpack
+        // 自动将你的构建代码切割成多个包，这些包
+        // 会通过 Ajax 请求加载
+        require(["./my-async-component"], resolve);
+      });
+
+      const Asynccomponent = () => ({
+        // 需要加载的组件 (应该是一个 `Promise` 对象)
+        component: import("./MyComponent.vue"),
+        loading: LoadingComponent,
+        // 加载失败时使用的组件
+        error: ErrorComponent,
+        // 展示加载时组件的延时时间。默认值是 200 (毫秒)
+        delay: 200,
+        // 如果提供了超时时间且组件加载也超时了，
+        // 则使用加载失败时使用的组件。默认值是：`Infinity`
+        timeout: 3000,
+      });
+    </script>
+  </body>
+</html>
