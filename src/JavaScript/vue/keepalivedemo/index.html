@@ -112,7 +112,24 @@
         <animated-integer v-bind:value="result"></animated-integer>
       </p>
     </div>
+    <div id="app-5">
+      <filter-message v-bind:value="messagefilter"></filter-message>
+    </div>
     <script>
+      Vue.component("filter-message", {
+        template: "<span>{{ messagefilter }}</span>",
+        filters: {
+          capitalize: function (value) {
+            return value.toLowerCase();
+          },
+        },
+      });
+      var app5 = new Vue({
+        el: "#app-5",
+        data: {
+          messagefilter: "dafdsGGGG",
+        },
+      });
       // 这种复杂的补间动画逻辑可以被复用
       // 任何整数都可以执行动画
       // 组件化使我们的界面十分清晰
@@ -124,6 +141,7 @@
         data: {
           firstNumber: 20,
           secondNumber: 40,
+          messagefilter: "GGGGdsafs",
         },
         computed: {
           result: function () {
@@ -133,6 +151,11 @@
       });
       Vue.component("animated-integer", {
         template: "<span>{{tweeningValue }}</span>",
+        filters: {
+          capitalize: function (value) {
+            return value.toLowerCase();
+          },
+        },
         props: {
           value: {
             type: Number,
