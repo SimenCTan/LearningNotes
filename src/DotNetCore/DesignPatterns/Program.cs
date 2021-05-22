@@ -1,4 +1,5 @@
 ﻿using System;
+using DesignPatterns.DuckStrategy;
 using DesignPatterns.SubjectObserver;
 
 namespace DesignPatterns
@@ -7,6 +8,13 @@ namespace DesignPatterns
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("Strategy Pattern");
+            var modelDuck=new ModelDuck();
+            modelDuck.PerformFly();
+            modelDuck.PerformQuack();
+            modelDuck.SetFlyBehavior(new ModelFly());
+            modelDuck.PerformFly();
+
             Console.WriteLine("Observer Patterns!");
             var weatherData=new WeatherData();
             var observerone=new OberverElement(weatherData);
