@@ -12,7 +12,7 @@ namespace DesignPatterns.Decorator
             return 0.50+_beverage.Cost();
         }
 
-        public override string GetCondimentDescription()
+        public override string GetDescription()
         {
             return _beverage.GetDescription()+",Whip";
         }

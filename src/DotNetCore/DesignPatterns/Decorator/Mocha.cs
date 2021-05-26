@@ -7,7 +7,7 @@ namespace DesignPatterns.Decorator
         {
             _beverage=beverage;
         }
-        public override string GetCondimentDescription()
+        public override string GetDescription()
         {
             return _beverage.GetDescription()+",Mocha";
         }
