@@ -1,7 +1,7 @@
 ﻿using System;
 using DesignPatterns.DuckStrategy;
 using DesignPatterns.SubjectObserver;
-
+using DesignPatterns.Decorator;
 namespace DesignPatterns
 {
     class Program
@@ -25,6 +25,15 @@ namespace DesignPatterns
 
             observerone.UnSubscript();
             weatherData.SetMeasurementsChanged((float)37.50,(float)30.00,(float)260.00);
+
+            Console.WriteLine("Decorator Patterns");
+            var beverage = new Espresso();
+            Console.WriteLine(beverage.GetDescription());
+
+            BeverageBase beverage2=new HouseBlend();
+            beverage2=new Mocha(beverage2);
+            beverage2=new Whip(beverage2);
+            Console.WriteLine(beverage2.GetDescription()+"$"+beverage2.Cost());
         }
     }
 }
