@@ -2,10 +2,8 @@ namespace DesignPatterns.Decorator
 {
     public class Whip : CondimentDecorator
     {
-        private BeverageBase _beverage;
-        public Whip(BeverageBase beverage)
+        public Whip(BeverageBase beverage):base(beverage)
         {
-            _beverage=beverage;
         }
         public override double Cost()
         {

@@ -2,10 +2,8 @@ namespace DesignPatterns.Decorator
 {
     public class Mocha:CondimentDecorator
     {
-        private BeverageBase _beverage;
-        public Mocha(BeverageBase beverage)
+        public Mocha(BeverageBase beverage):base(beverage)
         {
-            _beverage=beverage;
         }
         public override string GetDescription()
         {
