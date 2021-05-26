@@ -2,11 +2,10 @@ namespace DesignPatterns.Decorator
 {
     public class HouseBlend:BeverageBase
     {
-        public HouseBlend()
+        public override string GetDescription()
         {
-            description="house blend";
+            return "house blend";
         }
-
         public override double Cost()
         {
             return 0.89;

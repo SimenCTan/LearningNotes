@@ -2,9 +2,9 @@ namespace DesignPatterns.Decorator
 {
     public class Espresso : BeverageBase
     {
-        public Espresso()
+        public override string GetDescription()
         {
-            description="Espresso";
+            return "Espresso";
         }
         public override double Cost()
         {
