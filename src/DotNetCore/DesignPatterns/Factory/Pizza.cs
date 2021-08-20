@@ -2,9 +2,9 @@ namespace DesignPatterns.Factory
 {
     public abstract class Pizza
     {
-        public abstract Prepare();
-        public abstract Bake();
-        public abstract Cut();
-        public abstract Box();
+        public abstract void Prepare();
+        public abstract void Bake();
+        public abstract void Cut();
+        public abstract void Box();
     }
 }

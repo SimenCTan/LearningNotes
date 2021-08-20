@@ -3,19 +3,19 @@ namespace DesignPatterns.Factory
 {
     public class CheesePizza:Pizza
     {
-        public  void Prepare()
+        public override void Prepare()
         {
             Console.Write("Cheesse pizza prepare");
         }
-        public  void Bake()
+        public override void Bake()
         {
             Console.Write("Cheesse pizza bake");
         }
-        public  void Cut()
+        public override void Cut()
         {
             Console.Write("Cheesse pizza cut");
         }
-        public  void Box()
+        public override void Box()
         {
             Console.Write("Cheesse pizza box");
         }

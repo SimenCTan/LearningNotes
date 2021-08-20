@@ -2,6 +2,8 @@
 using DesignPatterns.DuckStrategy;
 using DesignPatterns.SubjectObserver;
 using DesignPatterns.Decorator;
+using DesignPatterns.Factory.FactoryMethod;
+
 namespace DesignPatterns
 {
     class Program
@@ -34,6 +36,10 @@ namespace DesignPatterns
             beverage2=new Mocha(beverage2);
             beverage2=new Whip(beverage2);
             Console.WriteLine(beverage2.GetDescription()+"$"+beverage2.Cost());
+
+            // factory
+            var nypizzastore=new NYPizzaStore();
+            var pizza=nypizzastore.OrderPizza("cheese");
         }
     }
 }
