@@ -60,6 +60,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Identity", "src\DotNetCore\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DesignPatterns", "src\DotNetCore\DesignPatterns\DesignPatterns.csproj", "{D3E3F030-E99B-4B11-A02F-83F354D95645}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SignalRChat", "src\DotNetCore\SignalRChat\SignalRChat.csproj", "{4AE56759-528D-4A93-9ECF-44338C0AD703}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -142,6 +144,10 @@ Global
 		{D3E3F030-E99B-4B11-A02F-83F354D95645}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D3E3F030-E99B-4B11-A02F-83F354D95645}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D3E3F030-E99B-4B11-A02F-83F354D95645}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4AE56759-528D-4A93-9ECF-44338C0AD703}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4AE56759-528D-4A93-9ECF-44338C0AD703}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4AE56759-528D-4A93-9ECF-44338C0AD703}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4AE56759-528D-4A93-9ECF-44338C0AD703}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -168,6 +174,7 @@ Global
 		{DBEA4671-B423-449F-B423-02E5D1361234} = {51C7BAF7-0840-4266-9CAE-B07B4FA299A9}
 		{610C4B93-0F9C-4BD2-8BE7-8D544726F4A7} = {6E444B13-A50E-45AD-A7CB-11A970610D42}
 		{51842090-BF51-40D3-9A09-89EA94610C42} = {6E444B13-A50E-45AD-A7CB-11A970610D42}
+		{4AE56759-528D-4A93-9ECF-44338C0AD703} = {6E444B13-A50E-45AD-A7CB-11A970610D42}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A461A971-35E2-4950-800B-5D8599E972BD}
