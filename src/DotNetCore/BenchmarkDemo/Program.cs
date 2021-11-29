@@ -2,4 +2,4 @@
 using BenchmarkDotNet.Running;
 
 Console.WriteLine("Hello, World!");
-var summary = BenchmarkRunner.Run<Md5VsSha256>();
+var summary = BenchmarkRunner.Run<FileStreamTest>();
