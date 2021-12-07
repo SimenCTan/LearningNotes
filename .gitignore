@@ -362,3 +362,8 @@ MigrationBackup/
 FodyWeavers.xsd
 
 .vscode
+*.po
+
+Localization
+
+App_Data
