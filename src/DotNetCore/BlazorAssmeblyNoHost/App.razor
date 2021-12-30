@@ -1,4 +1,7 @@
-﻿<Router AppAssembly="@typeof(App).Assembly">
+﻿@inject ILogger<App> Logger
+@inject HttpClient httpClient
+
+<Router AppAssembly="@typeof(App).Assembly" OnNavigateAsync="@OnNavigateAsync">
     <Found Context="routeData">
         <RouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
         <FocusOnNavigate RouteData="@routeData" Selector="h1" />
@@ -10,3 +13,18 @@
         </LayoutView>
     </NotFound>
 </Router>
+
+@code {
+    private async Task OnNavigateAsync(NavigationContext context)
+    {
+        if (context.Path == "/counter")
+        {
+            var stats = new { page = "api/test" };
+            await httpClient.PostAsJsonAsync("api/visited", stats,
+            context.CancellationToken);
+            Logger.LogInformation($"navigate to counter page happen");
+        }
+
+        await Task.CompletedTask;
+    }
+}
