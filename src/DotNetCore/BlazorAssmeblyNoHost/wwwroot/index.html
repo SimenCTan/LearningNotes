@@ -20,7 +20,9 @@
         <a class="dismiss">🗙</a>
     </div>
     <script src="_framework/blazor.webassembly.js" autostart="false"></script>
-    <script>Blazor.start().then(function(){
+    <script>Blazor.start({
+        environment:"Staging"
+    }).then(function(){
         console.log("blazor webassembly start");
     });</script>
 </body>
