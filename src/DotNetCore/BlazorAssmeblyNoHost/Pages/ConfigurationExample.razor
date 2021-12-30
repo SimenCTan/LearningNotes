@@ -1,0 +1,5 @@
+@page "/configurationexample"
+@using Microsoft.Extensions.Configuration
+@inject IConfiguration config
+
+<h1 style="font-siz:@config["h1FontSize"]">Configuration example @config["h1FontSize"]</h1>
