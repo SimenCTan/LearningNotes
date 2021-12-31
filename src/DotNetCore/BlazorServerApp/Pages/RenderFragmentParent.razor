@@ -1,0 +1,10 @@
+@page "/render-fragment-parent"
+
+<h1>Second example of three children with an index variable</h1>
+
+@foreach (var c in Enumerable.Range(0,3))
+{
+    <RenderFragmentChild>
+        Count: @c
+    </RenderFragmentChild>
+}
