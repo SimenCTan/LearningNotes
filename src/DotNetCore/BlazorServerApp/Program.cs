@@ -25,6 +25,8 @@ builder.Services.AddServerSideBlazor(options =>
     options.StreamBufferCapacity = 10;
 });
 builder.Services.AddSingleton<WeatherForecastService>();
+builder.Services.AddScoped<NotifierService>();
+builder.Services.AddScoped<TimerService>();
 
 var app = builder.Build();
 
