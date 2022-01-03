@@ -40,6 +40,15 @@
         window.addEventListener('beforeunload', function () {
             Blazor.defaultReconnectionHandler._reconnectionDisplay = {};
         });
+        Blazor.registerCustomEventType('custompaste', {
+            browserEventName: 'paste',
+            createEventArgs: event => {
+                return {
+                    eventTimestamp: new Date(),
+                    pastedData: event.clipboardData.getData('text')
+                };
+            }
+        });
         Blazor.start({
             configureSignalR: function (builder) {
                 builder.configureLogging("information");
