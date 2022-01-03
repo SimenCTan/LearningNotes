@@ -1,0 +1,17 @@
+@page "/parent"
+
+<h1>Parent Component</h1>
+
+<p>Parent <code>year</code>: @year</p>
+<button @onclick="UpdateYear">Update Parent <code>year</code></button>
+<ChildBind @bind-Year="year" @bind-Year:event="YearChanged" />
+
+@code{
+    private Random r = new();
+    private int year = 1979;
+
+    private void UpdateYear()
+    {
+        year = r.Next(1950, 2021);
+    }
+}
