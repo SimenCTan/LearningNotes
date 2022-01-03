@@ -1,0 +1,22 @@
+@page "/set-params-async/{Param?}"
+@code {
+    private string message = "Not set";
+    [Parameter]
+    public string? Param {get;set;}
+
+    public override async Task SetParametersAsync(ParameterView parameters)
+    {
+        if( parameters.TryGetValue<string>("Param",out string? retValue))
+        {
+            if(retValue is null)
+            {
+                message = "The value of 'Param' is null.";
+            }
+            else
+            {
+                message = $"The value of 'Param' is {retValue}.";
+            }
+        }
+        await base.SetParametersAsync(parameters);
+    }
+}

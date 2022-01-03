@@ -34,6 +34,10 @@
 
     <script src="_framework/blazor.server.js" autostart="false"></script>
     <script>
+        window.setElementText2 = (element, text) => {
+            element.innerText = text;
+            return text;
+        };
         window.addEventListener('pagehide', () => {
             Blazor.disconnect();
         });
