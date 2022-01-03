@@ -1,0 +1,12 @@
+@attribute [CascadingTypeParameter(nameof(TLineData))]
+@typeparam TLineData
+
+...
+
+@code {
+    [Parameter]
+    public IEnumerable<TLineData> Data { get; set; }
+
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+}
