@@ -28,6 +28,9 @@ builder.Services.AddSingleton<WeatherForecastService>();
 builder.Services.AddScoped<NotifierService>();
 builder.Services.AddScoped<TimerService>();
 
+// Add localization
+builder.Services.AddLocalization();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -38,6 +41,10 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+app.UseRequestLocalization(new RequestLocalizationOptions()
+                            .SetDefaultCulture("en-US")
+                            .AddSupportedCultures("en-US", "es-CL")
+                            .AddSupportedUICultures("en-US", "es-CL"));
 app.UseHttpsRedirection();
 
 app.UseStaticFiles();
