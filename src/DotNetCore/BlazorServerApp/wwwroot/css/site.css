@@ -73,3 +73,7 @@ a,
 #components-reconnect-modal.components-reconnect-show {
   display: block;
 }
+
+.validation-message {
+    color: red;
+}
