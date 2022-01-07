@@ -11,6 +11,11 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <base href="~/" />
+    <style>
+        .red {
+            color: red
+        }
+    </style>
     <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css" />
     <link href="css/site.css" rel="stylesheet" />
     <link href="BlazorServerApp.styles.css" rel="stylesheet" />
@@ -20,12 +25,12 @@
 <body>
     @* @{
         this.HttpContext.Response.Cookies.Append(
-            CookieRequestCultureProvider.DefaultCookieName,
-            CookieRequestCultureProvider.MakeCookieValue(
-            new RequestCulture(
-            CultureInfo.CurrentCulture,
-            CultureInfo.CurrentUICulture)));
-    } *@
+        CookieRequestCultureProvider.DefaultCookieName,
+        CookieRequestCultureProvider.MakeCookieValue(
+        new RequestCulture(
+        CultureInfo.CurrentCulture,
+        CultureInfo.CurrentUICulture)));
+        } *@
     @RenderBody()
 
     <div id="blazor-error-ui">
@@ -63,6 +68,20 @@
                 };
             }
         });
+        window.convertArray = (win1251Array) => {
+            var win1251decoder = new TextDecoder('windows-1251');
+            var bytes = new Uint8Array(win1251Array);
+            var decodedArray = win1251decoder.decode(bytes);
+            console.log(decodedArray);
+            return decodedArray;
+        };
+        window.displayTickerAlert1 = (symbol, price) => {
+            alert(`${symbol}: $${price}!`);
+        };
+        function setElementClass(element, className) {
+            var myElement = element;
+            myElement.classList.add(className);
+        }
         Blazor.start({
             configureSignalR: function (builder) {
                 builder.configureLogging("information");
