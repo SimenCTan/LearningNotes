@@ -1,0 +1,24 @@
+@page "/show-image"
+
+@if (imageSource !=null)
+{
+    <div>
+        <img src="@imageSource" />
+    </div>
+}
+@for (int i = 1; i <= 3; i++)
+{
+    var imageId = i;
+    <button @onclick="()=>ShowYourImage(imageId)">
+        Image @imageId
+    </button>
+}
+
+@code{
+    private string? imageSource;
+
+    private void ShowYourImage(int id)
+    {
+        imageSource=$"images/image{id}.png";
+    }
+}
