@@ -48,7 +48,13 @@
     </div>
 
     <script src="_framework/blazor.server.js" autostart="false"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.20/lodash.min.js"></script>
     <script>
+        function onThrottledMouseMove(elem, component, interval) {
+            elem.addEventListener('mousemove', _.throttle(e => {
+                component.invokeMethodAsync('HandleMouseMove', e.offsetX, e.offsetY);
+            }, interval));
+        };
         window.setElementText2 = (element, text) => {
             element.innerText = text;
             return text;
