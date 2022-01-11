@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
+using Microsoft.AspNetCore.Components.Authorization;
 using BlazorServerApp.Data;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -27,6 +28,7 @@ builder.Services.AddServerSideBlazor(options =>
 builder.Services.AddSingleton<WeatherForecastService>();
 builder.Services.AddScoped<NotifierService>();
 builder.Services.AddScoped<TimerService>();
+builder.Services.AddScoped<AuthenticationStateProvider, CustomAuthStateProvider>();
 
 // Add localization
 builder.Services.AddLocalization();
