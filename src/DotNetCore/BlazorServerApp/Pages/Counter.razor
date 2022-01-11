@@ -1,4 +1,7 @@
 ﻿@page "/counter"
+@using Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage
+@inject ProtectedSessionStorage ProtectedSessionStorage
+
 
 <PageTitle>Counter</PageTitle>
 
@@ -11,8 +14,17 @@
 @code {
     private int currentCount = 0;
 
-    private void IncrementCount()
+
+
+    protected override async Task OnParametersSetAsync()
+    {
+        var result = await ProtectedSessionStorage.GetAsync<int>("count");
+        currentCount=result.Success?result.Value:0;
+    }
+
+    private async Task IncrementCount()
     {
         currentCount++;
+        await ProtectedSessionStorage.SetAsync("count",currentCount);
     }
 }
