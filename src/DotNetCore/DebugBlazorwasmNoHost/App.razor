@@ -1,4 +1,15 @@
-﻿<Router AppAssembly="@typeof(App).Assembly">
+﻿@using System.Reflection
+@using Microsoft.AspNetCore.Components.WebAssembly.Services
+@using Microsoft.Extensions.Logging
+@inject LazyAssemblyLoader AssemblyLoader
+@inject ILogger<App> Logger
+
+<Router AppAssembly="@typeof(App).Assembly" AdditionalAssemblies="@lazyLoadedAssemblies" OnNavigateAsync="@OnNavigateAsync">
+     <Navigating>
+        <div style="padding:20px;background-color:blue;color:white">
+            <p>Loading the requested page&hellip;</p>
+        </div>
+    </Navigating>
     <Found Context="routeData">
         <RouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
         <FocusOnNavigate RouteData="@routeData" Selector="h1" />
@@ -10,3 +21,23 @@
         </LayoutView>
     </NotFound>
 </Router>
+
+@code{
+    private List<Assembly> lazyLoadedAssemblies = new();
+
+    private async Task OnNavigateAsync(NavigationContext args)
+    {
+        try
+        {
+            if(args.Path=="robot")
+            {
+                var assemblies = await AssemblyLoader.LoadAssembliesAsync(new[] { "GrantImaharaRobotControls.dll" });
+                lazyLoadedAssemblies.AddRange(assemblies);
+            }
+        }
+        catch(Exception ex)
+        {
+            Logger.LogError("Error: {Message}", ex.Message);
+        }
+    }
+}
