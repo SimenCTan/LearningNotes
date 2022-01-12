@@ -5,6 +5,8 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <BlazorEnableTimeZoneSupport>false</BlazorEnableTimeZoneSupport>
+    <RunAOTCompilation>true</RunAOTCompilation>
+    <BlazorEnableCompression>true</BlazorEnableCompression>
   </PropertyGroup>
 
   <ItemGroup>
