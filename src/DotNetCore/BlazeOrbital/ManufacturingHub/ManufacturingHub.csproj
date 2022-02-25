@@ -8,16 +8,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Layout\App.razor.css" />
-    <None Remove="Layout\HeaderBar.razor.css" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="Layout\App.razor.css" />
-    <Content Include="Layout\HeaderBar.razor.css" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Google.Protobuf" Version="3.19.4" />
     <PackageReference Include="Grpc.Net.Client" Version="2.42.0" />
     <PackageReference Include="Grpc.Net.Client.Web" Version="2.42.0" />
@@ -30,6 +20,7 @@
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Authentication" Version="6.0.2" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="6.0.1" PrivateAssets="all" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="6.0.2" />
+    <NativeFileReference Include="Data\e_sqlite3.o" />
     <PackageReference Include="Microsoft.Extensions.Http" Version="6.0.0" />
     <PackageReference Include="Microsoft.Extensions.Logging.Configuration" Version="6.0.0" />
   </ItemGroup>
