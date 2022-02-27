@@ -34,7 +34,7 @@ builder.Services.AddManufacturingDataClient((services, options) =>
 
 // Supplies an IAuthorizationStateProvider service that lets other components know about auth state
 // This one gets that state by asking the OpenID Connect client. Also we cache the state for offline use.
-builder.Services.AddApiAuthorization(c => c.ProviderOptions.ConfigurationEndpoint = $"{backendOrigin}/_configuration/BlazeOrbital.ManufacturingHub");
+builder.Services.AddApiAuthorization(c => c.ProviderOptions.ConfigurationEndpoint = $"{backendOrigin}/_configuration/ManufacturingHub");
 builder.Services.AddScoped<AccountClaimsPrincipalFactory<RemoteUserAccount>, OfflineAccountClaimsPrincipalFactory>();
 
 // Sets up EF Core with Sqlite

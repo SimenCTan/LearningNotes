@@ -1,5 +1,6 @@
 ﻿export function init(elem) {
   enableColumnResizing(elem);
+
   const bodyClickHandler = (event) => {
     const columnOptionsElement = elem.querySelector("thead .column-options");
     if (columnOptionsElement && event.path.indexOf(columnOptionsElement) < 0) {
@@ -20,6 +21,7 @@
   document.body.addEventListener("click", bodyClickHandler);
   document.body.addEventListener("mousedown", bodyClickHandler); // Otherwise it seems strange that it doesn't go away until you release the mouse button
   document.body.addEventListener("keydown", keyDownHandler);
+
   return {
     stop: () => {
       document.body.removeEventListener("click", bodyClickHandler);
@@ -45,6 +47,7 @@ function enableColumnResizing(elem) {
       const startPageX = evt.pageX;
       const originalColumnWidth = th.offsetWidth;
       let updatedColumnWidth = 0;
+
       function handleMouseMove(evt) {
         evt.preventDefault();
         evt.stopPropagation();
