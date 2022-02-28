@@ -32,6 +32,7 @@
   <ItemGroup>
     <ServiceWorker Include="wwwroot\service-worker.js" PublishedContent="wwwroot\service-worker.published.js" />
     <Protobuf Include="..\CentralServer\Manufacturing.proto" GrpcServices="Client" />
+    <NativeFileReference Include="..\rustqr\target\wasm32-unknown-emscripten\debug\librustqr.a" />
   </ItemGroup>
 
 </Project>
