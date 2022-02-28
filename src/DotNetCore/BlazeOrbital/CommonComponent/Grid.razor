@@ -1,19 +1,49 @@
-﻿@using CommonComponent.Infrastructure
-@using Microsoft.AspNetCore.Components.Rendering
+﻿@using Microsoft.AspNetCore.Components.Rendering
 @using System.Linq.Expressions
 @typeparam TGridItem
 @attribute [CascadingTypeParameter(nameof(TGridItem))]
 @inject IJSRuntime JS
 @implements IAsyncDisposable
+@{
+    _columns.Clear();
+}
+<CascadingValue IsFixed="true" Value="@_addColumnCallback">
+    @ChildContent
+    <Defer>
+        <table aria-rowcount="@_rowCount" @ref="_tableReference" @onclosecolumnoptions="CloseColumnOptions">
+            <thead>
+                <tr>
+                    @RenderColumnHeaders
+                </tr>
+            </thead>
+            <tbody>
+                @if (Virtualize)
+                {
+                    <Virtualize @ref="@_virtualizeComponent"
+                        TItem="(int RowIndex, TGridItem Data)"
+                        ItemSize="@ItemSize"
+                        ItemsProvider="@ProvideVirtualizedItems"
+                        ItemContent="@(item => builder => RenderRow(builder, item.RowIndex, item.Data))" />
+                }
+                else
+                {
+                    @RenderRows
+                }
+            </tbody>
+        </table>
+    </Defer>
+</CascadingValue>
 
-@code{
+@code {
     internal delegate void AddColumnCallback(ColumnBase<TGridItem> column);
+
     [Parameter, EditorRequired] public IQueryable<TGridItem>? Items { get; set; }
     [Parameter] public RenderFragment? ChildContent { get; set; }
     [Parameter] public bool Virtualize { get; set; }
     [Parameter] public bool ResizableColumns { get; set; }
     [Parameter] public float ItemSize { get; set; } = 50;
     [Parameter] public Func<TGridItem, object> ItemKey { get; set; } = x => x;
+
     private Virtualize<(int, TGridItem)>? _virtualizeComponent;
     private List<ColumnBase<TGridItem>> _columns;
     private AddColumnCallback _addColumnCallback;
@@ -23,12 +53,12 @@
     private bool _sortByAscending;
     private IQueryable<TGridItem>? _previousItems;
     private int _rowCount;
-
     private IJSObjectReference? _jsModule;
     private IJSObjectReference? _jsEventDisposable;
     private ElementReference _tableReference;
+
     private IQueryable<TGridItem>? SortedItems
-    => _sortByColumn is null || Items is null ? Items : _sortByColumn.GetSortedItems(Items, _sortByAscending);
+        => _sortByColumn is null || Items is null ? Items : _sortByColumn.GetSortedItems(Items, _sortByAscending);
 
     public Grid()
     {
@@ -59,13 +89,22 @@
 
     protected override Task OnParametersSetAsync()
     {
-                _rowCount = (Items?.Count() ?? 0) + 1; // The extra 1 is the header row. This matches the default behavior.
+        _rowCount = (Items?.Count() ?? 0) + 1; // The extra 1 is the header row. This matches the default behavior.
         return _virtualizeComponent is not null && Items != _previousItems
             ? _virtualizeComponent.RefreshDataAsync()
             : Task.CompletedTask;
     }
 
-     private void RenderRow(RenderTreeBuilder __builder, int rowIndex, TGridItem item)
+    private void RenderRows(RenderTreeBuilder builder)
+    {
+        var rowIndex = 2; // aria-rowindex is 1-based, plus the first row is the header
+        foreach (var item in SortedItems ?? Enumerable.Empty<TGridItem>())
+        {
+            RenderRow(builder, rowIndex++, item);
+        }
+    }
+
+    private void RenderRow(RenderTreeBuilder __builder, int rowIndex, TGridItem item)
     {
         <tr @key="@(ItemKey(item))" aria-rowindex="@rowIndex">
             @foreach (var col in _columns)
@@ -83,7 +122,7 @@
         }
     }
 
-     private void RenderColumnHeader(RenderTreeBuilder __builder, ColumnBase<TGridItem> col)
+    private void RenderColumnHeader(RenderTreeBuilder __builder, ColumnBase<TGridItem> col)
     {
         <th class="@ColumnHeaderClass(col)" aria-sort="@AriaSortValue(col)" @key="@col" scope="col">
             <div class="column-title-flex">
@@ -206,7 +245,7 @@
                 await _jsModule.DisposeAsync();
             }
         }
-        catch(JSException jsex)
+        catch
         {
         }
     }
