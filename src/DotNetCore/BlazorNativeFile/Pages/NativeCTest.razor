@@ -1,0 +1,12 @@
+﻿@page "/native-c-test"
+
+<PageTitle>Native C</PageTitle>
+<h1>Native C Test</h1>
+<p>
+    @@fact(3) result: @fact(3)
+</p>
+
+@code {
+    [DllImport("Test")]
+    static extern int fact(int n);
+}
