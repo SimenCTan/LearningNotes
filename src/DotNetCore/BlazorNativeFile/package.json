@@ -1,0 +1,18 @@
+{
+  "name": "blazornativefile",
+  "version": "1.0.0",
+  "description": "",
+  "main": "package",
+  "scripts": {
+    "buildcss": "postcss Style/posttailwind.css -o wwwroot/css/posttailwind.css",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "autoprefixer": "^10.4.2",
+    "postcss": "^8.4.7",
+    "postcss-cli": "^9.1.0",
+    "tailwindcss": "^3.0.23"
+  }
+}
