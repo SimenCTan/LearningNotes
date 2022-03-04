@@ -1,7 +1,7 @@
 module.exports = {
-  content: [],
+  content: ["./**/*.{razor,html,cshtml}", "./*.{razor,html,cshtml}"],
   theme: {
     extend: {},
   },
   plugins: [],
-}
+};
