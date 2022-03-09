@@ -1,0 +1,35 @@
+﻿
+@page "/image-editor"
+
+<PageTitle>ImageEditor</PageTitle>
+<button class="btn btn-primary">Open Image</button>
+
+
+@code {
+    protected async Task OpenFilePicker()
+    {
+        try
+        {
+            var options = new OpenFilePickerOptions()
+            {
+                Types = new FilePickerAcceptType[]
+                {
+                new FilePickerAcceptType()
+                {
+                    Description = "Images",
+                    Accept = new() { { "image/*", new string[] { ".png", ".gif", ".jpeg", ".jpg" } } }
+                }
+                },
+                Multiple = false,
+                StartIn = WellKnownDirectory.Pictures
+            };
+
+        }
+        catch(JSException jsex)
+        {
+            Console.WriteLine(jsex);
+        }
+        finally
+        { }
+    }
+}
