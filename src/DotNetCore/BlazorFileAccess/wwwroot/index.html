@@ -24,6 +24,16 @@
         window.jSReference = (element) => { return element.valueOf(); }
         window.getAttribute = (object, attribute) => { return object[attribute]; }
         window.setAttribute = (object, attribute, value) => { object[attribute] = value; }
+        window.toBlob = (canvas, blobCallback) => {
+            var blobWrapper = {};
+            canvas.toBlob(
+                (blob) => {
+                    blobWrapper.blob = blob;
+                    blobCallback.objRef.invokeMethodAsync('Callback');
+                },
+                quality = 1);
+            return blobWrapper;
+        }
     </script>
 </body>
 

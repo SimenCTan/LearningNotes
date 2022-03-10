@@ -1,11 +1,34 @@
-﻿
-@page "/image-editor"
+﻿@page "/image-editor"
 @inject FileSystemAccessService FileSystemAccessService
 @inject IJSRuntime jSRuntime
 
 <PageTitle>ImageEditor</PageTitle>
-<button @onclick="OpenFilePicker" class="btn btn-primary">Open Image</button>
-<canvas @ref=CanvasReference width=@CanvasSize height=@CanvasSize></canvas>
+<div>
+    <button @onclick="OpenFilePicker" class="btn btn-primary">Open Image</button>
+</div>
+@if (FileHandle != null)
+{
+    <div class="row">
+        <div class="form-group col">
+            <label for="canvasSize">Canvas Size:</label>
+            <input id="canvasSize" type="number" @oninput="WriteCanvasSize" class="form-control" value=@CanvasSize/>
+        </div>
+         <div class="form-group col">
+            <label for="topText">Top Text:</label>
+            <input id="topText" @oninput="WriteTopText" class="form-control" />
+        </div>
+        <div class="form-group col">
+            <label for="bottomText">Bottom Text:</label>
+            <input id="bottomText" @oninput="WriteBottomText" class="form-control" />
+        </div>
+    </div>
+    <br />
+    <button class="btn btn-primary" @onclick=Save>Save</button>
+    <br />
+}
+<div>
+    <canvas @ref=CanvasReference width=@CanvasSize height=@CanvasSize></canvas>
+</div>
 
 
 @code {
@@ -21,6 +44,8 @@
     private IJSObjectReference? JSCanvas;
     private IJSObjectReference? JS2dContext;
 
+    private string TopText = "";
+    private string BottomText = "";
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         JSCanvas = await jSRuntime.InvokeAsync<IJSObjectReference>("jSReference", CanvasReference);
@@ -74,4 +99,73 @@
         await jSRuntime.InvokeVoidAsync("setAttribute", JSCanvas, "height", ImageDrawHeight);
         await JS2dContext.InvokeVoidAsync("drawImage", JSImageBitmap, 0, 0, ImageDrawWidth, ImageDrawHeight);
     }
+
+    protected async Task WriteCanvasSize(ChangeEventArgs eventArgs)
+    {
+        CanvasSize = double.Parse((string)eventArgs.Value);
+        await WriteTextAsync();
+    }
+
+    public async Task WriteTextAsync()
+    {
+        if (JS2dContext == null) return;
+        await DrawImage();
+        // Set Draw style
+        await jSRuntime.InvokeVoidAsync("setAttribute", JS2dContext, "font", "bold 48px impact");
+        await jSRuntime.InvokeVoidAsync("setAttribute", JS2dContext, "textAlign", "center");
+        await jSRuntime.InvokeVoidAsync("setAttribute", JS2dContext, "fillStyle", "white");
+        await jSRuntime.InvokeVoidAsync("setAttribute", JS2dContext, "strokeStyle", "black");
+        await jSRuntime.InvokeVoidAsync("setAttribute", JS2dContext, "lineWidth", "1");
+        // Top Text
+        await JS2dContext.InvokeVoidAsync("fillText", TopText, ImageDrawWidth / 2, 60, ImageDrawWidth - 24);
+        await JS2dContext.InvokeVoidAsync("strokeText", TopText, ImageDrawWidth / 2, 60, ImageDrawWidth - 24);
+        // Bottom Text
+        await JS2dContext.InvokeVoidAsync("fillText", BottomText, ImageDrawWidth / 2, ImageDrawHeight - 12, ImageDrawWidth - 24);
+        await JS2dContext.InvokeVoidAsync("strokeText", BottomText, ImageDrawWidth / 2, ImageDrawHeight - 12, ImageDrawWidth - 24);
+    }
+
+    protected async Task WriteTopText(ChangeEventArgs eventArgs)
+    {
+        TopText = (string)eventArgs.Value;
+        await WriteTextAsync();
+    }
+
+    protected async Task WriteBottomText(ChangeEventArgs eventArgs)
+    {
+        BottomText = (string)eventArgs.Value;
+        await WriteTextAsync();
+    }
+
+    public async Task Save()
+    {
+        FileSystemFileHandle? saveFileHandle = null;
+        try
+        {
+            var options = new SaveFilePickerOptions()
+            {
+                StartIn = WellKnownDirectory.Pictures,
+                SuggestedName = string.Concat("editor_", FileHandle.Name)
+            };
+            saveFileHandle = await FileSystemAccessService.ShowSaveFilePickerAsync(options);
+        }
+        catch (JSException jsex)
+        {
+            Console.WriteLine(jsex);
+        }
+        finally
+        {
+            if (saveFileHandle != null && JSCanvas != null)
+            {
+                var blobCallback = new BlobCallback(jSRuntime, await FileSystemAccessService.HelperAsync());
+                blobCallback.Callback = async (BlobHandler blobhandler) =>
+                   {
+                       var writable = await saveFileHandle.CreateWritableAsync();
+                       await writable.WriteAsync(blobhandler);
+                       await writable.CloseAsync();
+                   };
+                await blobCallback.ToBlobAsync(JSCanvas);
+            }
+        }
+    }
 }
+
