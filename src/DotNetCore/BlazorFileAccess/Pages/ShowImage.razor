@@ -1,12 +1,14 @@
-﻿
-@page "/image-editor"
+﻿@page "/show-image"
 @inject FileSystemAccessService FileSystemAccessService
 @inject IJSRuntime jSRuntime
 
 <PageTitle>ImageEditor</PageTitle>
-<button @onclick="OpenFilePicker" class="btn btn-primary">Open Image</button>
-<canvas @ref=CanvasReference width=@CanvasSize height=@CanvasSize></canvas>
-
+<div>
+    <button @onclick="OpenFilePicker" class="btn btn-primary">Open Image</button>
+</div>
+<div>
+    <canvas @ref=CanvasReference width=@CanvasSize height=@CanvasSize></canvas>
+</div>
 
 @code {
     private FileSystemFileHandle? FileHandle;
@@ -75,3 +77,4 @@
         await JS2dContext.InvokeVoidAsync("drawImage", JSImageBitmap, 0, 0, ImageDrawWidth, ImageDrawHeight);
     }
 }
+

@@ -1,5 +1,6 @@
 ﻿using Microsoft.JSInterop;
 using BlazorFileAccess.FileHandlers;
+using BlazorFileAccess.FileOptions;
 
 namespace BlazorFileAccess.Services;
 
@@ -10,7 +11,7 @@ public class FileSystemAccessService : IAsyncDisposable
 
     public FileSystemAccessService(IJSRuntime jSRuntime)
     {
-        moduleTask = new(() => jSRuntime.InvokeAsync<IJSInProcessObjectReference>("import", "./content/BlazorFileAccess/js/FileAccess.js").AsTask());
+        moduleTask = new(() => jSRuntime.InvokeAsync<IJSInProcessObjectReference>("import", "./js/fileAccess.js").AsTask());
         this.jsRuntime = jSRuntime;
     }
 
@@ -19,11 +20,22 @@ public class FileSystemAccessService : IAsyncDisposable
         return await moduleTask.Value;
     }
 
-    public async Task<FileSystemHandle>
-
-    public ValueTask DisposeAsync()
+    public async Task<FileSystemFileHandle[]> ShowOpenFilePickerAsync(OpenFilePickerOptions? openFilePickerOptions = null)
     {
-        throw new NotImplementedException();
+        IJSInProcessObjectReference helper = await moduleTask.Value;
+        IJSObjectReference jSFileHandles = await jsRuntime.InvokeAsync<IJSObjectReference>("window.showOpenFilePicker", openFilePickerOptions?.Serializable());
+        var length = await helper.InvokeAsync<int>("size", jSFileHandles);
+        return await Task.WhenAll(Enumerable.Range(0, length).Select(async i => new FileSystemFileHandle(await jSFileHandles.InvokeAsync<IJSObjectReference>("at", i), helper)).ToArray());
+    }
+
+    public async ValueTask DisposeAsync()
+    {
+        if (moduleTask.IsValueCreated)
+        {
+            IJSInProcessObjectReference? module = await moduleTask.Value;
+            await module.DisposeAsync();
+        }
+        GC.SuppressFinalize(this);
     }
 }
 
