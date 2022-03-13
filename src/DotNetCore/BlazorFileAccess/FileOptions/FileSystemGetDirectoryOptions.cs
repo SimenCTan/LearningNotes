@@ -2,7 +2,7 @@
 
 namespace BlazorFileAccess.FileOptions;
 
-public class FileSystemGetFileOptions
+public class FileSystemGetDirectoryOptions
 {
     [JsonPropertyName("create")]
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]

@@ -31,12 +31,36 @@
 </div>
 
 
+<div>
+    <button @onclick="OpenDictoryPicker" class="btn btn-primary">Open Directory</button>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>File Name</th>
+            <th>File Type</th>
+            <th>Size</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var fileModel in RootDictoryModel.Children)
+        {
+            <tr>
+                <td>@fileModel.Name</td>
+                <td>@fileModel.Kind</td>
+                <td>@ReadableByteSize(@fileModel.Size)</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
 @code {
     private FileSystemFileHandle? FileHandle;
     private FileHandler? File;
     private IJSObjectReference? JSImageBitmap;
     private ElementReference CanvasReference { get; set; }
-    private double CanvasSize = 600;
+    private double CanvasSize = 200;
 
     private double ImageDrawHeight;
     private double ImageDrawWidth;
@@ -51,6 +75,9 @@
         JSCanvas = await jSRuntime.InvokeAsync<IJSObjectReference>("jSReference", CanvasReference);
         JS2dContext = await JSCanvas.InvokeAsync<IJSObjectReference>("getContext", "2d");
     }
+
+    // open dictory
+    protected DictoryModel RootDictoryModel = new(FileSystemHandleKind.Directory, "Root");
 
     protected async Task OpenFilePicker()
     {
@@ -166,6 +193,80 @@
                 await blobCallback.ToBlobAsync(JSCanvas);
             }
         }
+    }
+
+    protected async Task OpenDictoryPicker()
+    {
+        FileSystemDirectoryHandle? directoryHandle = null;
+        try
+        {
+            var options = new DirectoryPickerOptions() { StartIn = WellKnownDirectory.Pictures };
+            directoryHandle = await FileSystemAccessService.ShowDirectoryPickerAsync(options);
+        }
+        catch (JSException ex)
+        {
+            Console.WriteLine(ex);
+        }
+        finally
+        {
+            if (directoryHandle != null)
+            {
+                await BreadthFirstTraversal(directoryHandle);
+            }
+        }
+    }
+
+    // Breadth First Traversal of the directories.
+    private async Task BreadthFirstTraversal(FileSystemDirectoryHandle directoryHandle)
+    {
+        var values = await directoryHandle.ValuesAsync();
+        var queue = new Queue<(DictoryModel entity, FileSystemDirectoryHandle dir, FileSystemHandle value)>();
+        for (int i = 0; i < values.Count(); i++)
+        {
+            var value = values[i];
+            var dicModel = new DictoryModel(value.Kind, value.Name);
+            RootDictoryModel.Children.Add(dicModel);
+            queue.Enqueue((dicModel, directoryHandle, value));
+            StateHasChanged();
+        }
+        while (queue.Count > 0)
+        {
+            var (dicModel, dir, value) = queue.Dequeue();
+            if (value.Kind is FileSystemHandleKind.File)
+            {
+                var fileSystemHandle = await dir.GetFileHandleAsync(value.Name);
+                var file = await fileSystemHandle.GetFileAsync();
+                dicModel.Size = file.Size;
+            }
+            else
+            {
+                var fileSystemDirectoryHandle = await dir.GetDirectoryHandleAsync(value.Name);
+                
+                var innerValues = await fileSystemDirectoryHandle.ValuesAsync();
+                foreach (var innerValue in innerValues)
+                {
+                    var innerEntity = new DictoryModel(innerValue.Kind, innerValue.Name);
+                    dicModel.Children.Add(innerEntity);
+                    queue.Enqueue((innerEntity, fileSystemDirectoryHandle, innerValue));
+                }
+            }
+            StateHasChanged();
+        }
+    }
+
+    private string ReadableByteSize(ulong size)
+    {
+        string[] sizes = { "B", "KB", "MB", "GB", "TB" };
+        int order = 0;
+        while (size >= 1024 && order < sizes.Length - 1)
+        {
+            order++;
+            size = size / 1024;
+        }
+
+        // Adjust the format string to your preferences. For example "{0:0.#}{1}" would
+        // show a single decimal place, and no space.
+        return String.Format("{0:0.##} {1}", size, sizes[order]);
     }
 }
 

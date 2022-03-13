@@ -41,6 +41,13 @@ public class FileSystemAccessService : IAsyncDisposable
         return new FileSystemFileHandle(jSFileHandle, helper);
     }
 
+    public async Task<FileSystemDirectoryHandle> ShowDirectoryPickerAsync(DirectoryPickerOptions? directoryPickerOptions = null)
+    {
+        IJSInProcessObjectReference? helper = await moduleTask.Value;
+        IJSObjectReference? jSFileHandle = await jsRuntime.InvokeAsync<IJSObjectReference>("window.showDirectoryPicker", directoryPickerOptions?.Serializable());
+        return new FileSystemDirectoryHandle(jSFileHandle, helper);
+    }
+
     public async ValueTask DisposeAsync()
     {
         if (moduleTask.IsValueCreated)
