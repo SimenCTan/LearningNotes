@@ -1,0 +1,41 @@
+﻿@page "/file-operation"
+@inject ILogger<FileOperation> _logger
+
+<PageTitle>file operation</PageTitle>
+
+<h1>file operation</h1>
+
+<InputFile OnChange="@LoadFiles" multiple/>
+
+@code {
+    private List<IBrowserFile> BrowserFiles = new();
+    private int maxAllowFiles=3;
+    private long maxFileSize = 1024 * 1024 * 5;
+    private void LoadFiles(InputFileChangeEventArgs e)
+    {
+        try
+        {
+            BrowserFiles.AddRange(e.GetMultipleFiles(maxAllowFiles));
+        }
+        catch (InvalidOperationException ex)
+        {
+            _logger.LogError($"only allow {maxAllowFiles} files upload; message{ex.Message}");
+        }
+        if (BrowserFiles.Count > 0)
+        {
+            foreach (var file in BrowserFiles)
+            {
+                try
+                {
+                    var fileContent = file.OpenReadStream(maxAllowedSize: maxFileSize);
+                }
+                catch (Exception ex)
+                {
+                    _logger.LogError($"{file.Name} not uploaded (Err: 6): {ex.Message}");
+                }
+            }
+        }
+        Console.WriteLine($"{BrowserFiles.Count} files upload");
+        BrowserFiles.Clear();
+    }
+}
