@@ -1,17 +1,26 @@
 ﻿@page "/file-operation"
+@using System.Net.Http.Headers
 @inject ILogger<FileOperation> _logger
+@inject HttpClient HttpClient
 
 <PageTitle>file operation</PageTitle>
 
 <h1>file operation</h1>
 
-<InputFile OnChange="@LoadFiles" multiple/>
+<InputFile OnChange="@LoadFiles"/>
+@if(imgUrl!=null)
+{
+    <div>
+        <img src="@imgUrl" class="image-preview" />
+    </div>
+}
 
 @code {
     private List<IBrowserFile> BrowserFiles = new();
     private int maxAllowFiles=3;
     private long maxFileSize = 1024 * 1024 * 5;
-    private void LoadFiles(InputFileChangeEventArgs e)
+    public string? imgUrl { get; set; }
+    private async Task LoadFiles(InputFileChangeEventArgs e)
     {
         try
         {
@@ -23,19 +32,27 @@
         }
         if (BrowserFiles.Count > 0)
         {
-            foreach (var file in BrowserFiles)
-            {
-                try
-                {
-                    var fileContent = file.OpenReadStream(maxAllowedSize: maxFileSize);
-                }
-                catch (Exception ex)
-                {
-                    _logger.LogError($"{file.Name} not uploaded (Err: 6): {ex.Message}");
-                }
-            }
+            var file = BrowserFiles.First();
+            using var fileContent = file.OpenReadStream(maxFileSize);
+            MultipartFormDataContent httpContent = new();
+            httpContent.Headers.ContentDisposition = new ContentDispositionHeaderValue("form-data");
+            httpContent.Add(new StreamContent(fileContent), "file", file.Name);
+            var response = await HttpClient.PostAsync("File/UploadFile", httpContent);
+            imgUrl = await response.Content.ReadAsStringAsync();
+            //foreach (var file in BrowserFiles)
+            //{
+            //    try
+            //    {
+            //        var fileContent = file.OpenReadStream(maxAllowedSize: maxFileSize);
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        _logger.LogError($"{file.Name} not uploaded (Err: 6): {ex.Message}");
+            //    }
+            //}
         }
         Console.WriteLine($"{BrowserFiles.Count} files upload");
         BrowserFiles.Clear();
+        await Task.CompletedTask;
     }
 }
