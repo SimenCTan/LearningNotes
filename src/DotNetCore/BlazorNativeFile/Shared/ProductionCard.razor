@@ -1,0 +1,29 @@
+<div>
+    <img class="rounded" src="@imageUrl" alt="@imageAlt"/>
+    <div class="mt-2">
+        <div>
+            <div class="text-xs text-slate-600 uppercase font-bold tracking-wider">@eyeBrow</div>
+            <div class="font-bold text-slate-700 leading-snug">
+                <a href="@textUrl" class="hover:underline">@textUrl</a>
+            </div>
+            <div class="mt-2 text-sm text-slate-600">@Price</div>
+        </div>
+    </div>
+</div>
+
+@code{
+    [Parameter]
+    public string imageUrl{get;set;}=default!;
+
+    [Parameter]
+    public string imageAlt{get;set;}=default!;
+
+    [Parameter]
+    public string? eyeBrow {get;set;}
+
+    [Parameter]
+    public string? textUrl {get;set;}
+
+    [Parameter]
+    public int Price {get;set;}
+}
