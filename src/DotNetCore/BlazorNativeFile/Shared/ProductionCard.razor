@@ -1,3 +1,4 @@
+@typeparam TEntity where TEntity:struct
 <div>
     <img class="rounded" src="@imageUrl" alt="@imageAlt"/>
     <div class="mt-2">
@@ -10,6 +11,15 @@
         </div>
     </div>
 </div>
+@if (Entities is not null)
+{
+    <ul>
+        @foreach (var item in Entities)
+        {
+            <li>@item</li>
+        }
+    </ul>
+}
 
 @code{
     [Parameter]
@@ -26,4 +36,7 @@
 
     [Parameter]
     public int Price {get;set;}
+
+    [Parameter]
+    public IEnumerable<TEntity>? Entities {get;set;}
 }

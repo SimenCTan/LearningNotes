@@ -11,7 +11,9 @@
     imageAlt="test"
     eyeBrow="Private Villa"
     textUrl="Relaxing All-Inclusive Resort in Cancun"
-    Price=299>
+    Price=299
+    Entities="@(new List<int>{1,2,3,4})"
+    TEntity="int">
     </ProductionCard>
 
 <!-- Before extracting a custom class -->
@@ -27,6 +29,24 @@
 </div>
 <!-- After extracting a custom class -->
 
-<button class="btn-primary">
+<div class="columns-2">
+  <p>Well, let me tell you something, ...</p>
+  <p class="break-after-column">Sure, go ahead, laugh...</p>
+  <p>Maybe we can live without...</p>
+  <p>Look. If you think this is...</p>
+</div>
+<button class="py-2 px-4 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75">
   Save changes
 </button>
+<div class="columns-2">
+  <p>Well, let me tell you something, ...</p>
+  <p class="hover:break-before-column">Sure, go ahead, laugh...</p>
+  <p>Maybe we can live without...</p>
+  <p>Look. If you think this is...</p>
+</div>
+<div class="columns-2">
+  <p>Well, let me tell you something, ...</p>
+  <p class="break-inside-avoid-column">Sure, go ahead, laugh...</p>
+  <p>Maybe we can live without...</p>
+  <p>Look. If you think this is...</p>
+</div>
