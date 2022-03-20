@@ -3,6 +3,7 @@
 <PageTitle>Counter</PageTitle>
 
 <h1>Counter</h1>
+<h2>@currentHeading</h2>
 <span class="box-decoration-slice bg-gradient-to-r from-indigo-600 to-pink-500 text-blue px-2">
     hello world
 </span>
@@ -17,7 +18,48 @@
 Click me
 </button>
 
+<div class="table w-full">
+    <div class="table-header-group">
+        <div class="table-row">
+            <div class="table-cell">The Sliding Mr. Bones (Next Stop, Pottersville)</div>
+            <div class="table-cell">Malcolm Lockyer</div>
+            <div class="table-cell">1961</div>
+        </div>
+    </div>
+    <div class="table-row-group">
+    <div class="table-row">
+          <div class="table-cell">Witchy Woman</div>
+          <div class="table-cell">The Eagles</div>
+          <div class="table-cell">1972</div>
+    </div>
+    <div class="table-row">
+      <div class="table-cell">Shining Star</div>
+      <div class="table-cell">Earth, Wind, and Fire</div>
+      <div class="table-cell">1975</div>
+    </div>
+  </div>
+</div>
+
+<p>
+    <label>
+        <code>yyyy-MM-dd</code>format:
+        <input @bind="startDate" @bind:format="yyyy-MM-dd" />
+    </label>
+</p>
+<p>
+    <label>
+        New title
+        <input @bind="newHeading" />
+    </label>
+    <button @onclick="UpdateHeading">
+        Update heading
+    </button>
+</p>
+
+
 @code {
+    private string currentHeading = "Initial heading";
+    private DateTime startDate = new(2020, 1, 1);
     private int currentCount = 0;
 
     [Parameter]
@@ -27,5 +69,11 @@ Click me
     {
         Console.WriteLine(RouteParameter);
         currentCount++;
+    }
+    private string? newHeading;
+    private async Task UpdateHeading()
+    {
+        currentHeading = $"{newHeading}!!!";
+        await Task.Delay(2000);
     }
 }

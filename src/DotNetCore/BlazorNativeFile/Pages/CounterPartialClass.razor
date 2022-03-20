@@ -1,10 +1,14 @@
 @page "/counter-partial-class"
 
 <PageTitle>partial class component</PageTitle>
+<HeadContent>
+    <meta name="description" content="head content">
+</HeadContent>
 <h1>test</h1>
 <p role="status">Current count: @currentCount</p>
 
 <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+<button class="btn @BtnClass">@BtnClass</button>
 
 <ProductionCard
     imageUrl="https://images.unsplash.com/photo-1452784444945-3f422708fe5e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=512&q=80"
@@ -50,3 +54,8 @@
   <p>Maybe we can live without...</p>
   <p>Look. If you think this is...</p>
 </div>
+
+@code{
+  [CascadingParameter]
+  protected string BtnClass {get;set;}
+}
