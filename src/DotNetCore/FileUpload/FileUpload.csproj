@@ -9,6 +9,7 @@
   <ItemGroup>
     <PackageReference Include="Azure.Storage.Blobs" Version="12.11.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+    <PackageReference Include="Toycloud.AspNetCore.Mvc.ModelBinding.BodyOrDefaultBinding" Version="1.2.1" />
   </ItemGroup>
 
 </Project>

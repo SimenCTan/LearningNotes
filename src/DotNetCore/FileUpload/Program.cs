@@ -1,5 +1,6 @@
 ﻿using FileUpload.Configurations;
 using Azure.Storage.Blobs;
+using Toycloud.AspNetCore.Mvc.ModelBinding;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,7 +20,9 @@ builder.Services.AddCors(policy => {
                 .AllowAnyMethod()
                 .AllowAnyHeader());
 });
-builder.Services.AddControllers();
+builder.Services.AddControllers(options => {
+    options.ModelBinderProviders.InsertBodyOrDefaultBinding();
+});
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

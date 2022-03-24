@@ -4,6 +4,7 @@ using FileUpload.Configurations;
 using Microsoft.Extensions.Options;
 using Microsoft.AspNetCore.Http;
 using Azure.Storage.Blobs.Models;
+using Toycloud.AspNetCore.Mvc.ModelBinding;
 
 namespace FileUpload.Controllers;
 
@@ -50,5 +51,27 @@ public class FileController : Controller
             return StatusCode(500, ex.Message);
         }
     }
+
+    [HttpPost]
+    public async Task<IActionResult> SaveData([FromBodyOrDefault] Person person)
+    {
+        await Task.CompletedTask;
+        return Ok(person);
+    }
+
+    //[HttpPost]
+    //[Consumes("application/x-www-form-urlencoded")]
+    //[ActionName("SaveData")]
+    //public async Task<IActionResult> SaveDataFromForm([FromForm] Person person)
+    //{
+    //    await Task.CompletedTask;
+    //    return Ok(person);
+    //}
+}
+
+public record Person
+{
+    public string? Sex { get; set; }
+    public string? Name { get; set; }
 }
 
