@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.Authorization;
 using BlazorServerApp.Data;
+using BlazorServerApp.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -32,6 +33,7 @@ builder.Services.AddScoped<AuthenticationStateProvider, CustomAuthStateProvider>
 
 // Add localization
 builder.Services.AddLocalization();
+builder.Services.AddScoped<StateContainer>();
 
 var app = builder.Build();
 
