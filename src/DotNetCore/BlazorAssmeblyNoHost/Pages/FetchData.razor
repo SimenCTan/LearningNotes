@@ -1,5 +1,8 @@
 ﻿@page "/fetchdata"
+@using BlazorAssmeblyNoHost.Options
 @inject HttpClient Http
+@inject ILogger<FetchData> Logger
+@implements IDisposable
 
 <PageTitle>Weather forecast</PageTitle>
 
@@ -36,6 +39,19 @@ else
     </table>
 }
 
+<EditForm EditContext="editContext" OnValidSubmit="@HandleValidSubmit">
+     <label>
+        Type 1:
+        <InputCheckbox @bind-Value="holodeck.Type1" />
+    </label>
+    <label>
+        Type 2:
+        <InputCheckbox @bind-Value="holodeck.Type2" />
+    </label>
+    <button type="submit">Update</button>
+    <ValidationMessage For="() => holodeck.Options" />
+</EditForm>
+
 @code {
     private WeatherForecast[]? forecasts;
 
@@ -53,5 +69,50 @@ else
         public string? Summary { get; set; }
 
         public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
+    }
+
+    public class Holodeck
+    {
+        public bool Type1 { get; set; }
+
+        public bool Type2 { get; set; }
+        public bool Options => Type1 || Type2;
+    }
+
+    private EditContext? editContext;
+    private Holodeck holodeck = new();
+    private ValidationMessageStore? messageStore;
+
+    protected override void OnInitialized()
+    {
+        editContext=new EditContext(holodeck);
+        editContext.SetFieldCssClassProvider(new CustomFieldClassProvider());
+        editContext.OnValidationRequested+=HandleValidationRequested;
+        messageStore=new(editContext);
+    }
+
+    private void HandleValidationRequested(object? sender,ValidationRequestedEventArgs args)
+    {
+        messageStore?.Clear();
+        // Custom validation logic
+        if (!holodeck.Options)
+        {
+            messageStore?.Add(() => holodeck.Options, "Select at least one.");
+        }
+    }
+
+    private void HandleValidSubmit()
+    {
+        Logger.LogInformation("HandleValidSubmit called: Processing the form");
+
+        // Process the form
+    }
+
+    public void Dispose()
+    {
+        if (editContext is not null)
+        {
+            editContext.OnValidationRequested -= HandleValidationRequested;
+        }
     }
 }
