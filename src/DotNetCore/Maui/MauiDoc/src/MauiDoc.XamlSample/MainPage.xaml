@@ -4,6 +4,7 @@
              xmlns:scg="clr-namespace:System.Collections.Generic;assembly=netstandard"
              xmlns:models="clr-namespace:MauiDoc.XamlSample.Models"
              xmlns:behaviors="clr-namespace:MauiDoc.XamlSample.Behaviors"
+             xmlns:recognizers="clr-namespace:MauiDoc.XamlSample.Recognizers"
              x:Class="MauiDoc.XamlSample.MainPage"
              BackgroundColor="{DynamicResource SecondaryColor}">
 
@@ -21,47 +22,22 @@
                 </scg:List>
             </CollectionView.ItemsSource>
         </CollectionView>
-        <Entry Placeholder="Enter a System.Double" behaviors:AttachedNumericValidationBehavior.AttachBehavior="true" />
+        <!--<Entry Placeholder="Enter a System.Double" behaviors:AttachedNumericValidationBehavior.AttachBehavior="true" />-->
         <Entry Placeholder="Enter a System.Double">
             <Entry.Behaviors>
                 <behaviors:NumericValidationBehavior/>
             </Entry.Behaviors>
         </Entry>
-        <CollectionView>
-            <CollectionView.ItemsSource>
-                <scg:List x:TypeArguments="models:Monkey">
-                    <models:Monkey Name="Baboon" Location="Africa and Asia"
-                                   ImageUrl="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Papio_anubis_%28Serengeti%2C_2009%29.jpg/200px-Papio_anubis_%28Serengeti%2C_2009%29.jpg" /> >
-                </scg:List>
-            </CollectionView.ItemsSource>
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <Grid Padding="10">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="Auto" />
-                        </Grid.ColumnDefinitions>
-                        <Image Grid.RowSpan="2"
-                           Source="{Binding ImageUrl}"
-                           Aspect="AspectFill"
-                           HeightRequest="60"
-                           WidthRequest="60" />
-                        <Label Grid.Column="1"
-                           Text="{Binding Name}"
-                           FontAttributes="Bold" />
-                        <Label Grid.Row="1"
-                           Grid.Column="1"
-                           Text="{Binding Location}"
-                           FontAttributes="Italic"
-                           VerticalOptions="End" />
-                    </Grid>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
+        <Rectangle Stroke="Red" Fill="DarkBlue" StrokeThickness="4" HeightRequest="200" WidthRequest="200">
+            <Rectangle.GestureRecognizers>
+                <DragGestureRecognizer DragStarting="DragGestureRecognizer_DragStarting"/>
+            </Rectangle.GestureRecognizers>
+        </Rectangle>
+        <AbsoluteLayout>
+            <recognizers:PanContainer>
+                <Image Source="dotnet_bot.png" HeightRequest="768" WidthRequest="1024"/>
+            </recognizers:PanContainer>
+        </AbsoluteLayout>
         <Grid RowSpacing="25" RowDefinitions="Auto,Auto,Auto,Auto,*"
               Padding="{OnPlatform iOS='30,60,30,30', Default='30'}">
 

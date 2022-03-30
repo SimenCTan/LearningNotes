@@ -1,4 +1,5 @@
-﻿namespace MauiDoc.XamlSample
+﻿
+namespace MauiDoc.XamlSample
 {
     public partial class MainPage : ContentPage
     {
@@ -15,6 +16,10 @@
             CounterLabel.Text = $"Current count: {count}";
 
             SemanticScreenReader.Announce(CounterLabel.Text);
+        }
+
+        private void DragGestureRecognizer_DragStarting(object sender, DragStartingEventArgs e)
+        {
         }
     }
 }

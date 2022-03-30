@@ -26,20 +26,6 @@ namespace MauiDoc.XamlSample
                         .OnResignActivation((app) => LogEvent("OnResignActivation"))
                         .DidEnterBackground((app) => LogEvent("DidEnterBackground"))
                         .WillTerminate((app) => LogEvent("WillTerminate")));
-#else
-                    events.AddWindows(windows => windows
-                          .OnActivated((window, args) => LogEvent("OnActivated"))
-                          .OnClosed((window, args) => LogEvent("OnClosed"))
-                          .OnLaunched((window, args) => LogEvent("OnLaunched"))
-                          .OnLaunching((window, args) => LogEvent("OnLaunching"))
-                          .OnVisibilityChanged((window, args) => LogEvent("OnVisibilityChanged"))
-                          .OnNativeMessage((window, args) =>
-                          {
-                              if (args.MessageId == Convert.ToUInt32("0x02E0"))
-                              {
-                                  // DPI has changed
-                              }
-                          }));
 #endif
                     static void LogEvent(string eventName, string type = null)
                     {
