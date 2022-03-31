@@ -6,7 +6,8 @@
              xmlns:behaviors="clr-namespace:MauiDoc.XamlSample.Behaviors"
              xmlns:recognizers="clr-namespace:MauiDoc.XamlSample.Recognizers"
              x:Class="MauiDoc.XamlSample.MainPage"
-             BackgroundColor="{DynamicResource SecondaryColor}">
+             BackgroundColor="{DynamicResource SecondaryColor}"
+             IconImageSource="appicon.png">
 
     <StackLayout>
         <CollectionView>
@@ -33,11 +34,36 @@
                 <DragGestureRecognizer DragStarting="DragGestureRecognizer_DragStarting"/>
             </Rectangle.GestureRecognizers>
         </Rectangle>
-        <AbsoluteLayout>
+        <!--<AbsoluteLayout>
             <recognizers:PanContainer>
                 <Image Source="dotnet_bot.png" HeightRequest="768" WidthRequest="1024"/>
             </recognizers:PanContainer>
-        </AbsoluteLayout>
+        </AbsoluteLayout>-->
+        <CollectionView>
+            <CollectionView.ItemsSource>
+                <x:Array Type="{x:Type models:Person}">
+                    <models:Person Name="Steve" Age="21" Location="USA"/>
+                    <models:Person Name="John" Age="21" Location="USA"/>
+                    <models:Person Name="Tom" Age="21" Location="USA"/>
+                    <models:Person Name="Lucas" Age="21" Location="USA"/>
+                </x:Array>
+            </CollectionView.ItemsSource>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="75"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Text="{Binding Name}" FontAttributes="Bold"/>
+                        <Label Grid.Column="1" Text="{Binding Age}"/>
+                        <Label Grid.Column="2" Text="{Binding Location}" HorizontalTextAlignment="End"/>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        
         <Grid RowSpacing="25" RowDefinitions="Auto,Auto,Auto,Auto,*"
               Padding="{OnPlatform iOS='30,60,30,30', Default='30'}">
 
