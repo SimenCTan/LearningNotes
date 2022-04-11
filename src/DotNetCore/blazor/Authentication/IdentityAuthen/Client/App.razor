@@ -12,6 +12,9 @@
                         <p role="alert">You are not authorized to access this resource.</p>
                     }
                 </NotAuthorized>
+                <Authorizing>
+                    <div class="authorizing md:hidden">Authorizing...</div>
+                </Authorizing>
             </AuthorizeRouteView>
             <FocusOnNavigate RouteData="@routeData" Selector="h1" />
         </Found>

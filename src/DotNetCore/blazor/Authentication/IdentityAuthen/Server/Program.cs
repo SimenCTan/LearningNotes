@@ -1,8 +1,9 @@
-using Microsoft.AspNetCore.Authentication;
+﻿using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.EntityFrameworkCore;
 using IdentityAuthen.Server.Data;
 using IdentityAuthen.Server.Models;
+using Microsoft.AspNetCore.ApiAuthorization.IdentityServer;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,7 +17,20 @@ builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.R
     .AddEntityFrameworkStores<ApplicationDbContext>();
 
 builder.Services.AddIdentityServer()
-    .AddApiAuthorization<ApplicationUser, ApplicationDbContext>();
+    .AddApiAuthorization<ApplicationUser, ApplicationDbContext>(options => {
+        // Clients
+        var spaClient = ClientBuilder
+            .SPA("IdentityAuthen.Client")
+            .WithRedirectUri("https://localhost:7276/authentication/login-callback")
+            .WithLogoutRedirectUri("https://localhost:7276/authentication/logged-out")
+            .Build();
+        spaClient.AllowedCorsOrigins = new[]
+        {
+            "https://localhost:7276"
+        };
+
+        options.Clients.Add(spaClient);
+    });
 
 builder.Services.AddAuthentication()
     .AddIdentityServerJwt();
@@ -43,6 +57,8 @@ app.UseHttpsRedirection();
 
 app.UseBlazorFrameworkFiles();
 app.UseStaticFiles();
+// Allow requests from the external ManufacturingHub and  MissionControl applications
+app.UseCors(cors => cors.WithOrigins("https://localhost:7276").AllowAnyMethod().AllowAnyHeader().AllowCredentials());
 
 app.UseRouting();
 
