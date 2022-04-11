@@ -4,6 +4,10 @@ using Microsoft.EntityFrameworkCore;
 using IdentityAuthen.Server.Data;
 using IdentityAuthen.Server.Models;
 using Microsoft.AspNetCore.ApiAuthorization.IdentityServer;
+using Microsoft.AspNetCore.Identity;
+using System.IdentityModel.Tokens.Jwt;
+using Duende.IdentityServer.Services;
+using IdentityAuthen.Server;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,6 +18,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
+    .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>();
 
 builder.Services.AddIdentityServer()
@@ -30,7 +35,15 @@ builder.Services.AddIdentityServer()
         };
 
         options.Clients.Add(spaClient);
+
+        options.IdentityResources["openid"].UserClaims.Add("name");
+        options.ApiResources.Single().UserClaims.Add("name");
+        options.IdentityResources["openid"].UserClaims.Add("role");
+        options.ApiResources.Single().UserClaims.Add("role");
+
     });
+builder.Services.AddTransient<IProfileService, ProfileService>();
+JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Remove("role");
 
 builder.Services.AddAuthentication()
     .AddIdentityServerJwt();

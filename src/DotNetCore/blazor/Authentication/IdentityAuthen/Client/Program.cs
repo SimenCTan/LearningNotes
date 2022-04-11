@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
+using IdentityAuthen.Client.ClaimsPrincipals;
 using IdentityAuthen.Client;
+
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");
@@ -15,6 +17,7 @@ builder.Services.AddHttpClient("IdentityAuthen.ServerAPI", client => client.Base
 // Supply HttpClient instances that include access tokens when making requests to the server project
 builder.Services.AddScoped(sp => sp.GetRequiredService<IHttpClientFactory>().CreateClient("IdentityAuthen.ServerAPI"));
 
-builder.Services.AddApiAuthorization(c=>c.ProviderOptions.ConfigurationEndpoint=$"{backendOrigin}/_configuration/IdentityAuthen.Client");
+builder.Services.AddApiAuthorization(c=>c.ProviderOptions.ConfigurationEndpoint=$"{backendOrigin}/_configuration/IdentityAuthen.Client")
+    .AddAccountClaimsPrincipalFactory<CustomUserFactory>();
 
 await builder.Build().RunAsync();
