@@ -1,6 +1,8 @@
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using IdentityAuthen.Shared;
+using Microsoft.AspNetCore.Identity;
+using IdentityAuthen.Server.Models;
 
 namespace IdentityAuthen.Server.Controllers;
 
@@ -15,15 +17,23 @@ public class WeatherForecastController : ControllerBase
     };
 
     private readonly ILogger<WeatherForecastController> _logger;
+    private readonly UserManager<ApplicationUser> userManager;
 
-    public WeatherForecastController(ILogger<WeatherForecastController> logger)
+    public WeatherForecastController(ILogger<WeatherForecastController> logger, UserManager<ApplicationUser> userManager)
     {
         _logger = logger;
+        this.userManager = userManager;
     }
 
     [HttpGet]
-    public IEnumerable<WeatherForecast> Get()
+    public async Task<IEnumerable<WeatherForecast>> Get()
     {
+        var user = await userManager.GetUserAsync(User);
+
+        if (user != null)
+        {
+            _logger.LogInformation($"User.Identity.Name: {user.UserName}");
+        }
         return Enumerable.Range(1, 5).Select(index => new WeatherForecast
         {
             Date = DateTime.Now.AddDays(index),

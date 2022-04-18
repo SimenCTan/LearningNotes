@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:dxg="clr-namespace:DevExpress.Maui.DataGrid;assembly=DevExpress.Maui.DataGrid"
+             xmlns:locals="clr-namespace:DevExpressMauiExamples.ViewModels"
+             x:DataType="locals:DataGridViewModel"
+             x:Class="DevExpressMauiExamples.MainPage">
+    <ContentPage.BindingContext>
+        <locals:DataGridViewModel/>
+    </ContentPage.BindingContext>
+    <dxg:DataGridView ItemsSource="{Binding Employees}">
+    </dxg:DataGridView>
+</ContentPage>
