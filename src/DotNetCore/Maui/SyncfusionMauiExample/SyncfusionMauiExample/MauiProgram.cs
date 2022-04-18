@@ -1,9 +1,8 @@
-﻿using Microsoft.Maui;
-using Microsoft.Maui.Controls.Hosting;
-using Microsoft.Maui.Hosting;
+﻿using Syncfusion.Maui;
 using Syncfusion.Maui.Core.Hosting;
 
-namespace DevExpressMauiExamples;
+namespace SyncfusionMauiExample;
+
 public static class MauiProgram
 {
 	public static MauiApp CreateMauiApp()
@@ -18,6 +17,6 @@ public static class MauiProgram
 				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
 			});
 
-        return builder.Build();
+		return builder.Build();
 	}
 }
