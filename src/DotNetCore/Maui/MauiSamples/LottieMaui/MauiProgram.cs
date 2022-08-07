@@ -9,6 +9,12 @@ public static class MauiProgram
 		builder
 			.UseMauiApp<App>()
             .UseSkiaSharp()
+            .UseSentry(option =>
+            {
+                option.Dsn = "https://2a60899887ef420485bb8c1a85636f64@o1349834.ingest.sentry.io/6629605";
+                option.Debug = true;
+                option.TracesSampleRate = 1.0;
+            })
 			.ConfigureFonts(fonts =>
 			{
 				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
