@@ -1,4 +1,0 @@
-﻿canvas {
-    width: 100%;
-    image-rendering: pixelated; /* We don't want a fuzzy QR code */
-}
