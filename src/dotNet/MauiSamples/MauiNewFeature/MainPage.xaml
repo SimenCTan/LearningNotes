@@ -3,7 +3,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Class="MauiNewFeature.MainPage">
-
+    <ContentPage.Resources>
+        <Style x:Key="InvalidEntryStyle" TargetType="Entry">
+            <Setter Property="TextColor" Value="Red" />
+        </Style>
+        <Style x:Key="ValidEntryStyle" TargetType="Entry">
+            <Setter Property="TextColor" Value="Green" />
+        </Style>
+    </ContentPage.Resources>
     <ScrollView>
         <VerticalStackLayout
                 Spacing="25"
@@ -28,6 +35,13 @@
                     SemanticProperties.Description="Welcome to dot net Multi platform App U I"
                     FontSize="18"
                     HorizontalOptions="Center" />
+            <Entry Keyboard="Email">
+                <Entry.Behaviors>
+                    <toolkit:EmailValidationBehavior InvalidStyle="{StaticResource InvalidEntryStyle}"
+                                                     ValidStyle="{StaticResource ValidEntryStyle}"
+                                                     Flags="ValidateOnValueChanged"/>
+                </Entry.Behaviors>
+            </Entry>
 
             <Button
                     x:Name="CounterBtn"

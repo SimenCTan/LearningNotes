@@ -33,6 +33,9 @@ public static class MauiProgram
 
     static void RegisterViewsAndViewModels(in IServiceCollection services)
     {
+        // Add Gallery Pages + ViewModels
+        services.AddTransient<BehaviorsGalleryPage, BehaviorsGalleryViewModel>();
+
         // Add Behaviors Pages + ViewModels
         services.AddTransientWithShellRoute<AnimationBehaviorPage, AnimationBehaviorViewModel>();
     }

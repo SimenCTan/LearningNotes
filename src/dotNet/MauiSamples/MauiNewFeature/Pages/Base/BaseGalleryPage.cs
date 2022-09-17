@@ -21,21 +21,29 @@ public abstract class BaseGalleryPage<TViewModel>:BasePage<TViewModel> where TVi
          .Invoke(collectionView => collectionView.SelectionChanged += HandleSelectionChanged);
     }
 
+
+
     async void HandleSelectionChanged(object? sender, SelectionChangedEventArgs e)
     {
-        ArgumentNullException.ThrowIfNull(sender);
-
         var collectionView = (CollectionView)sender;
-        collectionView.SelectedItem = null;
-
+        if (collectionView.SelectedItem is null ||collectionView.SelectedItems is null)
+        {
+            return;
+        }
+        ArgumentNullException.ThrowIfNull(sender);
         if (e.CurrentSelection.FirstOrDefault() is SectionModel sectionModel)
         {
             await Shell.Current.GoToAsync(AppShell.GetPageRoute(sectionModel.ViewModelType));
         }
+        collectionView.SelectedItem = null;
+        collectionView.SelectedItems = null;
     }
 
     class GalleryDataTemplate : DataTemplate
     {
+        public GalleryDataTemplate() : base(CreateDataTemplate)
+        {
+        }
         enum Row { TopPadding, Content, BottomPadding }
         enum Column { LeftPadding, Content, RightPadding }
         enum CardRow { Title, Description }
