@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:BasePage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:pages="clr-namespace:MauiNewFeature.Pages.Base"
+             xmlns:behaviors="clr-namespace:MauiNewFeature.Pages.Behaviors"
+             xmlns:viewmodels="clr-namespace:MauiNewFeature.ViewModels.Behaviors"
+             x:Class="MauiNewFeature.Pages.Behaviors.AnimationBehaviorPage"
+             x:TypeArguments="viewmodels:AnimationBehaviorViewModel"
+             x:DataType="viewmodels:AnimationBehaviorViewModel"
+             Title="AnimationBehaviorPage">
+    <VerticalStackLayout Spacing="15" Padding="12">
+        <Label 
+            Text="Animation control"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+        <Button Text="Click this Button" Margin="16,0">
+            <Button.Behaviors>
+                <toolkit:AnimationBehavior EventName="Clicked">
+                    <toolkit:AnimationBehavior.AnimationType>
+                        <behaviors:SampleScaleAnimation
+                            Easing="{x:Static Easing.Linear}"
+                            Length="100"/>
+                    </toolkit:AnimationBehavior.AnimationType>
+                </toolkit:AnimationBehavior>
+            </Button.Behaviors>
+        </Button>
+    </VerticalStackLayout>
+</pages:BasePage>
