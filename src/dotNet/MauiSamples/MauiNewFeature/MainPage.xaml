@@ -13,6 +13,7 @@
     </ContentPage.Resources>
     <ScrollView>
         <VerticalStackLayout
+            x:Name="screenCapture"
                 Spacing="25"
                 Padding="30,0"
                 VerticalOptions="Center">
