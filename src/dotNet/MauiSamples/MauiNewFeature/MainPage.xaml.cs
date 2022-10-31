@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Maui.Views;
+using MauiNewFeature.ViewModels;
 using MauiNewFeature.Views;
 using System.IO;
 
@@ -6,11 +7,13 @@ namespace MauiNewFeature;
 
 public partial class MainPage : ContentPage
 {
-    int count = 0;
+    private readonly MainViewModel _viewModel;
 
-    public MainPage()
+    public MainPage(MainViewModel viewModel)
     {
         InitializeComponent();
+        _viewModel = viewModel;
+        BindingContext = _viewModel;
     }
 
     private async void OnCounterClicked(object sender, EventArgs e)

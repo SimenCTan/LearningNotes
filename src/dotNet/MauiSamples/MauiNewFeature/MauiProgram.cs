@@ -1,7 +1,10 @@
 ﻿using CommunityToolkit.Maui;
 using CommunityToolkit.Maui.Markup;
+using MauiNewFeature.NewFolder;
 using MauiNewFeature.Pages.Base;
 using MauiNewFeature.Pages.Behaviors;
+using MauiNewFeature.PlatformImplementations;
+using MauiNewFeature.ViewModels;
 using MauiNewFeature.ViewModels.Base;
 using MauiNewFeature.ViewModels.Behaviors;
 
@@ -28,11 +31,16 @@ public static class MauiProgram
 
     static void RegisterEssentials(this IServiceCollection services)
     {
+        services.AddSingleton<IToast>(e => new Toaster());
         services.AddSingleton<IDeviceInfo>(DeviceInfo.Current);
+        services.AddSingleton<IConnectivity>(e => Connectivity.Current);
     }
 
     static void RegisterViewsAndViewModels(in IServiceCollection services)
     {
+        services.AddSingleton<MainViewModel>();
+        services.AddSingleton<MainPage>();
+
         // Add Gallery Pages + ViewModels
         services.AddTransient<BehaviorsGalleryPage, BehaviorsGalleryViewModel>();
 
