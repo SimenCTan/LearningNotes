@@ -7,6 +7,7 @@ using MauiNewFeature.PlatformImplementations;
 using MauiNewFeature.ViewModels;
 using MauiNewFeature.ViewModels.Base;
 using MauiNewFeature.ViewModels.Behaviors;
+using Plugin.LocalNotification;
 
 namespace MauiNewFeature;
 
@@ -17,6 +18,7 @@ public static class MauiProgram
         var builder = MauiApp.CreateBuilder();
         builder
             .UseMauiApp<App>()
+            .UseLocalNotification()
             .UseMauiCommunityToolkit()
             .UseMauiCommunityToolkitMarkup()
             .ConfigureFonts(fonts =>

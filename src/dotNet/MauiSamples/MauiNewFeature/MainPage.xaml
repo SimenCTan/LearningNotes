@@ -55,6 +55,10 @@
                     Text="Check Internet"
                     SemanticProperties.Hint="Check Internet access"
                     Command="{Binding CheckInternetCommand}"/>
+            <Button x:Name="localnotifyButton"
+                    Text="Local Notify"
+                    SemanticProperties.Hint="LocalNotify"
+                    Command="{Binding LocalNotifyCommand}"/>
 
         </VerticalStackLayout>
     </ScrollView>
