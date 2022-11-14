@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "TestIsolatedApp": {
+      "commandName": "Project",
+      "commandLineArgs": "--port 7187",
+      "launchBrowser": false
+    }
+  }
+}

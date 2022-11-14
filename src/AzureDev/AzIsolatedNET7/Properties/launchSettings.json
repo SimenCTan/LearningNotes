@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "AzIsolatedNET7": {
+      "commandName": "Project",
+      "commandLineArgs": "--port 7276",
+      "launchBrowser": false
+    }
+  }
+}
