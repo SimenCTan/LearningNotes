@@ -37,8 +37,32 @@ python is eating the world
 ## 基础类型
 ### 数字型
 - 整型(x=5)、浮点型(y=3.14)、Complex(Example 1 + j, 2 + 4j)
-### 字符串类型(name="john")
-### Booleans类型(is_raining=True)
+复数相乘的运算口诀："实部相乘，虚部相加"
+复数除法转化为乘法，我们可以使用如下的技巧。将除数 b 的共轭复数乘以分子和分母的积，然后将除数和它的共轭复数相乘。也就是说，我们可以将 c 表示为：
+```python
+a = x1 + y1j
+b = x2 + y2j
+
+c = a/b = (x1 + y1j) * (x2 - y2j) / (x2^2 + y2^2)
+```
+### 字符串类型
+(name="john")/(name='john')/(name="""john""")多行字符串是通过使用三重单引号 (''') 或三重双引号 (""") 创建的,python中的转义字符串
+```
+\n: new line
+\t: Tab means(8 spaces)
+\\: Back slash
+\': Single quote (')
+\": Double quote (")
+```
+- 格式化字符串
+  - 旧式字符串格式（% 运算符：%s - 字符串（或任何具有字符串表示形式的对象，如数字）；%d - 整数；%f - 浮点数；"%.number of digitsf" - 具有固定精度的浮点数
+  - 新样式字符串格式 (str.format)，另一种新的字符串格式是字符串插值，f-strings。字符串以 f 开头，我们可以在其对应的位置注入数据。
+- 字符串作为字符序列
+  - 解包字符，
+
+
+### Booleans类型
+(is_raining=True)布尔数据类型表示两个值之一：True 或 False。
 ### 有序集合List
 - 有序集合在集合中能存取不同的数据类型:fruits = ["apple", "banana", "cherry"]
 ### 字典
@@ -65,3 +89,26 @@ type("1+1i")
 ```
 first_name, last_name, country, age, is_married = 'Asabeneh', 'Yetayeh', 'Helsink', 250, True
 ```
+
+### 操作符
+赋值运算符用于为变量赋值,下表显示了不同类型的 python 赋值运算符
+![img](./assets/assignment_operators.png)
+```
+x=3
+x>>=1
+print(x)
+x<<=3
+print(x)
+x^=3
+print(x)
+x&=3
+print(x)
+x|=3
+print(x)
+```
+
+算术运算符
+![img](./assets/arithmetic_operators.png)
+比较运算符
+![img](./assets/comparison_operators.png)
+逻辑操作符

@@ -87,9 +87,31 @@ floor_division=num_one//num_two
 print(total,diff,product,division,exp,floor_division)
 
 # circle radius is 30
-radius=30
-area_of_circle=3.14*30**2
-circum_of_circle=2*3.14*30
-print('define circle radius:',area_of_circle,circum_of_circle)
-radius=int(input("Pls input circle radius:"))
-print(3.14*radius**2)
+# radius=30
+# area_of_circle=3.14*30**2
+# circum_of_circle=2*3.14*30
+# print('define circle radius:',area_of_circle,circum_of_circle)
+# radius=int(input("pls input circle radius:"))
+# print(3.14*radius**2)
+
+# print tabel
+def print_tabel():
+    for row in range(4):
+        print(row,end='')
+        for col in range(1,4):
+            print(col,end='')
+        print()
+
+print_tabel()
+
+def judge_even_odd(x):
+    if x%2==0:
+        return f'{x} is even'
+    else:
+        return f'{x} is odd'
+
+result = judge_even_odd(-4)
+print(result)
+
+triple_str="""dddd"""
+print(triple_str)
