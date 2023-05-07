@@ -92,14 +92,35 @@ print(pto) # Pto`
 
 ### Booleans类型
 (is_raining=True)布尔数据类型表示两个值之一：True 或 False。
-### 有序集合List
-- 有序集合在集合中能存取不同的数据类型:fruits = ["apple", "banana", "cherry"]
-### 字典
-- 字典对象是键值对格式的无序数据集合:person = {"name": "John", "age": 36}
-### Tuple 元组
-- 元组和List一样是个有序集合但一旦定义就不能更改:numbers = (1, 2, 3)
+### List
+- 有序集合在集合中能存取不同的数据类型,是一个有序且可变（modifiable）的集合。允许重复成员,fruits = ["apple", "banana", "cherry"]
+  - 使用正索引访问列表项
+  ![img](./assets/list_index.png)
+  - 对list进行解包 `lst = ['item','item2','item3', 'item4', 'item5'] first_item, second_item, third_item, *rest = lst`
+  - 对索引进行切片,正向索引访问可以通过指定开始、结束和步骤来指定一系列正索引，返回值将是一个新列表。`web_techs[1:3:2]`，负向索引访问可以通过最后一个元素指定为（-1）开始、结束和步骤来指定负索引的范围，返回值将是一个新列表`web_techs[-7:-1:2]`
+  - 对有序集合进行更改`web_techs[0]='XAML'`
+  - 判断一个元素有没有在集合中 `exist_css = 'CSS' in web_techs`
+  - 要将元素添加到现有列表的末尾，我们使用方法 append()`web_techs.append('HTML')`
+  - 我们可以使用 insert() 方法在列表中的指定索引处插入单个项目。请注意，其他项目向右移动。 insert() 方法有两个参数：索引和要插入的项目。`web_techs.insert(1,'MVVM')`
+  - remove 方法从列表中删除指定的项目 `web_techs.remove('MVVM')`
+  - pop() 方法删除指定的索引（如果未指定索引，则删除最后一项）`web_techs.pop(-1)`
+  - del 关键字删除指定索引，也可用于删除索引范围内的项目。它还可以完全删除列表 `del web_techs[0:3]`
+  - clear() 方法清空列表 `web_techs.clear()`
+  - 可以通过以下方式将列表重新分配给新变量来复制列表：list2 = list1。现在，list2 是 list1 的引用，我们对 list2 所做的任何更改也会修改原始 list1。但是在很多情况下，我们不喜欢修改原始文件，而是希望有一个不同的副本。避免上述问题的一种方法是使用 copy()。
+  - 有几种方法可以加入或连接两个或多个列表
+    - 加号运算符 (+)
+    - 使用 extend() 方法加入 extend() 方法允许在列表中附加列表。`web_techs.extend(copy_web_techs)`
+  - count() 方法返回一个项目在列表中出现的次数 `print(web_techs.count('VUE'))`
+  - index() 方法返回列表中项目的索引 `web_techs.index('VUE')`
+  - reverse() 方法反转列表的顺序 `web_techs.reverse()`
+  - 要对列表进行排序，我们可以使用 sort() 方法或 sorted() 内置函数。 sort() 方法按升序对列表项重新排序并修改原始列表。如果 sort() 方法 reverse 的参数等于 true，它将按降序排列列表 'web_techs.sort()',sort()：此方法修改原始列表;sorted()：返回有序列表，不修改原列表
+### Tuple
+- 元组和List一样是个有序集合,允许重复成员但一旦定义就不能更改:numbers = (1, 2, 3)
 ### Set
-集合是个只存取唯一项的无序集合: colors = {"red", "green", "blue"}
+集合是个无序集合，不允许重复，无法通过索引访问且成员定义就不可以更改，但可以向集合中添加新项: colors = {"red", "green", "blue"}
+
+### 字典
+- 字典对象是键值对格式的无序数据集合:person = {"name": "John", "age": 36}，可以更改有索引但不允许重复值
 
 ### 类型判断
 type("1+1i")
