@@ -14,24 +14,24 @@
 # del slice_tuple
 
 """exercise"""
-first_person,second_person,*rest_perp=tuple({"grandmam","grandfather","mam","father","brother","sister"})
-print(first_person)
-print(second_person)
-print(rest_perp)
-fruits = tuple(['apple','banana','orange'])
-vegetables = tuple(['lettuce','celery','carrot'])
-animal = tuple(['mouse','lion','monkey'])
-food_stuff_tp = fruits+vegetables+animal
-print(food_stuff_tp)
-food_stuff_list = list(food_stuff_tp)
-print(food_stuff_list)
-middle_index =int(len(food_stuff_tp)/2)
-slice_food = food_stuff_tp[0:middle_index]
-print(slice_food)
-del food_stuff_tp
-nordic_countries = ('Denmark', 'Finland','Iceland', 'Norway', 'Sweden')
-print('Iceland' in nordic_countries)
-print('Estonia' in nordic_countries)
+# first_person,second_person,*rest_perp=tuple({"grandmam","grandfather","mam","father","brother","sister"})
+# print(first_person)
+# print(second_person)
+# print(rest_perp)
+# fruits = tuple(['apple','banana','orange'])
+# vegetables = tuple(['lettuce','celery','carrot'])
+# animal = tuple(['mouse','lion','monkey'])
+# food_stuff_tp = fruits+vegetables+animal
+# print(food_stuff_tp)
+# food_stuff_list = list(food_stuff_tp)
+# print(food_stuff_list)
+# middle_index =int(len(food_stuff_tp)/2)
+# slice_food = food_stuff_tp[0:middle_index]
+# print(slice_food)
+# del food_stuff_tp
+# nordic_countries = ('Denmark', 'Finland','Iceland', 'Norway', 'Sweden')
+# print('Iceland' in nordic_countries)
+# print('Estonia' in nordic_countries)
 
 
 

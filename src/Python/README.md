@@ -127,7 +127,23 @@ print(pto) # Pto`
   - 对元组进行切片 `set_2_tuple[-2:-1]`
   - 我们可以将元组更改为列表，将列表更改为元组。元组是不可变的，如果我们想修改元组，我们应该将其更改为列表。
 ### Set
-集合是个无序集合，不允许重复，无法通过索引访问且成员定义就不可以更改，但可以向集合中添加新项: colors = {"red", "green", "blue"}
+集合用于存储唯一项，可以找到集合之间的并集、交集、差集、对称差集、子集、超集和不相交集。集合是个无序集合，不允许重复，无法通过索引访问且成员定义就不可以更改，但可以向集合中添加新项: colors = {"red", "green", "blue"}
+- 创建集合我们使用大括号 {} 来创建一个集合或 set() 内置函数 `empty_set = set()`
+- 要检查一个项目是否存在于 `'HTML' in web_techs`
+- 一旦创建了一个集合，我们就不能更改任何项目，我们也可以添加额外的项目 `web_techs.add('VUE')`
+- 使用 update() 添加多个项目 update() 允许将多个项目添加到集合中,update() 接受一个列表参数 `web_techs.update(other_web_techs)`
+- 我们可以使用 remove() 方法从集合中删除一个元素。如果找不到该元素，remove() 方法将引发错误，因此最好检查该元素是否存在于给定的集合中。但是，discard() 方法不会引发任何错误 `web_techs.remove('HTML')` `web_techs.discard('HTML')`
+- pop() 方法从列表中随机删除一个项目，并返回删除的项目 `print(web_techs.pop())`
+- 如果我们想清除或清空集合，我们使用 clear 方法 `web_techs.clear()`
+- 如果我们想删除集合本身，我们使用 del 运算符
+- 我们可以将列表转换为集合，并将集合转换为列表。将列表转换为集合会删除重复项，并且只会保留唯一的项目 `web_techs_list = list(web_techs) web_techs = set(web_techs_list)`
+- 我们可以使用 union() 或 update() 方法连接两个集合,重复元素仅保留一个 `fruits.union(vegetables)`
+- 交集返回两个集合中的一组项目 `inter_section = fruits.intersection(vegetables)`
+- 一个集合可以是其他集合的子集或超集 `is_sub_set = inter_section.issubset(fruits)`
+- 检查两个集合之间的差异 `fruits.difference(inter_section)`
+- 对称差：将两个集合分别做差集，再将这两个差集去重合并起来，得到一个新的集合，包含两个集合中互不相交的元素 `fruits.symmetric_difference(inter_section)`
+- 如果两个集合没有一个或多个共同项，我们称它们为不相交的集合。我们可以使用 isdisjoint() 方法检查两个集合是联合的还是不相交的 ``
+
 
 ### 字典
 - 字典对象是键值对格式的无序数据集合:person = {"name": "John", "age": 36}，可以更改有索引但不允许重复值
