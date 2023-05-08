@@ -114,8 +114,18 @@ print(pto) # Pto`
   - index() 方法返回列表中项目的索引 `web_techs.index('VUE')`
   - reverse() 方法反转列表的顺序 `web_techs.reverse()`
   - 要对列表进行排序，我们可以使用 sort() 方法或 sorted() 内置函数。 sort() 方法按升序对列表项重新排序并修改原始列表。如果 sort() 方法 reverse 的参数等于 true，它将按降序排列列表 'web_techs.sort()',sort()：此方法修改原始列表;sorted()：返回有序列表，不修改原列表
+  - 我们可以使用 in 检查元组中是否存在一个项目，它返回一个布尔值
+  - 我们可以使用 + 运算符连接两个或多个元组
+  - 不可能删除元组中的单个项目，但可以使用 del 删除元组本身
 ### Tuple
 - 元组和List一样是个有序集合,允许重复成员但一旦定义就不能更改:numbers = (1, 2, 3)
+  - 创建元组`empty_tuple = (); empty_tuple = tuple()`
+  - 元组元素的个数 `len(set_2_tuple)`
+  - 通过索引访问元组元素 `set_2_tuple[-3]`
+  ![img](./assets/tuples_index.png)
+  ![img](./assets/tuple_negative_indexing.png)
+  - 对元组进行切片 `set_2_tuple[-2:-1]`
+  - 我们可以将元组更改为列表，将列表更改为元组。元组是不可变的，如果我们想修改元组，我们应该将其更改为列表。
 ### Set
 集合是个无序集合，不允许重复，无法通过索引访问且成员定义就不可以更改，但可以向集合中添加新项: colors = {"red", "green", "blue"}
 
