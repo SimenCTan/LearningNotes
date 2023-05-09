@@ -146,7 +146,27 @@ print(pto) # Pto`
 
 
 ### 字典
-- 字典对象是键值对格式的无序数据集合:person = {"name": "John", "age": 36}，可以更改有索引但不允许重复值
+- 字典是无序的、可修改的（可变的）配对（键：值）数据类型的集合 `person = {"name": "John", "age": 36}`
+  - 要创建字典，我们使用花括号、{} 或 dict() 内置函数 `empty_dict = dict()`
+  - len(dct)它检查字典中“键：值”对的数量
+  - 我们可以通过引用其键名来访问 Dictionary 项,如果键不存在，则通过键名访问项目会引发错误。为避免此错误，我们首先必须检查密钥是否存在，或者我们可以使用 get 方法。如果键不存在，则 get 方法返回 None，这是一个 NoneType 对象数据类型 `print(person.get('skills'))`
+  - 我们可以向字典中添加新的键值对 `person['city']='Shenzhen'
+    person['skills'].append('HTML')`
+  - 更改集合 `person['first_name']='Ely'`
+  - 我们使用 in 运算符来检查字典中是否存在键 `print('first_name' in person)`
+  - 从字典中删除键值对
+    - pop(key)：删除具有指定键名的项目 `person.pop('city')`
+    - popitem()：删除最后一项 `person.popitem()`
+    - del：删除具有指定键名的项目 `del person['last_name']`
+  - items() 方法将字典更改为元组列表 `person_list = person.items()`
+  - 如果我们不想要字典中的项目，我们可以使用 clear() 方法清除它们 `person.clear()`
+  - 如果我们不使用字典，我们可以完全删除它 `del person`
+  - 我们可以使用 copy() 方法复制字典。使用副本我们可以避免原始字典的变异 `person_copy = person.copy()`
+  - keys() 方法给我们一个字典的所有键作为列表 `person_keys = person.keys()`
+  - values 方法给我们一个字典的所有值作为一个列表 `person_values = person.values()`
+
+
+
 
 ### 类型判断
 type("1+1i")
