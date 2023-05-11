@@ -165,9 +165,6 @@ print(pto) # Pto`
   - keys() 方法给我们一个字典的所有键作为列表 `person_keys = person.keys()`
   - values 方法给我们一个字典的所有值作为一个列表 `person_values = person.values()`
 
-
-
-
 ### 类型判断
 type("1+1i")
 
@@ -208,3 +205,10 @@ print(x)
 比较运算符
 ![img](./assets/comparison_operators.png)
 逻辑操作符
+
+### 条件语句
+条件执行，如果某个表达式为真，将执行一个或多个语句块
+- if 条件关键字 if 用于检查条件是否为真并执行块代码，记住冒号后的缩进
+- 速记 ` code if condition else code`
+- If 条件和逻辑运算符
+
