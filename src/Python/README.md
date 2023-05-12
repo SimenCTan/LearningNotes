@@ -210,5 +210,27 @@ print(x)
 条件执行，如果某个表达式为真，将执行一个或多个语句块
 - if 条件关键字 if 用于检查条件是否为真并执行块代码，记住冒号后的缩进
 - 速记 ` code if condition else code`
-- If 条件和逻辑运算符
+- If 条件和逻辑运算符 `if a>0 and a%2==0:`
 
+### 循环语句
+为了处理重复性任务，编程语言使用循环。 Python编程语言还提供了两种循环类型：`while loop` `for loop`
+- while 循环它用于重复执行语句块，直到满足给定条件
+- Break当我们想退出或停止循环时，我们使用 break
+```Python
+count=0
+while count<5:
+    if(count>3):
+        break
+    print(count)
+    count+=1
+```
+- for 关键字用于构成 for 循环，与其他编程语言类似，但语法有所不同,循环用于迭代序列（即列表、元组、字典、集合或字符串)
+- Continue：当我们想跳过循环迭代中的某些步骤时，我们使用Continue
+- range() 函数用于数字列表。 range(start, end, step) 采用三个参数：starting、ending 和 increment。默认情况下它从 0 开始，增量为 1。范围序列至少需要 1 个参数（结束）。使用范围创建序列
+- 我们可以写pass这个词来避免错误。我们也可以将它用作占位符，用于未来的陈述
+```Python
+for num in range(3):
+    pass
+    print(num)
+    pass
+```
