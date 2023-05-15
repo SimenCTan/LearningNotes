@@ -234,3 +234,21 @@ for num in range(3):
     print(num)
     pass
 ```
+
+### 函数
+函数是设计用于执行特定任务的可重用代码块或编程语句。为了定义或声明一个函数，Python 提供了 def 关键字 `def function_name():` 函数可以不带参数声明,函数也可以有返回值，如果一个函数没有return语句，那么这个函数的值为None
+- 在一个函数中，我们可以传递不同的数据类型（数字、字符串、布尔值、列表、元组、字典或集合）作为参数
+  - 单参数：如果我们的函数接受一个参数，我们应该用一个参数调用我们的函数 `def single_parameter_function(name):`
+  - 两个参数：一个函数可能有也可能没有一个或多个参数 `def two_parameter_funtion(first_name,last_name):`
+  - 用键和值传递参数，参数的顺序并不重要 `two_parameter_funtion(last_name='you',first_name='go')`
+  - 如果我们不使用函数返回值，那么我们的函数默认返回 None。要使用函数返回值，我们使用关键字 return 后跟我们要返回的变量。我们可以从函数返回任何类型的数据
+  - 有时我们在调用函数时将默认值传递给参数。如果我们在调用函数时不传递参数，将使用它们的默认值`def weight_of_object(mass,gravity=9.81):`
+  - 如果我们不知道传递给函数的参数数量，我们可以通过在参数名称前添加 * 来创建一个可以接受任意数量参数的函数`def sum_all_num(*nums):`
+  - 作为另一个函数的参数的函数
+```Python
+  def square_number(n):
+    return n*n
+def do_something(f,x):
+    return f(x)
+print(do_something(square_number,5))
+```
