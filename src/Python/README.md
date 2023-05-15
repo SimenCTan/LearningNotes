@@ -252,3 +252,13 @@ def do_something(f,x):
     return f(x)
 print(do_something(square_number,5))
 ```
+
+### 模块
+模块是包含一组代码或一组功能的文件，可以包含在应用程序中。模块可以是包含单个变量、函数或大型代码库的文件,为了创建一个模块，我们在 python 脚本中编写代码并将其保存为 .py 文件,要导入文件，我们仅使用 import 关键字和文件名 `import mymodule
+print(mymodule.generate_full_name('simen','your'))`,我们可以在一个文件中有很多函数，我们可以不同地导入所有函数 `from mymodule import generate_full_name,sum_all_numbers`; 在导入过程中，我们可以重命名模块的名称 `from mymodule import generate_full_name as fullname,sum_all_numbers as total`
+- 与其他编程语言一样，我们也可以通过使用关键字 import 导入文件/函数来导入模块。让我们导入我们大部分时间都会使用的公共模块。一些常见的内置模块：math、datetime、os、sys、random、statistics、collections、json、re
+  - 使用 python os 模块可以自动执行许多操作系统任务。 Python 中的 OS 模块提供了创建、更改当前工作目录、删除目录（文件夹）、获取其内容、更改和识别当前目录的功能 `print(os.getcwd())`
+  - sys 模块提供了用于操作 Python 运行时环境的不同部分的函数和变量。函数 sys.argv 返回传递给 Python 脚本的命令行参数列表。此列表中索引 0 处的项目始终是脚本的名称，索引 1 处的项目是从命令行传递的参数 `print('Welcome {}. enjoy {} challenge!'.format(sys.argv[0],sys.argv[1]))`
+  - Statistics Module统计模块提供数值数据的数理统计功能。此模块中定义的流行统计函数：均值、中值、众数、标准差等
+  - 数学模块我们导入了数学模块，其中包含许多可以帮助我们进行数学计算的函数。要检查模块有哪些功能，我们可以使用 help(math) 或 dir(math) `from math import pi as  PI`
+  - 字符串模块是一个有多种用途的有用模块
