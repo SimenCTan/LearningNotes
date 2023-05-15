@@ -261,4 +261,5 @@ print(mymodule.generate_full_name('simen','your'))`,我们可以在一个文件�
   - sys 模块提供了用于操作 Python 运行时环境的不同部分的函数和变量。函数 sys.argv 返回传递给 Python 脚本的命令行参数列表。此列表中索引 0 处的项目始终是脚本的名称，索引 1 处的项目是从命令行传递的参数 `print('Welcome {}. enjoy {} challenge!'.format(sys.argv[0],sys.argv[1]))`
   - Statistics Module统计模块提供数值数据的数理统计功能。此模块中定义的流行统计函数：均值、中值、众数、标准差等
   - 数学模块我们导入了数学模块，其中包含许多可以帮助我们进行数学计算的函数。要检查模块有哪些功能，我们可以使用 help(math) 或 dir(math) `from math import pi as  PI`
-  - 字符串模块是一个有多种用途的有用模块
+  - 字符串模块是一个有多种用途的有用模块 `print(string.ascii_letters)`
+  - random 模块，它给我们一个介于 0 和 0.9999 之间的随机数 `print(randint(5,12))`
