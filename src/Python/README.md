@@ -117,6 +117,29 @@ print(pto) # Pto`
   - 我们可以使用 in 检查元组中是否存在一个项目，它返回一个布尔值
   - 我们可以使用 + 运算符连接两个或多个元组
   - 不可能删除元组中的单个项目，但可以使用 del 删除元组本身
+
+- 列表理解是一种从序列创建列表的紧凑方法。这是创建新列表的捷径。列表理解比使用 for 循环处理列表要快得多 `# syntax [i for i in iterable if expression]`
+```
+# it is possible to make a list of tuples
+numbers = [(i,i**2) for i in range(11)]
+print(numbers)
+```
+  - 列表理解可以与 if 表达式结合使用 `positive_even_numbers = [i for i in numbers if i%2==0 and i>0]`
+  - Lambda 函数是一个没有名字的小型匿名函数。它可以接受任意数量的参数，但只能有一个表达式。 Lambda 函数类似于 JavaScript 中的匿名函数。当我们想在另一个函数中编写一个匿名函数时，我们需要它。要创建 lambda 函数，我们使用 lambda 关键字后跟一个参数，再后跟一个表达式。请参阅下面的语法和示例。 Lambda 函数不使用 return 但它显式返回表达式。
+  ```
+  # syntax
+x = lambda param1, param2, param3: param1 + param2 + param2
+print(x(arg1, arg2, arg3))
+  ```
+  - 在另一个函数中使用 lambda 函数
+  ```
+  # using lambda in another function
+def power(x):
+    return lambda n:x**n
+
+print(power(2)(5))
+
+  ```
 ### Tuple
 - 元组和List一样是个有序集合,允许重复成员但一旦定义就不能更改:numbers = (1, 2, 3)
   - 创建元组`empty_tuple = (); empty_tuple = tuple()`
