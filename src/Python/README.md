@@ -288,4 +288,12 @@ print(mymodule.generate_full_name('simen','your'))`,我们可以在一个文件�
   - random 模块，它给我们一个介于 0 和 0.9999 之间的随机数 `print(randint(5,12))`
 
 ### List Comprehension
-Python 中的列表理解是一种从序列创建列表的紧凑方法。这是创建新列表的捷径。列表理解比使用 for 循环处理列表要快得多
+1. Python 中的列表理解是一种从序列创建列表的紧凑方法。这是创建新列表的捷径。列表理解比使用 for 循环处理列表要快得多
+```
+positive_even_numbers = [i for i in numbers if i%2==0 and i>0]
+```
+2. Lambda 函数是一个没有名称的小型匿名函数。它可以采用任意数量的参数，但只能有一个表达式。 Lambda 函数类似于 JavaScript 中的匿名函数。当我们想在另一个函数中编写匿名函数时，我们需要它
+```
+lambda_add_two_nums = lambda a,b:a+b
+print(lambda_add_two_nums(2,3))
+```

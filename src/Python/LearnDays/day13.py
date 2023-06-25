@@ -71,4 +71,13 @@ print(tuple_list)
 countries = [[('Finland', 'Helsinki')], [('Sweden', 'Stockholm')], [('Norway', 'Oslo')]]
 tuple_countries = [c for list_countries in countries for c in list_countries]
 
+linear_function = lambda x1,y1,x2,y2,solve_for:(y2-y1)/(x2-x1) if solve_for=='slope' else y1-((y2-y1)/(x2-x1))*x1
+
+# linear_function = lambda x1, y1, x2, y2, solve_for: (y2 - y1) / (x2 - x1) if solve_for == 'slope' else y1 - ((y2 - y1) / (x2 - x1)) * x1
+
+# Example usage:
+print(linear_function(2, 4, 6, 10, 'slope')) # Output: 1.5
+print(linear_function(2, 4, 6, 10, 'y-intercept')) # Output: 1.0
+
+
 
