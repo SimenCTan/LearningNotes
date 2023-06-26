@@ -507,3 +507,110 @@ timedelta_two = timedelta(weeks=1,days=12,hours=10,minutes=3,seconds=12)
 print(timedelta_two)
 print(timedelta_two-timedelta_one)
 ```
+
+### 异常处理
+Python 使用 try 和 except 来优雅地处理错误。错误的优雅退出（或优雅处理）是一种简单的编程习惯——程序检测到严重的错误情况并以受控方式“优雅退出”。通常，程序会将描述性错误消息打印到终端或日志，作为正常退出的一部分，这使我们的应用程序更加健壮。异常的原因通常是程序本身的外部原因。异常的示例可能是错误的输入、错误的文件名、无法找到文件、IO 设备发生故障。优雅地处理错误可以防止我们的应用程序崩溃
+[!img](./assets/try_except.png)
+```Py
+try:
+    name = input('Enter your name:')
+    year_born = input('Year you born:')
+    age = 2023-int(year_born)
+except TypeError:
+    print('type error happen')
+except ValueError:
+    print('value error happen')
+except:
+    print('error happen')
+else:
+    print('I usually run with the try block')
+finally:
+    print('I alway run.')
+```
+```Py
+try:
+    name = input('Enter your name:')
+    year_born = input('Year you born:')
+    age = 2023-int(year_born)
+except Exception as e:
+    print(e)
+else:
+    print('I usually run with the try block')
+finally:
+    print('I alway run.')
+```
+### Python 中的打包和解包参数
+- * for tuples
+```Py
+def sum_of_five_nums(a,b,c,d,e):
+    return a+b+c+d+e
+lst_nums = [1,2,3,4,5]
+print(*lst_nums)
+print(sum_of_five_nums(*lst_nums))
+```
+  - 我们还可以在需要开始和结束的范围内置函数中使用解包
+  ```Py
+  numbers = range(2,7)
+  args = [2,7]
+  print(list(numbers))
+  print(list(range(*args)))
+  ```
+  - 列表或元组也可以像这样解包
+  ```Py
+  countries = ['Finland', 'Sweden', 'Norway', 'Denmark', 'Iceland']
+  fin,sec,third,*rest = countries
+  print(fin,sec,third,rest)
+  numbers_pack = [1,2,3,4,5,6]
+  first,*mid,last=numbers_pack
+  print(first,mid,last)
+  ```
+- ** for dictionaries
+```Py
+def unpacking_person_info(name, country, city, age):
+    return f'{name} lives in {country}, {city}. He is {age} year old.'
+person_dct = {'name':'go','country':'Japen','city':'toyo','age':12}
+print(unpacking_person_info(**person_dct))
+```
+- 有时我们永远不知道需要向 python 函数传递多少个参数。我们可以使用打包方法来允许我们的函数接受无限数量或任意数量的参数
+  - Packing Lists
+  ```Py
+  def sum_all(*args):
+    s = 0
+    for i in args:
+        s+=i
+    return s
+  print(sum_all(1,2,3,4))
+  ```
+  - Packing Dictionaries
+  ```Py
+  def packing_person_info(**kwargs):
+    print(type(kwargs))
+    for key in kwargs:
+        print(f'{key}={kwargs[key]}')
+    return 0
+  print(packing_person_info(name='Asabeneh',country="Finland", city="Helsinki", age=250))
+  ```
+### Spreading in Python
+与 JavaScript 一样，Python 中也可以进行传播
+```Py
+lst_one = [1,2,3]
+lst_two = [4,5,6]
+lst = [0,*lst_one,*lst_two]
+print(lst)
+```
+### Enumerate
+如果我们对列表的索引感兴趣，我们可以使用 enumerate 内置函数来获取列表中每个项目的索引
+```Py
+for index,item in enumerate(range(*[2,6])):
+    print(index,item)
+```
+### zip
+有时我们想在循环遍历列表时组合列表。
+```Py
+fruits = ['banana', 'orange', 'mango', 'lemon', 'lime','gogo']
+vegetables = ['Tomato', 'Potato', 'Cabbage','Onion', 'Carrot']
+fruits_and_veges = list()
+for f,v in zip(fruits,vegetables):
+    fruits_and_veges.append({'fruit':f,'veg':v})
+print(fruits_and_veges)
+```
