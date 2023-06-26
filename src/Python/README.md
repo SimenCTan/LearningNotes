@@ -430,3 +430,44 @@ def add_two_nums(x,y):
 total = reduce(add_two_nums,numbers_str)
 print(total)
 ```
+
+### 错误类型
+- SyntaxError(语法错误)
+- NameError
+- ModuleNotFoundError
+```Python
+ import maths
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+ModuleNotFoundError: No module named 'maths'
+```
+- AttributeError
+- KeyError
+```
+ user = {'name':'go','age':21,'country':'hk'}
+>>> user['name']
+'go'
+>>> user[county]
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'county' is not defined
+```
+- TypeError
+```Python
+ pow(5,3)
+125.0
+>>> power(1,3)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'power' is not defined
+```
+- ValueError ` int('2a')`
+- ZeroDivisionError
+```Python
+ 1/0
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+ZeroDivisionError: division by zero
+```
+
+
