@@ -614,3 +614,112 @@ for f,v in zip(fruits,vegetables):
     fruits_and_veges.append({'fruit':f,'veg':v})
 print(fruits_and_veges)
 ```
+### 正则表达式
+正则表达式或 RegEx 是一种特殊的文本字符串，有助于查找数据中的模式。正则表达式可用于检查不同数据类型中是否存在某种模式。要在 python 中使用 RegEx 首先我们应该导入名为 re 的 RegEx 模块
+- re 模块中的方法 为了查找模式，我们使用不同的 re 字符集集，允许在字符串中搜索匹配项
+  - re.match()：仅在字符串第一行的开头搜索，如果找到则返回匹配的对象，否则返回 None
+  ```Py
+  # syntac
+  re.match(substring, string, re.I)
+  # substring is a string or a pattern, string is the text we look for a pattern , re.I is case ignore
+  import re
+  txt = 'I love to teach python and javaScript'
+  match_txt = re.match('I love',txt,re.I)
+  print(match_txt)
+  span_txt = match_txt.span()
+  print(span_txt)
+  start_txt,end_txt=span_txt
+  print(start_txt,end_txt)
+  sub_string = txt[start_txt:end_txt]
+  print(sub_string)
+  txt = 'I love to teach python and javaScript'
+  match = re.match('I like to teach', txt, re.I)
+  print(match)  # None
+  ```
+  - re.search：如果字符串中任意位置存在，则返回匹配对象，包括多行字符串
+  ```Py
+  # syntax
+  re.match(substring, string, re.I)
+  # substring is a pattern, string is the text we look for a pattern , re.I is case ignore flag
+  txt_search = """Python is the most beautiful language that a human being has ever created.
+  I recommend python for a first programming language"""
+  match_search = re.search('first',txt_search,re.I)
+  print(match_search)
+  ```
+  正如您所看到的，搜索比匹配要好得多，因为它可以在整个文本中查找模式。搜索返回一个匹配对象，其中包含找到的第一个匹配项，否则返回 None。一个更好的重功能是 findall。该函数检查整个字符串的模式并将所有匹配项作为列表返回
+  - re.findall：返回包含所有匹配项的列表
+  ```Py
+  txt_findall = '''Python is the most beautiful language that a human being has ever created.
+  I recommend python for a first programming language'''
+  match_findall = re.findall('language',txt_findall,re.I)
+  print(match_findall)
+  ```
+  - re.split：获取一个字符串，在匹配点处分割它，返回一个列表
+  ```Py
+  txt_split = '''I am teacher and  I love teaching.
+  There is nothing as rewarding as educating and empowering people.
+  I found teaching more interesting than any other jobs.
+  Does this motivate you to be a teacher?'''
+  print(re.split('\n',txt_split))
+  ```
+  - re.sub：替换字符串中的一个或多个匹配项
+  ```Py
+  txt_replace = '''Python is the most beautiful language that a human being has ever created.
+  I recommend python for a first programming language'''
+  match_replace = re.sub('[Pp]ython','JavaScript',txt_replace,re.I)
+  print(match_replace)
+  ```
+
+- 编写正则表达式模式,为了声明字符串变量，我们使用单引号或双引号。声明 RegEx 变量 r''。以下模式仅标识小写的 apple，为了使其不区分大小写，我们应该重写我们的模式或者添加一个标志
+[!img](./assets/regex.png)
+
+  - []: A set of characters
+    - [a-c] means, a or b or c
+    - [a-z] means, any letter from a to z
+    - [A-Z] means, any character from A to Z
+    - [0-3] means, 0 or 1 or 2 or 3
+    - [0-9] means any number from 0 to 9
+    - [A-Za-z0-9] any single character, that is a to z, A to Z or 0 to 9
+  - \: uses to escape special characters
+    - \d means: match where the string contains digits (numbers from 0-9)
+    - \D means: match where the string does not contain digits
+  - . : any character except new line character(\n)
+  - ^: starts with
+    - r'^substring' eg r'^love', a sentence that starts with a word love
+    - r'[^abc] means not a, not b, not c.
+  - $: ends with
+    - r'substring$' eg r'love$', sentence that ends with a word love
+  - *: zero or more times
+    - r'[a]*' means a optional or it can occur many times.
+  - +: one or more times
+    - r'[a]+' means at least once (or more)
+  - ?: zero or one time
+    - r'[a]?' means zero times or once
+  - {3}: Exactly 3 characters
+  - {3,}: At least 3 characters
+  - {3,8}: 3 to 8 characters
+  - |: Either or
+    - r'apple|banana' means either apple or a banana
+  - (): Capture and group
+
+- Square Bracket 让我们使用方括号来包含小写和大写
+```Py
+regex_pattern = r'[Aa]pple'
+regex_or_pattern = r'[Aa]pple|[Bb]anana'
+regex_period = r'[a].+'
+txt_regex = 'Apple and banana are fruits. An old cliche says an apple a day a doctor way has been replaced by a banana a day keeps the doctor far far away.'
+matches = re.findall(regex_pattern,txt_regex)
+print(matches)
+```
+- 正则表达式中的量词,我们可以使用大括号指定在文本中查找的子字符串的长度。让我们想象一下，我们对长度为 4 个字符的子字符串感兴趣
+```Py
+txt_qt = 'This regular expression example was made on December 6,  2019 and revised on July 8, 2021'
+regex_qt = r'\d{4}'
+print(re.findall(regex_qt,txt_qt))
+```
+- Negation
+```Py
+txt_ng = 'This regular expression example was made on December 6,  2019 and revised on July 8, 2021'
+regex_ng = r'[^A-Za-z ]+'
+print(re.findall(regex_ng,txt_ng))
+```
