@@ -84,6 +84,7 @@
 
 """exercises"""
 import re
+from collections import Counter
 paragraph = 'I love teaching. If you do not love teaching what else can you love. I love Python if you do not love something which can give you all the capabilities to develop an application what else can you love.'
 regex_word = r'\w+'
 words = re.findall(regex_word,paragraph)
@@ -127,4 +128,7 @@ freq_frist = max(word_freq,key=word_freq.get)
 word_freq.pop(freq_frist)
 freq_second = max(word_freq,key=word_freq.get)
 print(freq_frist,freq_second)
+
+word_counter = Counter(clear_words)
+print(word_counter.most_common(3))
 
