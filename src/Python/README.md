@@ -723,3 +723,104 @@ txt_ng = 'This regular expression example was made on December 6,  2019 and revi
 regex_ng = r'[^A-Za-z ]+'
 print(re.findall(regex_ng,txt_ng))
 ```
+### 文件处理
+文件处理是编程的一个重要部分，它允许我们创建、读取、更新和删除文件。在 Python 中，我们使用 open() 内置函数来处理数据 `open('filename', mode) # mode(r, a, w, x, t,b)  could be to read, write, update`
+1. “r” - 读取 - 默认值。打开文件进行读取，如果文件不存在则返回错误
+2. “a” - 追加 - 打开文件进行追加，如果文件不存在则创建该文件
+3. “w” - 写入 - 打开文件进行写入，如果文件不存在则创建该文件
+4. “x” - 创建 - 创建指定的文件，如果文件存在则返回错误
+5. “t” - 文本 - 默认值。文本模式
+6. “b” - 二进制 - 二进制模式（例如图像）
+
+- 打开文件进行读取
+  - read()：将整个文本作为字符串读取。如果我们想限制要读取的字符数，可以通过将 int 值传递给 read(number) 方法来限制。
+  ```Py
+  f = open('./src/Python/files/reading_file_example.txt')
+  print(f)
+  txt = f.read()
+  print(type(txt))
+  print(txt)
+  f.close()
+  ```
+  - readline()：只读取第一行 `line_txt = f.readline()`
+  - readlines()：逐行读取所有文本并返回行列表 `all_line_txt = f.readlines()`有换行符
+  - 将所有行作为列表获取的另一种方法是使用 splitlines() `txt = f.read().splitlines()`没有换行符
+- 打开文件进行写入和更新
+```Py
+with open('./src/Python/files/reading_file_example.txt','a') as f:
+    f.writelines('\nThis text has to be appended at the end')
+    f.close()
+with open('./src/Python/files/reading_file_example.txt') as f:
+    print(f.read())
+    f.close()
+
+with open('./src/Python/files/reading_file_example.txt','w') as f:
+    f.write('This text will be written in a newly created file')
+    f.close()
+with open('./src/Python/files/reading_file_example.txt') as f:
+    print(f.read())
+    f.close()
+```
+- 删除文件
+`if os.path.exists('./src/Python/files/reading_file_example.txt'):
+    os.remove('./src/Python/files/reading_file_example.txt')
+else:
+    print('file not exist')`
+
+### 文件类型
+- 带有 txt 扩展名的文件是一种非常常见的数据形式，我们在上一节中已经介绍过它
+- JSON 代表 JavaScript 对象表示法。实际上，它是一个字符串化的 JavaScript 对象或 Python 字典
+  - 将 JSON 更改为字典,要将 JSON 更改为字典，首先我们导入 json 模块，然后使用 Loads 方法
+  ```Py
+  person_jsonstr1 = "{\"name\": \"Asabeneh\", \"country\": \"Finland\", \"city\": \"Helsinki\", \"skills\": [\"JavaScrip\", \"React\", \"Python\"]}"
+  person_jsonstr2 = '''{
+      "name":"Asabeneh",
+      "country":"Finland",
+      "city":"Helsinki",
+      "skills":["JavaScrip", "React","Python"]
+  }'''
+  person_dct1 = json.loads(person_jsonstr1)
+  person_dct2 = json.loads(person_jsonstr2)
+  print(person_dct1)
+  print(person_dct1['name'])
+  ```
+  - 将字典更改为 JSON要将字典更改为 JSON，我们使用 json 模块中的 dumps 方法 `person_dct_str = json.dumps(person_dct,indent=4)`
+  - 另存为 JSON 文件
+  ```Py
+  with open('./src/Python/files/json_example.json','w') as f:
+    json.dump(person_dct,f,ensure_ascii=False,indent=4)
+    f.close()
+  ```
+- 带有 csv 扩展名的文件CSV 代表逗号分隔值。 CSV 是一种简单的文件格式，用于存储表格数据，例如电子表格或数据库。 CSV 是数据科学中非常常见的数据格式。
+```Py
+with open('./src/Python/files/csv_example.csv','r') as f:
+    csv_reader = csv.reader(f,delimiter=',')
+    line_count =0
+    for row in csv_reader:
+        print(row)
+        if (line_count == 0):
+            print(f'Columns names are: {",".join(row)}')
+            line_count+=1
+        else:
+            print(f'\t{row[0]} is a teachers. He lives in {row[1]}, {row[2]}.')
+            line_count+=1
+    print(f'Number of lines:  {line_count}')
+    f.close()
+```
+- 扩展名为 xlsx 的文件,要读取 Excel 文件，我们需要安装 xlrd 软件包。我们将在介绍使用 pip 安装软件包后介绍这一点
+ ```Py
+import xlrd
+excel_book = xlrd.open_workbook('./src/Python/files/sample.xls')
+print(excel_book.nsheets)
+print(excel_book.sheet_names)
+ ```
+- 带有 xml 扩展名的文件XML 是另一种类似于 HTML 的结构化数据格式。在 XML 中，标签不是预定义的。第一行是 XML 声明。 person 标签是 XML 的根。该人具有性别属性。示例：XML
+```Py
+import xml.etree.ElementTree as ET
+tree = ET.parse('./src/Python/files/xml_example.xml')
+root = tree.getroot()
+print('Root tag:',root.tag)
+print('Attribute:',root.attrib)
+for child in root:
+    print('field:',child.tag)
+```
