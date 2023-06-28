@@ -904,3 +904,30 @@ s.add_skill('Play')
 print(s.skills)
 ```
 - Overriding parent method 我们可以使用 super() 内置函数或父名称 Person 自动继承其父对象的方法和属性。在上面的例子中，我们重写了父方法。 child方法有一个不同的特点，它可以识别性别是男性还是女性，并分配适当的代词（他/她）。
+```Py
+class StudentOverriding(PersonModify):
+    def __init__(self, gender ,name='go', age=21, skills=[]):
+        self.gender = gender
+        super().__init__(name, age, skills)
+    def person_info(self):
+        gender = 'He' if self.gender=='male' else 'She'
+        return f'{gender} name is {self.name} and age is {self.age}'
+so = StudentOverriding(gender='male',name='ov')
+print(so.person_info())
+```
+
+### Python 网页抓取
+网络抓取是从网站提取和收集数据并将其存储在本地计算机或数据库中的过程
+在本节中，我们将使用 beautifulsoup 和 requests 包来抓取数据。我们使用的软件包版本是 beautifulsoup 4
+要开始抓取网站，您需要 requests、beautifoulSoup4 和一个网站
+```Py
+import requests
+from bs4 import BeautifulSoup
+url = 'https://archive.ics.uci.edu/ml/datasets.php'
+response = requests.get(url)
+soup = BeautifulSoup(response.content,'html.parser')
+print(soup.title)
+print(soup.title.get_text()) # UCI Machine Learning Repository: Data Sets
+print(soup.body) # gives the whole page on the website
+print(response.status_code)
+```
