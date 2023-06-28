@@ -931,3 +931,5 @@ print(soup.title.get_text()) # UCI Machine Learning Repository: Data Sets
 print(soup.body) # gives the whole page on the website
 print(response.status_code)
 ```
+### 设置虚拟环境
+要开始项目，最好有一个虚拟环境。虚拟环境可以帮助我们创建一个隔离的或单独的环境。这将帮助我们避免项目之间的依赖冲突。如果您在终端上编写 pip freeze，您将看到计算机上所有已安装的软件包。如果我们使用 virtualenv，我们将仅访问特定于该项目的包。打开终端并安装 virtualenv `pip install virtualenv`
