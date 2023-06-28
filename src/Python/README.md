@@ -824,3 +824,21 @@ print('Attribute:',root.attrib)
 for child in root:
     print('field:',child.tag)
 ```
+### Python 包管理器
+PIP 代表首选安装程序。我们使用pip来安装不同的Python包。 Package是一个Python模块，可以包含一个或多个模块或其他包。我们可以安装到应用程序中的一个或多个模块是一个包。在编程中，我们不必编写每个实用程序，而是安装包并将它们导入到我们的应用程序中
+- Installing PIP 如果您尚未安装 pip，我们现在就安装它 `pip install pip` `pip --version`
+- 使用 pip 安装包 `pip install numpy`
+- 卸载软件包 `pip uninstall packagename`
+- List of Packages `pip list`
+- Show Package 如果我们想要更多详细信息，只需添加 --verbose  `pip show packagename` ` pip show --verbose pandas`
+- PIP Freeze 生成已安装的 Python 包及其版本，并且输出适合在需求文件中使用它。 requirements.txt 文件是一个应包含 Python 项目中所有已安装的 Python 包的文件
+- Creating a Package
+我们根据某些标准将大量文件组织在不同的文件夹和子文件夹中，以便我们可以轻松地查找和管理它们。如您所知，一个模块可以包含多个对象，例如类、函数等。一个包可以包含一个或多个相关模块。包实际上是一个包含一个或多个模块文件的文件夹。让我们使用以下步骤创建一个名为 mypackage 的包：
+  - 在文件夹中创建一个名为 mypacakge 的新文件夹 在 mypackage 文件夹中创建一个空的 init.py 文件。使用以下代码创建模块arithmetic.py和greet.py：
+  ─ mypackage
+    ├── init.py
+    ├── arithmetic.py
+    └── greet.py
+  ```
+  from mypacakge import arithmetic
+  ```
