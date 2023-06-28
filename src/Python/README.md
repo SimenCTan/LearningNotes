@@ -5,7 +5,7 @@
 py.exe
 python shell code
 
-7//2 # 移除余数
+7//2(3) # 移除余数
 5**2 # 指数
 ```
 ## [pyenv 管理py版本号](https://github.com/pyenv/pyenv)
@@ -842,3 +842,65 @@ PIP 代表首选安装程序。我们使用pip来安装不同的Python包。 Pac
   ```
   from mypacakge import arithmetic
   ```
+
+### 类和对象
+Python 是一种面向对象的编程语言。 Python 中的一切都是对象，有其属性和方法。程序中使用的数字、字符串、列表、字典、元组、集合等都是相应内置类的对象。我们创建类来创建对象。类就像一个对象构造函数，或者创建对象的“蓝图”。我们实例化一个类来创建一个对象。类定义对象的属性和行为，而对象则代表类。
+- Creating a Class 要创建一个类，我们需要关键字 class ，后跟名称和冒号。类名应该是驼峰命名法
+```Py
+class Person:
+    pass
+print(Person)
+```
+- Creating an Object 我们可以通过调用类来创建对象 `p = Person()`
+- Class Constructor 在上面的示例中，我们从 Person 类创建了一个对象。然而，没有构造函数的类在实际应用中并没有多大用处。让我们使用构造函数来使我们的类更有用。与 Java 或 JavaScript 中的构造函数一样，Python 也有一个内置的 init() 构造函数。 init 构造函数有 self 参数，它是对类的当前实例的引用
+```Py
+class PersonConct:
+    def __init__(self,name):
+        self.name = name
+p=PersonConct('go')
+print(p.name)
+print(p)
+```
+- Object Methods对象可以有方法。方法是属于对象的函数
+```Py
+class PersonConct:
+    def __init__(self,name):
+        self.name = name
+    def person_info(self):
+        return f'person name is {self.name}'
+```
+- Object Default Methods 有时，您可能希望对象方法有一个默认值。如果我们在构造函数中为参数提供默认值，那么当我们调用或实例化不带参数的类时，就可以避免错误。让我们看看它是什么样子
+```Py
+class PersonDef:
+    def __init__(self,name='go'):
+        self.name = name
+
+pf = PersonDef()
+print(pf.name)
+p1 = PersonDef('you')
+print(p1.name)
+```
+- Method to Modify Class Default Values在下面的例子中，person类，所有的构造函数参数都有默认值。除此之外，我们还有技能参数，我们可以使用方法访问该参数。让我们创建 add_skill 方法来将技能添加到技能列表中
+```Py
+class PersonModify:
+    def __init__(self,name='go',age=21,skills=[]):
+        self.name=name
+        self.age=age
+        self.skills=skills
+    def add_skill(self,skill):
+        self.skills.append(skill)
+
+p = PersonModify(name='go',age=21)
+p.add_skill('UI Design')
+print(p.skills)
+```
+- Inheritance使用继承，我们可以重用父类代码。继承允许我们定义一个继承父类所有方法和属性的类。父类或超类或基类是提供所有方法和属性的类。子类是从另一个类或父类继承的类。让我们通过继承 person 类来创建一个 Student 类。我们没有在子类中调用 init() 构造函数。如果我们没有调用它，那么我们仍然可以从父级访问所有属性。但是如果我们调用构造函数，我们可以通过调用 super 来访问父属性。
+我们可以向子类添加新方法，也可以通过在子类中创建相同的方法名称来覆盖父类方法。当我们添加了init()函数后，子类将不再继承父类的init()函数。
+```Py
+class StudentModify(PersonModify):
+    pass
+s = StudentModify(name='student',age=12,skills=['Swimming'])
+s.add_skill('Play')
+print(s.skills)
+```
+- Overriding parent method 我们可以使用 super() 内置函数或父名称 Person 自动继承其父对象的方法和属性。在上面的例子中，我们重写了父方法。 child方法有一个不同的特点，它可以识别性别是男性还是女性，并分配适当的代词（他/她）。
