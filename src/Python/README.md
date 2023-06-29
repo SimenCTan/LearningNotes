@@ -1068,3 +1068,9 @@ Flask 是一个用 Python 编写的 Web 开发框架。 Flask 使用 Jinja2 模�
 Flask 对象实现 WSGI 应用程序并充当中心对象。它传递应用程序的模块或包的名称。一旦创建，它将充当视图功能、URL 规则、模板配置等的中央注册表。
 包的名称用于解析包内部或模块所在文件夹中的资源，具体取决于包参数是否解析为实际的 python 包（带有
 一个 __init__.py 文件）或一个标准模块（只是一个 .py 文件）
+
+### Python with MongoDB
+Python是一种后端技术，可以与不同的数据库应用程序连接。它可以连接到 SQL 和 noSQL 数据库。在本节中，我们将Python与NoSQL数据库MongoDB数据库连接
+MongoDB 是一个 NoSQL 数据库。 MongoDB 将数据存储在类似 JSON 的文档中，这使得 MongoDB 非常灵活和可扩展。让我们看看 SQL 和 NoSQL 数据库的不同术语。下表列出了 SQL 与 NoSQL 数据库之间的区别.
+![img](./assets/sql-vs-nosql.png)
+
