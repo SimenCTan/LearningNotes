@@ -940,3 +940,29 @@ print(response.status_code)
 5. 现在，让我们编写 pip freeze 来查看项目中已安装的软件包列表
 6. 完成后，您应该使用 deactivate 停用活动项目 `deactivate`
 
+### Python 进行统计分析
+统计学是研究数据的收集、组织、显示、分析、解释和呈现的学科。统计学是数学的一个分支，被建议作为数据科学和机器学习的先决条件。统计是一个非常广泛的领域，但我们在本节中将只关注最相关的部分。完成此挑战后，您可以进入网络开发、数据分析、机器学习和数据科学道路。无论您走哪条路，在您职业生涯的某个阶段，您都会获得您可以使用的数据。正如人们所说，数据告诉我们，掌握一些统计知识将帮助您根据数据做出决策。
+
+什么是数据？数据是出于某种目的（通常是分析）而收集和转换的任何字符集。它可以是任何字符，包括文本和数字、图片、声音或视频。如果数据没有放在上下文中，那么它对于人类或计算机来说就没有任何意义。为了理解数据，我们需要使用不同的工具来处理数据。
+数据分析、数据科学或机器学习的工作流程从数据开始。数据可以从某些数据源提供，也可以创建。数据有结构化和非结构化之分。
+可以以小格式或大格式找到数据。我们将获得的大多数数据类型都已在文件处理部分中涵盖。
+在第一部分中，我们将 Python 本身定义为一种出色的通用编程语言，但在其他流行库（如 numpy、scipy、matplotlib、pandas 等）的帮助下，它成为科学计算的强大环境。
+
+NumPy 是 Python 中科学计算的核心库。它提供了高性能的多维数组对象以及用于处理数组的工具。
+
+到目前为止，我们一直在使用 vscode，但从现在开始我建议使用 Jupyter Notebook。要访问 jupyter 笔记本，让我们安装 anaconda。如果您使用 anaconda，则包含大多数常见软件包，并且如果您安装了 anaconda，则没有安装软件包。
+
+### Anaconda
+虽然Anaconda提供了一个集成的开发环境，但它与像Visual Studio 2022这样的集成开发环境（IDE）有一些区别。Anaconda本身并不是一个IDE，而是一个Python发行版，它包含了Python解释器、科学计算库和一些附加工具。Anaconda Navigator是一个可视化的界面工具，用于管理环境、安装软件包和启动开发工具，但它并不提供像IDE那样的代码编辑和调试功能。相比之下，Visual Studio 2022是一个功能强大的集成开发环境（IDE），支持多种编程语言，包括Python。它提供了丰富的代码编辑、调试、自动完成和重构等功能，以及项目管理、版本控制和团队协作工具。虽然Anaconda本身不是一个完整的IDE，但你可以在Anaconda环境中使用其他流行的Python IDE，如PyCharm、Jupyter Notebook或Visual Studio Code，来进行代码开发和调试工作。这些IDE具有更丰富的功能和更高级的开发工具，可以满足不同开发需求。因此，如果你正在寻找一个类似于Visual Studio 2022的全功能IDE，你可以考虑使用Anaconda与其他Python IDE结合使用，以获得更好的开发体验。
+```shell
+conda list (预装的包)
+conda --version
+conda create --name flack （创建一个名为flack的虚拟环境）
+conda create -p 'D:\github\LearningNotes\src\Python\envconda' （指定路径创建虚拟环境）
+conda env list （虚拟环境列表）
+conda activate ./envconda （激活某个虚拟环境）
+conda install jupyterlab dask pandas hvplot （为某个虚拟环境安装软件包）
+jupyter-lab （启动jupyterlab)
+conda deactivate （禁用某个虚拟环境）
+conda remove -p ./envconda --all (删除虚拟环境)
+```
