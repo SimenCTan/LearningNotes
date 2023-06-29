@@ -952,7 +952,7 @@ NumPy 是 Python 中科学计算的核心库。它提供了高性能的多维数
 
 到目前为止，我们一直在使用 vscode，但从现在开始我建议使用 Jupyter Notebook。要访问 jupyter 笔记本，让我们安装 anaconda。如果您使用 anaconda，则包含大多数常见软件包，并且如果您安装了 anaconda，则没有安装软件包。
 
-### Anaconda
+#### Anaconda
 虽然Anaconda提供了一个集成的开发环境，但它与像Visual Studio 2022这样的集成开发环境（IDE）有一些区别。Anaconda本身并不是一个IDE，而是一个Python发行版，它包含了Python解释器、科学计算库和一些附加工具。Anaconda Navigator是一个可视化的界面工具，用于管理环境、安装软件包和启动开发工具，但它并不提供像IDE那样的代码编辑和调试功能。相比之下，Visual Studio 2022是一个功能强大的集成开发环境（IDE），支持多种编程语言，包括Python。它提供了丰富的代码编辑、调试、自动完成和重构等功能，以及项目管理、版本控制和团队协作工具。虽然Anaconda本身不是一个完整的IDE，但你可以在Anaconda环境中使用其他流行的Python IDE，如PyCharm、Jupyter Notebook或Visual Studio Code，来进行代码开发和调试工作。这些IDE具有更丰富的功能和更高级的开发工具，可以满足不同开发需求。因此，如果你正在寻找一个类似于Visual Studio 2022的全功能IDE，你可以考虑使用Anaconda与其他Python IDE结合使用，以获得更好的开发体验。
 ```shell
 conda list (预装的包)
@@ -966,3 +966,100 @@ jupyter-lab （启动jupyterlab)
 conda deactivate （禁用某个虚拟环境）
 conda remove -p ./envconda --all (删除虚拟环境)
 ```
+
+#### Pandas
+Pandas 是一种开源、高性能、易于使用的 Python 编程语言的数据结构和数据分析工具。 Pandas 添加了旨在处理类似表的数据（系列和数据框）的数据结构和工具。 Pandas 提供了数据操作工具`reshaping merging sorting slicing aggregation imputation` Pandas 数据结构基于 Series 和 DataFrame,系列是一列，DataFrame 是由系列集合组成的多维表。为了创建 pandas 系列，我们应该使用 numpy 创建一维数组或 python 列表正如你所看到的，pandas 系列只是一列数据。如果我们想要多列，我们可以使用数据框。
+```Py
+import pandas as pd
+import numpy as np
+
+nums = [1,2,3,4,5]
+s = pd.Series(nums,index=[1,2,3,4,5])
+print(s)
+
+dct = {'name':'you','age':23,'gender':'male','country':'India','city':'gogo'}
+s_dct = pd.Series(dct)
+print(s_dct)
+
+s_line = pd.Series(np.linspace(5,20,10))
+print(s_line)
+
+data = [
+    ['Asabeneh', 'Finland', 'Helsink'],
+    ['David', 'UK', 'London'],
+    ['John', 'Sweden', 'Stockholm']
+]
+df = pd.DataFrame(data, columns=['Names','Country','City'])
+print(df)
+
+dct_data = [{'Names':'Asabeneh','Country':'Finland','City':'Helsink'},
+            {'Names':'David','Country':'UK','City':'London'},
+            {'Names':'John','Country':'Sweden','City':'Stockholm'}]
+dct_df = pd.DataFrame(dct_data)
+print(dct_df)
+
+csv_df = pd.read_csv('weight-height.csv')
+print(csv_df)
+print(csv_df.head())
+print(csv_df.tail())
+
+print(csv_df.shape)
+print(csv_df.columns)
+s_heights = csv_df['Height']
+print(s_heights)
+print(s_heights.describe())
+print(csv_df.describe())
+```
+
+修改DataFrame： * 我们可以创建一个新的DataFrame * 我们可以创建一个新列并将其添加到DataFrame中， * 我们可以从DataFrame中删除现有列， * 我们可以修改DataFrame中的现有列， * 我们可以更改 DataFrame 中列值的数据类型
+```Py
+import pandas as pd
+import numpy as np
+data = [
+    {"Name": "Asabeneh", "Country":"Finland","City":"Helsinki"},
+    {"Name": "David", "Country":"UK","City":"London"},
+    {"Name": "John", "Country":"Sweden","City":"Stockholm"}]
+df = pd.DataFrame(data)
+print(df)
+weights = [50,58,62]
+df['Weight']=weights
+print(df)
+# df['weight']=df['weight']*0.01
+# print(df)
+heights = [173, 175, 169]
+df['Height'] = heights
+
+def calculate_bmi ():
+    weights = df['Weight']
+    heights = df['Height']
+    bmi = []
+    for w,h in zip(weights, heights):
+        b = w/(h*h)
+        bmi.append(b)
+    return bmi
+
+bmi = calculate_bmi()
+df['BMI'] = bmi
+print(df)
+df['BMI'] = round(df['BMI'],1)
+
+birth_year = ['1769', '1985', '1990']
+current_year = pd.Series(2020, index=[0, 1,2])
+df['Birth Year'] = birth_year
+df['Current Year'] = current_year
+print(df.Weight.dtype)
+df['Birth Year'] = df['Birth Year'].astype('int')
+print(df['Birth Year'].dtype)
+df['Current Year'] = df['Current Year'].astype('int')
+
+ages = df['Current Year']-df['Birth Year']
+df['Ages'] = ages
+print(df)
+
+print(df[df['Ages']>120])
+```
+
+### Python for Web
+Python 是一种通用编程语言，可以用于很多地方。在本节中，我们将了解如何在网络上使用 Python。 Python Web框架作品有很多。 Django 和 Flask 是最受欢迎的。今天，我们将了解如何使用 Flask 进行 Web 开发
+#### Flask
+Flask 是一个用 Python 编写的 Web 开发框架。 Flask 使用 Jinja2 模板引擎。 Flask 还可以与其他现代前端库（例如 React）一起使用。如果您尚未安装 virtualenv 软件包，请先安装它。虚拟环境将允许将项目依赖项与本地计算机依赖项隔离。
