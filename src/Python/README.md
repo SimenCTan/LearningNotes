@@ -1074,3 +1074,31 @@ Python是一种后端技术，可以与不同的数据库应用程序连接。�
 MongoDB 是一个 NoSQL 数据库。 MongoDB 将数据存储在类似 JSON 的文档中，这使得 MongoDB 非常灵活和可扩展。让我们看看 SQL 和 NoSQL 数据库的不同术语。下表列出了 SQL 与 NoSQL 数据库之间的区别.
 ![img](./assets/sql-vs-nosql.png)
 
+### Application Programming Interface(API)
+API 代表应用程序编程接口。我们将在本节中介绍的 API 类型是 Web API。 Web API 是企业与使用其资产的应用程序之间发生交互的已定义接口，也是服务级别协议 (SLA)，用于指定功能提供者并为其 API 用户公开服务路径或 URL。
+在 Web 开发的上下文中，API 被定义为一组规范，例如超文本传输​​协议 (HTTP) 请求消息，以及响应消息结构的定义，通常采用 XML 或 JavaScript 对象表示法 (JSON) ） 格式。
+Web API 已经从基于简单对象访问协议 (SOAP) 的 Web 服务和面向服务的架构 (SOA) 转向更直接的表征状态传输 (REST) 样式的 Web 资源。
+社交媒体服务、Web API 允许网络社区在社区和不同平台之间共享内容和数据。
+使用 API，可以将在一处动态创建的内容发布并更新到网络上的多个位置。
+例如，Twitter 的 REST API 允许开发人员访问 Twitter 核心数据，而搜索 API 则为开发人员提供与 Twitter 搜索和趋势数据交互的方法。
+许多应用程序提供 API 端点。 API 的一些示例，例如国家 API、猫的品种 API。
+在本节中，我们将介绍使用 HTTP 请求方法来 GET、PUT、POST 和 DELETE 数据的 RESTful API。
+
+- 构建API,RESTful API 是一种应用程序编程接口 (API)，它使用 HTTP 请求来 GET、PUT、POST 和 DELETE 数据要构建 API，最好了解 HTTP 协议以及 HTTP 请求和响应周期
+- HTTP(Hypertext Transfer Protocol)HTTP 是客户端和服务器之间建立的通信协议。在这种情况下，客户端是浏览器，服务器是访问数据的地方。 HTTP 是一种网络协议，用于传送资源，这些资源可以是万维网上的文件，无论它们是 HTML 文件、图像文件、查询结果、脚本还是其他文件类型。浏览器是 HTTP 客户端，因为它将请求发送到 HTTP 服务器（Web 服务器），然后 HTTP 服务器将响应发送回客户端
+- Structure of HTTP HTTP 使用客户端-服务器模型。 HTTP客户端打开连接并向HTTP服务器发送请求消息，HTTP服务器返回响应消息，该响应消息是所请求的资源。当请求响应周期完成时，服务器关闭连接。请求消息和响应消息的格式类似。两种消息都有
+  - an initial line,
+  - zero or more header lines
+  - a blank line (i.e. a CRLF by itself), and
+  - an optional message body (e.g. a file, or query data, or query output).
+
+- Initial Request Line(Status Line) 初始请求行与响应行不同。请求行由三个部分组成，用空格分隔
+  - method name(GET, POST, HEAD)
+  - path of the requested resource,
+  - the version of HTTP being used. eg GET / HTTP/1.1
+
+- Initial Response Line(Status Line) 初始响应行称为状态行，也由空格分隔的三个部分组成
+  - HTTP version
+  - Response status code that gives the result of the request, and a reason which describes the status code.
+
+- 消息正文HTTP消息可能具有在标头行之后发送的数据正文。在响应中，这是将请求的资源返回给客户端的地方（消息正文的最常见用法），或者如果出现错误，则可能是解释性文本。在请求中，用户输入的数据或上传的文件被发送到服务器。如果 HTTP 消息包含正文，则消息中通常有描述正文的标题行。尤其，Content-Type: 标头给出了正文中数据的 MIME 类型（text/html、application/json、text/plain、text/css、image/gif）。 Content-Length: 标头给出了正文中的字节数.
