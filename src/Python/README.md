@@ -1102,3 +1102,6 @@ Web API 已经从基于简单对象访问协议 (SOAP) 的 Web 服务和面向�
   - Response status code that gives the result of the request, and a reason which describes the status code.
 
 - 消息正文HTTP消息可能具有在标头行之后发送的数据正文。在响应中，这是将请求的资源返回给客户端的地方（消息正文的最常见用法），或者如果出现错误，则可能是解释性文本。在请求中，用户输入的数据或上传的文件被发送到服务器。如果 HTTP 消息包含正文，则消息中通常有描述正文的标题行。尤其，Content-Type: 标头给出了正文中数据的 MIME 类型（text/html、application/json、text/plain、text/css、image/gif）。 Content-Length: 标头给出了正文中的字节数.
+
+### Building API
+在本节中，我们将介绍一个 RESTful API，它使用 HTTP 请求方法来 GET、PUT、POST 和 DELETE 数据。RESTful API 是一种应用程序编程接口 (API)，它使用 HTTP 请求来 GET、PUT、POST 和 DELETE 数据。在前面的章节中，我们学习了python、flask和mongoDB。我们将利用所学到的知识，使用 python Flask 和 mongoDB 开发 RESTful API。每个具有 CRUD（创建、读取、更新、删除）操作的应用程序都有一个 API 来创建数据、获取数据、更新数据或从数据库中删除数据。浏览器只能处理get请求。因此，我们必须有一个工具可以帮助我们处理所有的请求方法（GET、POST、PUT、DELETE）。
