@@ -1,0 +1,35 @@
+﻿@page "/fetchdata"
+@using TelerikBlazorApp.Shared
+@inject HttpClient Http
+
+<PageTitle>Weather forecast</PageTitle>
+
+<h1>Weather forecast</h1>
+
+<p>This component demonstrates fetching data from the server.</p>
+
+@if (forecasts == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <TelerikTreeList Data="forecasts">
+        <TreeListColumns>
+            <TreeListColumn Title="City" Field="City" Width="550" Resizable=false />
+            <TreeListColumn Title="Date" DisplayFormat="{0:yyyy-MM-dd}" Field="Date" Width="60" />
+            <TreeListColumn Title="TemperatureC" Field="TemperatureC" />
+            <TreeListColumn Title="TemperatureF" Field="TemperatureF" />
+            <TreeListColumn Title="Summary" Field="Summary" Resizable=false Width="1000" />
+        </TreeListColumns>
+    </TelerikTreeList>
+}
+
+@code {
+    private WeatherForecast[]? forecasts;
+
+    protected override async Task OnInitializedAsync()
+    {
+        forecasts = await Http.GetFromJsonAsync<WeatherForecast[]>("WeatherForecast");
+    }
+}
