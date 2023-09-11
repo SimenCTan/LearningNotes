@@ -1,0 +1,35 @@
+﻿@page "/fetchdata"
+
+@using MauiBlazorApp.Data
+@using Telerik.Blazor.Components
+@inject WeatherForecastService ForecastService
+
+<h1>Weather forecast</h1>
+
+<p>This component demonstrates fetching data from a service.</p>
+
+@if (Forecasts == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <TelerikTreeList Data="Forecasts">
+        <TreeListColumns>
+            <TreeListColumn Title="City" Field="City" Width="150" Resizable=false />
+            <TreeListColumn Title="Date" DisplayFormat="{0:yyyy-MM-dd}" Field="Date" Width="60" />
+            <TreeListColumn Title="TemperatureC" Field="TemperatureC" />
+            <TreeListColumn Title="TemperatureF" Field="TemperatureF" />
+            <TreeListColumn Title="Summary" Field="Summary" Resizable=false Width="100" />
+        </TreeListColumns>
+    </TelerikTreeList>
+}
+
+@code {
+    private List<WeatherForecast> Forecasts = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        Forecasts.AddRange(await ForecastService.GetForecastAsync(DateTime.Now));
+    }
+}
