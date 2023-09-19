@@ -1,6 +1,10 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using Microsoft.VisualBasic;
 
+var guidstr = Guid.NewGuid().ToString("N");
+var timetick = DateTime.Now.Ticks;
+var noID = GetIdStrNo("01");
+Console.WriteLine($"{guidstr} length is {guidstr.Length} time tick is {timetick} length {timetick.ToString().Length} \n\r {noID} noid length {noID.Length}");
 var animal = new Animal();
 StaticDelegate staticDelegate = Console.WriteLine;
 staticDelegate += PrintMultiDelegate;
@@ -51,6 +55,13 @@ static void LongRunningMethond(Action<int> reportProgress)
         reportProgress(i * 10);
         Task.Delay(100);
     }
+}
+
+static string GetIdStrNo(string tableNo)
+{
+    Random random = new Random();
+    var number = random.Next(1000, 9999);
+    return $"{DateTime.Now:yyyyMMddHHmmssffff}{number}{tableNo}";
 }
 
 
