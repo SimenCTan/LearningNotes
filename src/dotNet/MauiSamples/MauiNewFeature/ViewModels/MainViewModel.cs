@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.Input;
 using MauiNewFeature.NewFolder;
 using Plugin.LocalNotification;
+using Plugin.Maui.Audio;
 
 namespace MauiNewFeature.ViewModels;
 
@@ -8,11 +9,17 @@ public partial class MainViewModel
 {
     private readonly IConnectivity _connectivity;
     private readonly IToast toast;
-    public MainViewModel(IConnectivity connectivity,IToast toast)
+    readonly IAudioManager _audioManager;
+    readonly IAudioRecorder _audioRecorder;
+    public MainViewModel(IConnectivity connectivity,IToast toast,IAudioManager audioManager)
     {
+#if ANDROID || IOS
         LocalNotificationCenter.Current.NotificationActionTapped += Current_NotificationActionTapped;
+#endif
         _connectivity = connectivity;
         this.toast = toast;
+        _audioManager = audioManager;
+        _audioRecorder = _audioManager.CreateRecorder();
     }
 
     private void Current_NotificationActionTapped(Plugin.LocalNotification.EventArgs.NotificationActionEventArgs e)
@@ -58,5 +65,24 @@ public partial class MainViewModel
             }
         };
         LocalNotificationCenter.Current.Show(notifyRequest);
+    }
+
+    [RelayCommand]
+    async Task AudioTest()
+    {
+        if (await Permissions.RequestAsync<Permissions.Microphone>() != PermissionStatus.Granted)
+        {
+            return;
+        }
+        if (!_audioRecorder.IsRecording)
+        {
+            await _audioRecorder.StartAsync();
+        }
+        else
+        {
+            var recordAudio = await _audioRecorder.StopAsync();
+            var player = AudioManager.Current.CreatePlayer(recordAudio.GetAudioStream());
+            player.Play();
+        }
     }
 }

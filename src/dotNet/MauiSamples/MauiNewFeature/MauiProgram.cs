@@ -8,6 +8,7 @@ using MauiNewFeature.ViewModels;
 using MauiNewFeature.ViewModels.Base;
 using MauiNewFeature.ViewModels.Behaviors;
 using Plugin.LocalNotification;
+using Plugin.Maui.Audio;
 
 namespace MauiNewFeature;
 
@@ -18,7 +19,9 @@ public static class MauiProgram
         var builder = MauiApp.CreateBuilder();
         builder
             .UseMauiApp<App>()
+#if ANDROID || IOS
             .UseLocalNotification()
+#endif
             .UseMauiCommunityToolkit()
             .UseMauiCommunityToolkitMarkup()
             .ConfigureFonts(fonts =>
@@ -36,6 +39,7 @@ public static class MauiProgram
         services.AddSingleton<IToast>(e => new Toaster());
         services.AddSingleton<IDeviceInfo>(DeviceInfo.Current);
         services.AddSingleton<IConnectivity>(e => Connectivity.Current);
+        services.AddSingleton(AudioManager.Current);
     }
 
     static void RegisterViewsAndViewModels(in IServiceCollection services)

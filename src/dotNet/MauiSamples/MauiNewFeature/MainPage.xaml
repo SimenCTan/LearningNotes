@@ -51,6 +51,9 @@
                     SemanticProperties.Hint="Counts the number of times you click"
                     Clicked="OnCounterClicked"
                     HorizontalOptions="Center" />
+            <Button Text="Record Audio"
+                    SemanticProperties.Hint="Audio Test"
+                    Command="{Binding AudioTestCommand}"/>
             <Button x:Name="checkInternet"
                     Text="Check Internet"
                     SemanticProperties.Hint="Check Internet access"
