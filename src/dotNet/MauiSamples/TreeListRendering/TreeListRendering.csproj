@@ -58,6 +58,16 @@
     </ItemGroup>
 
     <ItemGroup>
+      <Content Remove="JsonData\accounts_data.json" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <MauiAsset Include="JsonData\accounts_data.json">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </MauiAsset>
+    </ItemGroup>
+
+    <ItemGroup>
         <PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
         <PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)" />
         <PackageReference Include="Microsoft.AspNetCore.Components.WebView.Maui" Version="$(MauiVersion)" />
