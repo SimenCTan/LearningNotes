@@ -58,13 +58,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Content Remove="JsonData\accounts_data.json" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <MauiAsset Include="JsonData\accounts_data.json">
-        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      </MauiAsset>
+      <Content Remove="Resources\raw\accounts_data.json" />
     </ItemGroup>
 
     <ItemGroup>
@@ -73,6 +67,12 @@
         <PackageReference Include="Microsoft.AspNetCore.Components.WebView.Maui" Version="$(MauiVersion)" />
         <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
         <PackageReference Include="Telerik.UI.for.Blazor" Version="5.0.1" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <MauiAsset Update="Resources\Raw\accounts_data.json">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </MauiAsset>
     </ItemGroup>
 
 </Project>

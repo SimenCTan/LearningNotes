@@ -59,13 +59,12 @@
 @code{
     List<AccountItemInfo> OriginItems = new();
 
-    private void LoadingAccountFromJsonData()
+    private async void LoadingAccountFromJsonData()
     {
-        string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "JsonData", "accounts_data.json");
-        if (File.Exists(filePath))
+        var accountDataJson = await RawFileExtension.ReadAccountsDataAsync();
+        if (!string.IsNullOrEmpty(accountDataJson))
         {
-            string jsonContent = File.ReadAllText(filePath);
-            var itemEntities = JsonSerializer.Deserialize<List<AccountItemInfo>>(jsonContent) ?? default!;
+            var itemEntities = JsonSerializer.Deserialize<List<AccountItemInfo>>(accountDataJson) ?? default!;
             itemEntities.ForEach(m => m.CreatedOn=DateTimeOffset.Now);
             OriginItems = itemEntities;
             StateHasChanged();
