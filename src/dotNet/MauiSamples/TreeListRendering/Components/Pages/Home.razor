@@ -4,8 +4,10 @@
 
 <TelerikRootComponent>
     <TelerikButton OnClick="LoadingAccountFromJsonData">Loading Data</TelerikButton>
-
+    <TelerikButton>@readDataDT</TelerikButton>
     <TelerikTreeList Data="@OriginItems"
+                     Height="800px"
+                     Width="1600px"
                      Resizable=true
                      Reorderable=true
                      SelectionMode="TreeListSelectionMode.Multiple">
@@ -58,7 +60,7 @@
 
 @code{
     List<AccountItemInfo> OriginItems = new();
-
+    private DateTimeOffset readDataDT;
     private async void LoadingAccountFromJsonData()
     {
         var accountDataJson = await RawFileExtension.ReadAccountsDataAsync();
@@ -67,7 +69,7 @@
             var itemEntities = JsonSerializer.Deserialize<List<AccountItemInfo>>(accountDataJson) ?? default!;
             itemEntities.ForEach(m => m.CreatedOn=DateTimeOffset.Now);
             OriginItems = itemEntities;
-            StateHasChanged();
+            readDataDT = DateTimeOffset.Now;
         }
     }
 }
