@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.002.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Testnet8Hybrid", "Testnet8Hybrid.csproj", "{C803A31F-0A7A-4B93-856F-B50F08E7F275}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C803A31F-0A7A-4B93-856F-B50F08E7F275}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C803A31F-0A7A-4B93-856F-B50F08E7F275}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C803A31F-0A7A-4B93-856F-B50F08E7F275}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C803A31F-0A7A-4B93-856F-B50F08E7F275}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8C59D22D-59DA-4181-B0AB-8F2B52987541}
+	EndGlobalSection
+EndGlobal
