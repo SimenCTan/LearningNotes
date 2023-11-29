@@ -1,0 +1,74 @@
+﻿@using System.Text.Json
+
+@page "/"
+
+<TelerikRootComponent>
+    <TelerikButton OnClick="LoadingAccountFromJsonData">Loading Data</TelerikButton>
+
+    <TelerikTreeList Data="@OriginItems"
+                     Resizable=true
+                     Reorderable=true
+                     SelectionMode="TreeListSelectionMode.Multiple">
+        <TreeListToolBarTemplate>
+            <span class="k-toolbar-spacer" />
+            <TreeListSearchBox DebounceDelay="300"
+                               Width="200px"
+                               Placeholder="Search..." />
+        </TreeListToolBarTemplate>
+        <TreeListColumns>
+            <TreeListColumn Locked=true Reorderable=false>
+                <Columns>
+                    <TreeListCheckboxColumn Width="48px" Locked=true SelectChildren=true />
+                    <TreeListColumn HeaderClass="center-me" Width="260px" Field="@nameof(AccountItemInfo.Name)" Title="Name" Expandable="true">
+                    </TreeListColumn>
+                </Columns>
+            </TreeListColumn>
+            <TreeListColumn Title="Basic Information" Width="800px" HeaderClass="center-me" Reorderable=false>
+                <Columns>
+                    <TreeListColumn HeaderClass="center-me" TextAlign="@ColumnTextAlign.Center" Width="100px" Field="@nameof(AccountItemInfo.Alias)" Title="Alias"  />
+                    <TreeListColumn HeaderClass="center-me" TextAlign="@ColumnTextAlign.Center" Width="100px" Field="@nameof(AccountItemInfo.Key)" Title="Key"  />
+                    <TreeListColumn HeaderClass="center-me" TextAlign="@ColumnTextAlign.Center" Width="200px" Field="@nameof(AccountItemInfo.Domain)" Title="Domain"  />
+                    <TreeListColumn HeaderClass="center-me" TextAlign="@ColumnTextAlign.Center" Width="200px" Field="@nameof(AccountItemInfo.Email)" Title="Email" />
+                    <TreeListColumn HeaderClass="center-me" TextAlign="@ColumnTextAlign.Center" Width="200px" Field="@nameof(AccountItemInfo.Phone)" Title="Phone"/>
+                    <TreeListColumn HeaderClass="center-me" TextAlign="@ColumnTextAlign.Center" Width="200px" Field="@nameof(AccountItemInfo.Website)" Title="WebSite"/>
+                    <TreeListColumn HeaderClass="center-me" TextAlign="@ColumnTextAlign.Center" Width="100px" Field="@nameof(AccountItemInfo.AUM)" Title="AUM"/>
+                    <TreeListColumn HeaderClass="center-me" TextAlign="@ColumnTextAlign.Center" Width="100px" Field="@nameof(AccountItemInfo.Employees)" Title="Employees"/>
+                    <TreeListColumn HeaderClass="center-me" TextAlign="@ColumnTextAlign.Center" Width="100px" Field="@nameof(AccountItemInfo.Creator)" Title="Creator"/>
+                    <TreeListColumn HeaderClass="center-me" TextAlign="@ColumnTextAlign.Center" Width="100px" DisplayFormat="{0:dd/MM/yyyy}" Field="@nameof(AccountItemInfo.CreatedOn)" Title="Created Date" />
+                </Columns>
+            </TreeListColumn>
+        </TreeListColumns>
+    </TelerikTreeList>
+
+</TelerikRootComponent>
+
+<Style>
+    /* CENTER */
+
+    /* non-sortable headers */
+    .k-grid th.center-me {
+        text-align: center;
+    }
+
+    /* sortable headers */
+    th.center-me .k-cell-inner > .k-link {
+        justify-content: center;
+    }
+</Style>
+
+@code{
+    List<AccountItemInfo> OriginItems = new();
+
+    private void LoadingAccountFromJsonData()
+    {
+        string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "JsonData", "accounts_data.json");
+        if (File.Exists(filePath))
+        {
+            string jsonContent = File.ReadAllText(filePath);
+            var itemEntities = JsonSerializer.Deserialize<List<AccountItemInfo>>(jsonContent) ?? default!;
+            itemEntities.ForEach(m => m.CreatedOn=DateTimeOffset.Now);
+            OriginItems = itemEntities;
+            StateHasChanged();
+        }
+    }
+}
