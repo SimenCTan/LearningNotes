@@ -27,12 +27,12 @@
             </TreeListColumn>
             <TreeListColumn Title="Basic Information" Width="800px" HeaderClass="center-me" Reorderable=false>
                 <Columns>
-                    <TreeListColumn HeaderClass="center-me" TextAlign="@ColumnTextAlign.Center" Width="100px" Field="@nameof(AccountItemInfo.Alias)" Title="Alias"  />
+                    <TreeListColumn HeaderClass="center-me" TextAlign="@ColumnTextAlign.Center" Width="60px" Field="@nameof(AccountItemInfo.Alias)" Title="Alias"  />
                     <TreeListColumn HeaderClass="center-me" TextAlign="@ColumnTextAlign.Center" Width="100px" Field="@nameof(AccountItemInfo.Key)" Title="Key"  />
                     <TreeListColumn HeaderClass="center-me" TextAlign="@ColumnTextAlign.Center" Width="200px" Field="@nameof(AccountItemInfo.Domain)" Title="Domain"  />
                     <TreeListColumn HeaderClass="center-me" TextAlign="@ColumnTextAlign.Center" Width="200px" Field="@nameof(AccountItemInfo.Email)" Title="Email" />
                     <TreeListColumn HeaderClass="center-me" TextAlign="@ColumnTextAlign.Center" Width="200px" Field="@nameof(AccountItemInfo.Phone)" Title="Phone"/>
-                    <TreeListColumn HeaderClass="center-me" TextAlign="@ColumnTextAlign.Center" Width="200px" Field="@nameof(AccountItemInfo.Website)" Title="WebSite"/>
+                    <TreeListColumn HeaderClass="center-me" TextAlign="@ColumnTextAlign.Center" Width="100px" Field="@nameof(AccountItemInfo.Website)" Title="WebSite"/>
                     <TreeListColumn HeaderClass="center-me" TextAlign="@ColumnTextAlign.Center" Width="100px" Field="@nameof(AccountItemInfo.AUM)" Title="AUM"/>
                     <TreeListColumn HeaderClass="center-me" TextAlign="@ColumnTextAlign.Center" Width="100px" Field="@nameof(AccountItemInfo.Employees)" Title="Employees"/>
                     <TreeListColumn HeaderClass="center-me" TextAlign="@ColumnTextAlign.Center" Width="100px" Field="@nameof(AccountItemInfo.Creator)" Title="Creator"/>
@@ -68,7 +68,7 @@
         {
             var itemEntities = JsonSerializer.Deserialize<List<AccountItemInfo>>(accountDataJson) ?? default!;
             itemEntities.ForEach(m => m.CreatedOn=DateTimeOffset.Now);
-            OriginItems = itemEntities;
+            OriginItems = itemEntities.Take(100).ToList();
             readDataDT = DateTimeOffset.Now;
         }
     }
