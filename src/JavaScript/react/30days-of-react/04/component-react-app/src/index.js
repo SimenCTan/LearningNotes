@@ -44,6 +44,31 @@ const Main = () => (
   </main>
 );
 
+const buttonStyles = {
+  padding: "10px 20px",
+  background: "rgb(0, 255, 0",
+  border: "none",
+  borderRadius: 5,
+};
+const Button = () => (
+  <div className="user-button">
+    <button style={buttonStyles}> action </button>
+  </div>
+);
+
+// Hexadecimal color generator
+const hexaColor = () => {
+  let str = '0123456789abcdef'
+  let color = ''
+  for (let i = 0; i < 6; i++) {
+    let index = Math.floor(Math.random() * str.length)
+    color += str[index]
+  }
+  return '#' + color
+}
+
+const HexaColor = () => <div>{hexaColor()}</div>
+
 // Footer Component
 const Footer = () => (
   <footer>
@@ -58,6 +83,8 @@ const App = () => (
   <div className="app">
     <Header />
     <Main />
+    <Button />
+    <HexaColor/>
     <Footer />
   </div>
 );
