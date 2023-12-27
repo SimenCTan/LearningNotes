@@ -2,7 +2,10 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import Header from "./components/Header";
+import Footer from "./components/Footer";
 import axios from "axios";
+
+
 
 class App extends Component {
   constructor(props) {
@@ -59,6 +62,7 @@ class App extends Component {
           <p>There are {this.state.data.length} countries in the api</p>
           <div className="countries-wrapper">{this.renderCountries()}</div>
         </div>
+        <Footer/>
       </div>
     );
   }
