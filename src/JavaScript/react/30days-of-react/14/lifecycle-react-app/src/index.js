@@ -2,35 +2,70 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
 
+const User = ({ firstName }) => (
+  <div>
+    <h1>{firstName}</h1>
+  </div>
+);
+
 class App extends Component {
   constructor(props) {
     super(props);
     console.log("I am  the constructor and  I will be the first to run.");
     this.state = {
-      firstName: "",
+      firstName: "John",
+      data: [],
     };
-  }
-
-  static getDerivedStateFromProps(props, state) {
-    console.log(
-      "I am getDerivedStateFromProps and I will be the second to run."
-    );
-    return null;
   }
   componentDidMount() {
     console.log("I am componentDidMount and I will be last to run.");
+    const API_URL = "https://restcountries.eu/rest/v2/all";
+
+    fetch(API_URL)
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        console.log(data);
+        this.setState({ data: data });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
 
-  render(){
-  console.log("I am render and I will be the third to run.");
-  return (
-    <div className="App">
-      <h1>React Component Life Cycle</h1>
-    </div>
-  );
-  }
+  renderCountries = () => {
+    return this.state.data.map((country) => {
+      return (
+        <div>
+          <div>
+            {" "}
+            <img src={country.flag} alt={country.name} />{" "}
+          </div>
+          <div>
+            <h1>{country.name}</h1>
+            <p>Population: {country.population}</p>
+          </div>
+        </div>
+      );
+    });
+  };
 
+  render() {
+    console.log("I am render and I will be the third to run.");
+    return (
+      <div className="App">
+        <h1>React Component Life Cycle</h1>
+        <h1>Calling API</h1>
+        <div>
+          <p>there are {this.state.data.length} countries in the api</p>
+          <div className="countries-wrapper">{this.renderCountries}</div>
+
+        </div>
+      </div>
+    );
+  }
 }
 
 const rootElement = document.getElementById("root");
-ReactDOM.render(<App />, rootElement);
+ReactDOM.render(<App firstName="Derived State" />, rootElement);
