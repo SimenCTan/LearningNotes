@@ -12,3 +12,9 @@ We have implemented a simple navigation using React Router. Now, let's see how w
 
 ## Redirect
 Redirect can help us to redirect a route to a certain path based some condition. For instance if a user is logged in we redirect it to the dashboard otherwise to the login page. Let's implement a fake login in above snippet of code. If a user logged in it will redirected to the challenges otherwise we suggest the user to login.
+
+## Error
+Anytime your app throws an error while rendering, loading data, or performing data mutations, React Router will catch it and render an error screen. Let's make our own error page.
+
+
+
