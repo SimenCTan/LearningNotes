@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
+import axios from "axios";
 
 const Country = ({ country: { name, flag, population, currency } }) => {
   return (
@@ -34,8 +35,8 @@ class App extends Component {
   fetchCountryData = async () => {
     const url = "https://restcountries.eu/rest/v2/all";
     try {
-      const response = await fetch(url);
-      const data = await response.json();
+      const response = await axios.get(url);
+      const data = await response.data;
       this.setState({
         data,
       });
