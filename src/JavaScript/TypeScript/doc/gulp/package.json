@@ -9,8 +9,11 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "browserify": "^17.0.0",
     "gulp": "^4.0.0",
     "gulp-typescript": "^6.0.0-alpha.1",
-    "typescript": "^5.3.3"
+    "tsify": "^5.0.4",
+    "typescript": "^5.3.3",
+    "vinyl-source-stream": "^2.0.0"
   }
 }
