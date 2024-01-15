@@ -16,10 +16,10 @@ Uri serviceEndpoint = new Uri($"https://{serviceName}.search.windows.net/");
 AzureKeyCredential credential = new AzureKeyCredential(apiKey);
 SearchIndexClient adminClient = new SearchIndexClient(serviceEndpoint, credential);
 
-//CreateIndex(indexName, adminClient);
-//// Wait 2 seconds for indexing to complete before starting queries (for demo and console-app purposes only)
-//Console.WriteLine("Waiting for create indexing...\n");
-//System.Threading.Thread.Sleep(2000);
+CreateIndex(indexName, adminClient);
+// Wait 2 seconds for indexing to complete before starting queries (for demo and console-app purposes only)
+Console.WriteLine("Waiting for create indexing...\n");
+System.Threading.Thread.Sleep(2000);
 
 // Create a SearchClient to load and query documents
 SearchClient srchclient = new SearchClient(serviceEndpoint, indexName, credential);
@@ -52,7 +52,26 @@ static void CreateIndex(string indexName, SearchIndexClient adminClient)
 
     var suggester = new SearchSuggester("sg", new[] { "HotelName", "Category", "Address/City", "Address/StateProvince" });
     definition.Suggesters.Add(suggester);
-
+    definition.SemanticSearch = new SemanticSearch
+    {
+        Configurations =
+        {
+            new SemanticConfiguration("my-semantic-config", new()
+            {
+                TitleField = new SemanticField("HotelName"),
+                ContentFields =
+                {
+                    new SemanticField("Description"),
+                    new SemanticField("Description_fr")
+                },
+                KeywordsFields =
+                {
+                    new SemanticField("Tags"),
+                    new SemanticField("Category")
+                }
+            })
+        }
+    };
     adminClient.CreateOrUpdateIndex(definition);
 }
 
@@ -263,4 +282,28 @@ static void RunQueries(SearchClient srchclient)
 
     var autoresponse = srchclient.Autocomplete("sa", "sg");
     WriteAutoDocuments(autoresponse);
+    //Query7(srchclient);
+}
+
+static void Query7(SearchClient srchclient) 
+{
+    // Query 7
+    Console.WriteLine("Query #7: Invoke semantic ranking");
+
+    var options = new SearchOptions()
+    {
+        QueryType = Azure.Search.Documents.Models.SearchQueryType.Semantic,
+        SemanticSearch = new()
+        {
+            SemanticConfigurationName = "my-semantic-config",
+            QueryCaption = new(QueryCaptionType.Extractive)
+        }
+    };
+    options.Select.Add("HotelName");
+    options.Select.Add("Category");
+    options.Select.Add("Description");
+
+    // response = srchclient.Search<Hotel>("*", options);
+    var response = srchclient.Search<Hotel>("what hotel has a good restaurant on site", options);
+    WriteDocuments(response);
 }
