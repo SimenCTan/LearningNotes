@@ -1,14 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Text;
-using System.Text.Json.Serialization;
-using System.Threading.Tasks;
-
-using Azure.Search.Documents.Indexes.Models;
+﻿using System.Text.Json.Serialization;
 
 using Azure.Search.Documents.Indexes;
+using Azure.Search.Documents.Indexes.Models;
 
 namespace aiindex;
 
