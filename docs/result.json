@@ -1,0 +1,83 @@
+{
+  "_type": "SearchResponse",
+  "queryContext": {
+    "originalQuery": "btc latest price"
+  },
+  "webPages": {
+    "webSearchUrl": "https:\/\/www.bing.com\/search?q=btc+latest+price",
+    "totalEstimatedMatches": 1640000,
+    "value": [
+      {
+        "id": "https:\/\/api.bing.microsoft.com\/api\/v7\/#WebPages.0",
+        "name": "Bitcoin Price Today | BTC to USD, Price Index & Live Chart",
+        "url": "https:\/\/cryptomarketcap.com\/coins\/bitcoin",
+        "isFamilyFriendly": true,
+        "displayUrl": "https:\/\/cryptomarketcap.com\/coins\/bitcoin",
+        "snippet": "The live Bitcoin price today is $62,949.66 as of 2\/29\/2024, with a 24-hour trading volume of $73,118,892,345. Bitcoin's price is up 3.90% in the last 24 hours. Currently, Bitcoin ranks 1 out of 35352 coins according to CryptoMarketCap. Bitcoin has a live market cap of $1,236,388,267,301, a circulating supply of 19,640,906 BTC coins and a ...",
+        "dateLastCrawled": "2024-03-11T12:05:00.0000000Z",
+        "cachedPageUrl": "http:\/\/cncc.bingj.com\/cache.aspx?q=btc+latest+price&d=5042790198280558&mkt=zh-CN&setlang=en-US&w=hLMbzh7xiKz1MgyHAHXJw_J1ywiGw6UP",
+        "language": "en",
+        "isNavigational": false,
+        "noCache": false
+      },
+      {
+        "id": "https:\/\/api.bing.microsoft.com\/api\/v7\/#WebPages.1",
+        "name": "Bitcoin (BTC) Latest Prices, Charts & Data | Nasdaq",
+        "url": "https:\/\/www.nasdaq.com\/market-activity\/cryptocurrency\/btc",
+        "datePublished": "2024-01-21T16:25:00.0000000",
+        "datePublishedDisplayText": "Jan 21, 2024",
+        "isFamilyFriendly": true,
+        "displayUrl": "https:\/\/www.nasdaq.com\/market-activity\/cryptocurrency\/btc",
+        "snippet": "Bitcoin (BTC) prices - Nasdaq offers cryptocurrency prices & market activity data for US and global markets.",
+        "dateLastCrawled": "2024-03-11T18:15:00.0000000Z",
+        "cachedPageUrl": "http:\/\/cncc.bingj.com\/cache.aspx?q=btc+latest+price&d=5032709905668407&mkt=zh-CN&setlang=en-US&w=VNAmQdObCnrwnPs4Sy92JP5q5QK9guhl",
+        "language": "en",
+        "isNavigational": false,
+        "noCache": false
+      },
+      {
+        "id": "https:\/\/api.bing.microsoft.com\/api\/v7\/#WebPages.2",
+        "name": "Bitcoin (BTC) price in USD today, charts, overview, market cap",
+        "url": "https:\/\/cointelegraph.com\/bitcoin-price",
+        "datePublished": "2021-01-26T10:15:09.0000000",
+        "datePublishedDisplayText": "Jan 26, 2021",
+        "isFamilyFriendly": true,
+        "displayUrl": "https:\/\/cointelegraph.com\/bitcoin-p",
+        "snippet": "The Bitcoin (BTC) live price today is $72,096, changes over 24H (+2.95%). Current market cap is $1.42 T. ... Here is the latest news on daily trends and events impacting Bitcoin price, blockchain ...",
+        "dateLastCrawled": "2024-03-12T01:02:00.0000000Z",
+        "cachedPageUrl": "http:\/\/cncc.bingj.com\/cache.aspx?q=btc+latest+price&d=4527948172508316&mkt=zh-CN&setlang=en-US&w=Ciqf9V2X05sLEp7HsKmUVcPz-8mhT5U9",
+        "language": "en",
+        "isNavigational": false,
+        "noCache": false
+      }
+    ],
+    "someResultsRemoved": true
+  },
+  "rankingResponse": {
+    "mainline": {
+      "items": [
+        {
+          "answerType": "WebPages",
+          "resultIndex": 0,
+          "value": {
+            "id": "https:\/\/api.bing.microsoft.com\/api\/v7\/#WebPages.0"
+          }
+        },
+        {
+          "answerType": "WebPages",
+          "resultIndex": 1,
+          "value": {
+            "id": "https:\/\/api.bing.microsoft.com\/api\/v7\/#WebPages.1"
+          }
+        },
+        {
+          "answerType": "WebPages",
+          "resultIndex": 2,
+          "value": {
+            "id": "https:\/\/api.bing.microsoft.com\/api\/v7\/#WebPages.2"
+          }
+        }
+      ]
+    }
+  }
+}
