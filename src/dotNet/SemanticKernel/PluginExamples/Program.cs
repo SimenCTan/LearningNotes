@@ -1,10 +1,13 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using System.Text;
+using Microsoft.Extensions.Configuration;
 using Microsoft.SemanticKernel;
 using Microsoft.SemanticKernel.ChatCompletion;
+using Microsoft.SemanticKernel.Connectors.OpenAI;
 using Microsoft.SemanticKernel.Planning.Handlebars;
 using Microsoft.SemanticKernel.Plugins.Core;
 using Microsoft.SemanticKernel.PromptTemplates.Handlebars;
 using PluginExamples.Plugins;
+using PluginExamples.Plugins.ConvertCurrency;
 
 var config = new ConfigurationBuilder().AddUserSecrets<Program>().Build();
 var apikey = config["OpenAIKey"]?.ToString() ?? string.Empty;
@@ -142,36 +145,141 @@ var kernel = builder.Build();
 // Console.WriteLine("Song Plan:");
 // Console.WriteLine(songSuggestPlan);
 
-kernel.ImportPluginFromType<MusicLibrary>();
-kernel.ImportPluginFromType<MusicConcertPlugin>();
-kernel.ImportPluginFromPromptDirectory("Prompts");
+// kernel.ImportPluginFromType<MusicLibrary>();
+// kernel.ImportPluginFromType<MusicConcertPlugin>();
+// kernel.ImportPluginFromPromptDirectory("Prompts");
 
-var songSuggesterFunction = kernel.CreateFunctionFromPrompt(
-    promptTemplate: @"Based on the user's recently played music:
-    {{$recentlyPlayedSongs}}
-    recommend a song to the user from the music library:
-    {{$musicLibrary}}",
-    functionName: "SuggestSong",
-    description: "Suggest a song to the user"
-);
+// var songSuggesterFunction = kernel.CreateFunctionFromPrompt(
+//     promptTemplate: @"Based on the user's recently played music:
+//     {{$recentlyPlayedSongs}}
+//     recommend a song to the user from the music library:
+//     {{$musicLibrary}}",
+//     functionName: "SuggestSong",
+//     description: "Suggest a song to the user"
+// );
 
-kernel.Plugins.AddFromFunctions("SuggestSongPlugin", [songSuggesterFunction]);
-string dir = Directory.GetCurrentDirectory();
-string template = File.ReadAllText($"{dir}/handlebarsTemplate.txt");
+// kernel.Plugins.AddFromFunctions("SuggestSongPlugin", [songSuggesterFunction]);
+// string dir = Directory.GetCurrentDirectory();
+// string template = File.ReadAllText($"{dir}/handlebarsTemplate.txt");
 
-var handlebarsPromptFunction = kernel.CreateFunctionFromPrompt(
-    new()
+// var handlebarsPromptFunction = kernel.CreateFunctionFromPrompt(
+//     new()
+//     {
+//         Template = template,
+//         TemplateFormat = "handlebars"
+//     }, new HandlebarsPromptTemplateFactory()
+// );
+
+// string location = "Redmond WA USA";
+// var templateResult = await kernel.InvokeAsync(handlebarsPromptFunction,
+//     new() {
+//         { "location", location },
+//         { "suggestConcert", true }
+//     });
+
+// Console.WriteLine(templateResult);
+
+// kernel.ImportPluginFromType<MusicLibrary>();
+// kernel.ImportPluginFromType<MusicConcertPlugin>();
+// kernel.ImportPluginFromPromptDirectory("Prompts");
+// OpenAIPromptExecutionSettings settings = new()
+// {
+//     ToolCallBehavior = ToolCallBehavior.AutoInvokeKernelFunctions
+// };
+// string prompt = @"I live in Portland OR USA. Based on my recently
+//     played songs and a list of upcoming concerts, which concert
+//     do you recommend?";
+// var result = await kernel.InvokePromptAsync(prompt, new(settings));
+// Console.WriteLine(result);
+
+// agent
+// kernel.ImportPluginFromType<CurrencyConverter>();
+// var prompts = kernel.ImportPluginFromPromptDirectory("Prompts");
+
+// var result = await kernel.InvokeAsync(prompts["GetTargetCurrencies"],
+//     new() {
+//         {"input", "How many Australian Dollars is 140,000 Korean Won worth?"}
+//     }
+// );
+
+// Console.WriteLine(result);
+
+// Note: ChatHistory isn't working correctly as of SemanticKernel v 1.4.0
+
+kernel.ImportPluginFromType<CurrencyConverter>();
+var prompts = kernel.ImportPluginFromPromptDirectory("Prompts");
+StringBuilder chatHistory = new();
+
+OpenAIPromptExecutionSettings settings = new()
+{
+    ToolCallBehavior = ToolCallBehavior.AutoInvokeKernelFunctions
+};
+string input;
+
+do
+{
+    Console.WriteLine("What would you like to do?");
+    input = Console.ReadLine()!;
+
+    var intent = await kernel.InvokeAsync<string>(
+        prompts["GetIntent"],
+        new() { { "input", input } }
+    );
+
+    switch (intent)
     {
-        Template = template,
-        TemplateFormat = "handlebars"
-    }, new HandlebarsPromptTemplateFactory()
-);
+        case "ConvertCurrency":
+            var currencyText = await kernel.InvokeAsync<string>(
+                prompts["GetTargetCurrencies"],
+                new() { { "input", input } }
+            );
 
-string location = "Redmond WA USA";
-var templateResult = await kernel.InvokeAsync(handlebarsPromptFunction,
-    new() {
-        { "location", location },
-        { "suggestConcert", true }
-    });
+            var currencyInfo = currencyText!.Split("|");
+            var result = await kernel.InvokeAsync("CurrencyConverter",
+                "ConvertAmount",
+                new() {
+                    {"targetCurrencyCode", currencyInfo[0]},
+                    {"baseCurrencyCode", currencyInfo[1]},
+                    {"amount", currencyInfo[2]},
+                }
+            );
+            Console.WriteLine(result);
+            break;
+        case "SuggestDestinations":
+            chatHistory.AppendLine("User:" + input);
+            var recommendations = await kernel.InvokePromptAsync(input!);
+            Console.WriteLine(recommendations);
+            break;
+        case "SuggestActivities":
 
-Console.WriteLine(templateResult);
+            var chatSummary = await kernel.InvokeAsync(
+                "ConversationSummaryPlugin",
+                "SummarizeConversation",
+                new() { { "input", chatHistory.ToString() } });
+
+            var activities = await kernel.InvokePromptAsync(
+                input!,
+                new() {
+                    {"input", input},
+                    {"history", chatSummary},
+                    {"ToolCallBehavior", ToolCallBehavior.AutoInvokeKernelFunctions}
+            });
+
+            chatHistory.AppendLine("User:" + input);
+            chatHistory.AppendLine("Assistant:" + activities.ToString());
+
+            Console.WriteLine(activities);
+            break;
+        case "HelpfulPhrases":
+        case "Translate":
+            var autoInvokeResult = await kernel.InvokePromptAsync(input, new(settings));
+            Console.WriteLine(autoInvokeResult);
+            break;
+        default:
+            Console.WriteLine("Sure, I can help with that.");
+            var otherIntentResult = await kernel.InvokePromptAsync(input);
+            Console.WriteLine(otherIntentResult);
+            break;
+    }
+}
+while (!string.IsNullOrWhiteSpace(input));
