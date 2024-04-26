@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.SemanticKernel;
 using Microsoft.SemanticKernel.ChatCompletion;
+using Microsoft.SemanticKernel.Planning.Handlebars;
 using Microsoft.SemanticKernel.Plugins.Core;
 using PluginExamples.Plugins;
 
@@ -101,14 +102,26 @@ var kernel = builder.Build();
 // var result = await kernel.InvokePromptAsync(prompt);
 
 // recipe plugin
-kernel.ImportPluginFromType<IngredientsPlugin>();
+// kernel.ImportPluginFromType<IngredientsPlugin>();
 
-string prompt = @"This is a list of ingredients available to the user:
-    {{IngredientsPlugin.GetIngredients}}
+// string prompt = @"This is a list of ingredients available to the user:
+//     {{IngredientsPlugin.GetIngredients}}
 
-    Please suggest a recipe the user could make with
-    some of the ingredients they have available";
+//     Please suggest a recipe the user could make with
+//     some of the ingredients they have available";
 
-var result = await kernel.InvokePromptAsync(prompt);
+// var result = await kernel.InvokePromptAsync(prompt);
+
+// create a planner
+kernel.ImportPluginFromType<MusicConcertPlugin>();
+kernel.ImportPluginFromType<MusicLibrary>();
+kernel.ImportPluginFromPromptDirectory("Prompts");
+var planner = new HandlebarsPlanner(new HandlebarsPlannerOptions { AllowLoops = true });
+string location = "Redmond WA USA";
+string goal = @$"Based on the user's recently played music, suggest a
+    concert for the user living in ${location}";
+
+var plan = await planner.CreatePlanAsync(kernel, goal);
+var result = await plan.InvokeAsync(kernel);
 Console.WriteLine(result);
 
