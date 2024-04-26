@@ -7,7 +7,7 @@
     <Nullable>enable</Nullable>
     <UserSecretsId>086ec1c2-817c-47e5-8adf-f9ad62874d06</UserSecretsId>
      <!-- Suppress: "Declare types in namespaces", "Require ConfigureAwait", "Experimental" -->
-    <NoWarn>CS1514,CS1513,SKEXP0050,SKEXP0060,SKEXP0101</NoWarn>
+    <NoWarn>CS8754,CS1514,CS1513,SKEXP0050,SKEXP0060,SKEXP0101</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>

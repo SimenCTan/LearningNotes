@@ -7,7 +7,7 @@ namespace PluginExamples.Plugins;
 public class MusicConcertPlugin
 {
     [KernelFunction, Description("Get a list of upcoming concerts")]
-    public static string GetTours()
+    public static string GetConcerts()
     {
         string dir = Directory.GetCurrentDirectory();
         string content = File.ReadAllText($"{dir}/concertdates.txt");

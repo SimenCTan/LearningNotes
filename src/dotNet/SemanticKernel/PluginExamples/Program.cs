@@ -3,6 +3,7 @@ using Microsoft.SemanticKernel;
 using Microsoft.SemanticKernel.ChatCompletion;
 using Microsoft.SemanticKernel.Planning.Handlebars;
 using Microsoft.SemanticKernel.Plugins.Core;
+using Microsoft.SemanticKernel.PromptTemplates.Handlebars;
 using PluginExamples.Plugins;
 
 var config = new ConfigurationBuilder().AddUserSecrets<Program>().Build();
@@ -113,15 +114,64 @@ var kernel = builder.Build();
 // var result = await kernel.InvokePromptAsync(prompt);
 
 // create a planner
-kernel.ImportPluginFromType<MusicConcertPlugin>();
+// kernel.ImportPluginFromType<MusicConcertPlugin>();
+// kernel.ImportPluginFromType<MusicLibrary>();
+// kernel.ImportPluginFromPromptDirectory("Prompts");
+// var planner = new HandlebarsPlanner(new HandlebarsPlannerOptions { AllowLoops = true });
+// string location = "Redmond WA USA";
+// string goal = @$"Based on the user's recently played music, suggest a
+//     concert for the user living in ${location}";
+
+// var plan = await planner.CreatePlanAsync(kernel, goal);
+// //var result = await plan.InvokeAsync(kernel);
+// Console.WriteLine(plan);
+
+// planner template
+// var planner = new HandlebarsPlanner(new HandlebarsPlannerOptions { AllowLoops = true });
+// var songSuggesterFunction = kernel.CreateFunctionFromPrompt(
+//     promptTemplate: @"Based on the user's recently played music:
+//         {{$recentlyPlayedSongs}}
+//         recommend a song to the user from the music library:
+//         {{$musicLibrary}}",
+//     functionName: "SuggestSong",
+//     description: "Suggest a song to the user"
+// );
+// kernel.Plugins.AddFromFunctions("SuggestSongPlugin", [songSuggesterFunction]);
+// var songSuggestPlan = await planner.CreatePlanAsync(kernel, @"Suggest a song from the
+//     music library to the user based on their recently played songs");
+// Console.WriteLine("Song Plan:");
+// Console.WriteLine(songSuggestPlan);
+
 kernel.ImportPluginFromType<MusicLibrary>();
+kernel.ImportPluginFromType<MusicConcertPlugin>();
 kernel.ImportPluginFromPromptDirectory("Prompts");
-var planner = new HandlebarsPlanner(new HandlebarsPlannerOptions { AllowLoops = true });
+
+var songSuggesterFunction = kernel.CreateFunctionFromPrompt(
+    promptTemplate: @"Based on the user's recently played music:
+    {{$recentlyPlayedSongs}}
+    recommend a song to the user from the music library:
+    {{$musicLibrary}}",
+    functionName: "SuggestSong",
+    description: "Suggest a song to the user"
+);
+
+kernel.Plugins.AddFromFunctions("SuggestSongPlugin", [songSuggesterFunction]);
+string dir = Directory.GetCurrentDirectory();
+string template = File.ReadAllText($"{dir}/handlebarsTemplate.txt");
+
+var handlebarsPromptFunction = kernel.CreateFunctionFromPrompt(
+    new()
+    {
+        Template = template,
+        TemplateFormat = "handlebars"
+    }, new HandlebarsPromptTemplateFactory()
+);
+
 string location = "Redmond WA USA";
-string goal = @$"Based on the user's recently played music, suggest a
-    concert for the user living in ${location}";
+var templateResult = await kernel.InvokeAsync(handlebarsPromptFunction,
+    new() {
+        { "location", location },
+        { "suggestConcert", true }
+    });
 
-var plan = await planner.CreatePlanAsync(kernel, goal);
-var result = await plan.InvokeAsync(kernel);
-Console.WriteLine(result);
-
+Console.WriteLine(templateResult);
