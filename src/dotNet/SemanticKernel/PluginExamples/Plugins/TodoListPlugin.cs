@@ -3,7 +3,7 @@ using System.Text.Json;
 using System.Text.Json.Nodes;
 using Microsoft.SemanticKernel;
 
-namespace Plugins;
+namespace PluginExamples.Plugins;
 public class TodoListPlugin
 {
     [KernelFunction, Description("Mark a todo list item as complete")]

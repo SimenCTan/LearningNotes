@@ -2,7 +2,7 @@
 using Microsoft.SemanticKernel;
 using Microsoft.SemanticKernel.ChatCompletion;
 using Microsoft.SemanticKernel.Plugins.Core;
-using Plugins;
+using PluginExamples.Plugins;
 
 var config = new ConfigurationBuilder().AddUserSecrets<Program>().Build();
 var apikey = config["OpenAIKey"]?.ToString() ?? string.Empty;
@@ -79,11 +79,36 @@ var kernel = builder.Build();
 //     }
 // );
 
-kernel.ImportPluginFromType<TodoListPlugin>();
-var result = await kernel.InvokeAsync<string>(
-    "TodoListPlugin",
-    "CompleteTask",
-    new() { { "task", "Buy groceries" } }
-);
+// to do plugin
+// kernel.ImportPluginFromType<TodoListPlugin>();
+// var result = await kernel.InvokeAsync<string>(
+//     "TodoListPlugin",
+//     "CompleteTask",
+//     new() { { "task", "Buy groceries" } }
+// );
+
+// music plugin
+// kernel.ImportPluginFromType<MusicLibrary>();
+// string prompt = @"This is a list of music available to the user:
+//     {{MusicLibrary.GetMusicLibrary}}
+
+//     This is a list of music the user has recently played:
+//     {{MusicLibrary.GetRecentPlays}}
+
+//     Based on their recently played music, suggest a song from
+//     the list to play next";
+
+// var result = await kernel.InvokePromptAsync(prompt);
+
+// recipe plugin
+kernel.ImportPluginFromType<IngredientsPlugin>();
+
+string prompt = @"This is a list of ingredients available to the user:
+    {{IngredientsPlugin.GetIngredients}}
+
+    Please suggest a recipe the user could make with
+    some of the ingredients they have available";
+
+var result = await kernel.InvokePromptAsync(prompt);
 Console.WriteLine(result);
 
