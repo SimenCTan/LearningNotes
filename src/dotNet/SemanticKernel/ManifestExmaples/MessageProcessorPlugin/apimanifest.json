@@ -1,0 +1,19 @@
+{
+  "applicationName": "Message Processor Plugin",
+  "description": "This plugin accesses Microsoft Graph API to read emails and GitHub API for Markdown to HTML conversion.",
+  "publisher": {
+    "name": "Alice",
+    "contactEmail": "alice@contoso.com"
+  },
+  "apiDependencies": {
+    "microsoft.graph": {
+      "apiDescriptionUrl": "https://raw.githubusercontent.com/microsoftgraph/msgraph-metadata/master/openapi/v1.0/graphexplorer.yaml",
+      "requests": [
+        {
+          "method": "Get",
+          "uriTemplate": "/me/messages"
+        }
+      ]
+    }
+  }
+}

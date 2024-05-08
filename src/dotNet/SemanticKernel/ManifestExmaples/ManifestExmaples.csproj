@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>2f0b5729-4092-45b4-ac5d-c6edb00bb460</UserSecretsId>
+    <NoWarn>SKEXP0050,SKEXP0043,SKEXP0060,SKEXP0040</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.4" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="8.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="8.0.0" />
+    <PackageReference Include="Microsoft.SemanticKernel.Planners.OpenAI" Version="1.9.0-preview" />
+    <PackageReference Include="Microsoft.SemanticKernel.Plugins.MSGraph" Version="1.9.0-alpha" />
+    <PackageReference Include="Microsoft.SemanticKernel.Plugins.OpenAPI.Extensions" Version="1.9.0-alpha" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+  </ItemGroup>
+
+</Project>
