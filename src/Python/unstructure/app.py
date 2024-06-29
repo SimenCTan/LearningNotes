@@ -10,23 +10,27 @@
 # Running either make install-pandoc or ./scripts/install-pandoc.sh will install the correct version for you.
 
 import os
+
 from dotenv import load_dotenv
-from unstructured.partition.auto import partition
-from unstructured.partition.text_type import sentence_count
-from unstructured.documents.elements import NarrativeText
-from unstructured.partition.pdf import partition_pdf
-from unstructured.staging.base import convert_to_dict,elements_to_json
+# from langchain.chains.summarize import load_summarize_chain
+# from langchain.chat_models import ChatOpenAI
+# from langchain.document_loaders import UnstructuredURLLoader
+# from langchain.embeddings import OpenAIEmbeddings
+# from langchain.vectorstores.chroma import Chroma
 from unstructured.chunking.basic import chunk_elements
+from unstructured.documents.elements import NarrativeText
+from unstructured.partition.auto import partition
 from unstructured.partition.html import partition_html
-from langchain.document_loaders import UnstructuredURLLoader
-from langchain.vectorstores.chroma import Chroma
-from langchain.embeddings import OpenAIEmbeddings
-from langchain.chat_models import ChatOpenAI
-from langchain.chains.summarize import load_summarize_chain
+from unstructured.partition.pdf import partition_pdf
+from unstructured.partition.text_type import sentence_count
+from unstructured.staging.base import convert_to_dict, elements_to_json
 
+current_user = os.getlogin()
 
-# elements = partition(filename="example-docs/eml/fake-email.eml")
-# print("\n\n".join([str(el) for el in elements]))
+# Print the current system user
+print(f"The current system user is: {current_user}")
+elements = partition(filename="example-docs/eml/fake-email.eml")
+print("\n\n".join([str(el) for el in elements]))
 
 # pdfElements = partition(filename="example-docs/layout-parser-paper.pdf")
 # print("\n\n".join([str(el) for el in pdfElements]))
@@ -56,30 +60,27 @@ from langchain.chains.summarize import load_summarize_chain
 # for chunk in chunks:
 #     print(chunk)
 #     print("\n\n" + "-"*80)
-load_dotenv()
-print(os.getenv("OpenAIKey"))
-cnn_lite_url = "https://lite.cnn.com/"
-elements = partition_html(url=cnn_lite_url)
-links = []
+# load_dotenv()
+# print(os.getenv("OpenAIKey"))
+# cnn_lite_url = "https://lite.cnn.com/"
+# elements = partition_html(url=cnn_lite_url)
+# links = []
 
-for element in elements:
-    if element.metadata.link_urls:
-        relative_link = element.metadata.link_urls[0][1:]
-        print(relative_link)
-        if relative_link.startswith("2024"):
-            links.append(f"{cnn_lite_url}{relative_link}")
+# for element in elements:
+#     if element.metadata.link_urls:
+#         relative_link = element.metadata.link_urls[0][1:]
+#         print(relative_link)
+#         if relative_link.startswith("2024"):
+#             links.append(f"{cnn_lite_url}{relative_link}")
 
-loaders = UnstructuredURLLoader(urls=links[:20], show_progress_bar=True)
-docs = loaders.load()
+# loaders = UnstructuredURLLoader(urls=links[:20], show_progress_bar=True)
+# docs = loaders.load()
 
-embeddings = OpenAIEmbeddings(api_key=os.getenv("OpenAIKey"))
-vectorstore = Chroma.from_documents(docs,embeddings)
-query_doc = vectorstore.similarity_search( "What is behind the rapid increase in car insurance rates?",k=1)
+# embeddings = OpenAIEmbeddings(api_key=os.getenv("OpenAIKey"))
+# vectorstore = Chroma.from_documents(docs,embeddings)
+# query_doc = vectorstore.similarity_search( "What is behind the rapid increase in car insurance rates?",k=1)
 
-llm = ChatOpenAI(temperature=0,api_key=os.getenv("OpenAIKey"))
-chain = load_summarize_chain(llm,chain_type="stuff")
+# llm = ChatOpenAI(temperature=0,api_key=os.getenv("OpenAIKey"))
+# chain = load_summarize_chain(llm,chain_type="stuff")
 
-print(chain.run(query_doc))
-
-
-
+# print(chain.run(query_doc))
