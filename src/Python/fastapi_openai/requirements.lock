@@ -16,10 +16,13 @@ anyio==4.4.0
     # via httpx
     # via starlette
     # via watchfiles
+black==24.4.2
+    # via fastapi-openai
 certifi==2024.7.4
     # via httpcore
     # via httpx
 click==8.1.7
+    # via black
     # via typer
     # via uvicorn
 dnspython==2.6.1
@@ -51,8 +54,16 @@ markupsafe==2.1.5
     # via jinja2
 mdurl==0.1.2
     # via markdown-it-py
+mypy-extensions==1.0.0
+    # via black
 orjson==3.10.6
     # via fastapi
+packaging==24.1
+    # via black
+pathspec==0.12.1
+    # via black
+platformdirs==4.2.2
+    # via black
 pydantic==2.8.2
     # via fastapi
 pydantic-core==2.20.1
