@@ -8,6 +8,12 @@ authors = [
 dependencies = [
     "fastapi>=0.111.0",
     "black>=24.4.2",
+    "uvicorn>=0.30.1",
+    "sqlalchemy>=2.0.31",
+    "asyncpg>=0.29.0",
+    "psycopg2-binary>=2.9.9",
+    "jinja2>=3.1.4",
+    "openai>=1.35.13",
 ]
 readme = "README.md"
 requires-python = ">= 3.8"
