@@ -1,13 +1,14 @@
-from sqlalchemy import Column,Integer,String,ForeignKey,Text
-from sqlalchemy.orm import relationship
 from database import Base
+from sqlalchemy import Column, ForeignKey, Integer, String, Text
+from sqlalchemy.orm import relationship
+
 
 class SearchTerm(Base):
     __tablename__ = 'search_terms'
     id = Column(Integer, primary_key=True, index=True)
     term = Column(String, index=True)
-    generated_text = relationship("GeneratedContent", back_populates="search_term")
-    sentiment_analysis_text = relationship("SentimentAnalysis", back_populates="search_term")
+    generated_content = relationship("GeneratedContent", back_populates="search_term")
+    sentiment_analysis = relationship("SentimentAnalysis", back_populates="search_term")
 
 class GeneratedContent(Base):
     __tablename__ = 'generated_content'
@@ -22,4 +23,5 @@ class SentimentAnalysis(Base):
     readability = Column(String)
     sentiment = Column(String)
     search_term_id = Column(Integer, ForeignKey('search_terms.id'))
+    search_term = relationship("SearchTerm", back_populates="sentiment_analysis")
     search_term = relationship("SearchTerm", back_populates="sentiment_analysis")
