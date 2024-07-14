@@ -83,6 +83,7 @@ pydantic-core==2.20.1
 pygments==2.18.0
     # via rich
 python-dotenv==1.0.1
+    # via fastapi-openai
     # via uvicorn
 python-multipart==0.0.9
     # via fastapi
