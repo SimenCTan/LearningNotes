@@ -129,8 +129,9 @@
 
                 // Parse and handle the response
                 const result = await response.json();
-                alert('Translation request submitted. ID: ' + result.id);
-                window.location.href = '/translate/' + result.id;
+                console.log(result);
+                alert('Translation request submitted. ID: ' + result.payload.id);
+                window.location.href = '/translate/' + result.payload.id;
             } catch (error) {
                 console.error('Error:', error);
                 alert('Failed to submit translation request.');

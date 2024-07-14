@@ -1,19 +1,21 @@
 import os
+from contextlib import contextmanager
 from datetime import datetime
 from typing import List
 
-import openai
 from database import get_db
 from dotenv import load_dotenv
 from models import (IndividualTranslations, TranslationRequest,
                     TranslationResponse)
+from openai import OpenAI
 from sqlalchemy.orm import Session
 
 load_dotenv()
-openai.api_key=os.getenv("OPENAI_APIKEY")
 
-async def translate_text(text:str,language:str)->str:
-    response = await openai.ChatCompletion.acreate(
+api_key=os.getenv("OPENAI_APIKEY")
+client = OpenAI(api_key=api_key)
+def translate_text(text:str,language:str)->str:
+    response = client.chat.completions.create(
         model="gpt-3.5-turbo",
         messages=[
             {"role": "system", "content": f"Translate the following text to {language}:"},
@@ -21,14 +23,23 @@ async def translate_text(text:str,language:str)->str:
         ],
         max_tokens=1000
     )
-    return response['choices'][0]['message']['content'].strip()
+    str_response = str(response.choices[0].message.content)
+    return str_response
 
+@contextmanager
+def get_db_session():
+    session = next(get_db())
+    try:
+        yield session
+    finally:
+        session.close()
 
 async def process_translations(request_id:int,text:str,languages:List[str]):
-    with get_db() as session:
-        for language in languages:
-            translated_text = await translate_text(text,language)
-            translation_result = TranslationResponse(request_id=request_id,response=translated_text,language=language)
+    with get_db_session() as session:
+        list_of_languages = languages.split(",")
+        for language in list_of_languages:
+            translated_text = translate_text(text,language)
+            translation_result = TranslationResponse(request_id=request_id,translated_text=translated_text,language=language,response="")
             individual_translation = IndividualTranslations(request_id=request_id,translated_text=translated_text)
             session.add(translation_result)
             session.add(individual_translation)

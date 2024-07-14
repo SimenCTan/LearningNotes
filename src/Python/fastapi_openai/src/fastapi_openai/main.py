@@ -50,7 +50,7 @@ async def translate(request:TranslationRequestSchema,background_tasks:Background
     background_tasks.add_task(process_translations,request_data.id,request_data.text,request_data.languages)
     return {"payload":request_data}
 
-@app.get("/translation/{request_id}")
+@app.get("/translate/{request_id}")
 async def get_translation_status(request_id:int,request:Request,db:Session=Depends(get_db)):
     request_obj = db.query(TranslationRequest).filter(TranslationRequest.id==request_id).first()
     if not request_obj:
