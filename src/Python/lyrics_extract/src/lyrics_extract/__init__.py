@@ -54,9 +54,16 @@ def convert_mp3_to_wav(mp3_path,wav_path):
     """
     convert mp3 file to wav file
     """
-    audio = AudioSegment.from_mp3(mp3_path)
-    audio.export(wav_path, format="wav")
-    logging.info(f"Converted {mp3_path} to {wav_path}")
+    # Check if the file exists
+    if not os.path.isfile(mp3_path):
+        raise FileNotFoundError(f"The file at {mp3_path} does not exist.")
+    try:
+        audio = AudioSegment.from_file(file=mp3_path,format="mp4")
+        audio.export(wav_path, format="wav")
+        logging.info(f"Converted {mp3_path} to {wav_path}")
+    except Exception as e:
+        logging.error(f"Error converting {mp3_path} to {wav_path}: {e}")
+        raise RuntimeError(f"Error converting {mp3_path} to {wav_path}: {e}")
 
 def split_audio(wav_path,chunk_length_ms=60000):
     audio = AudioSegment.from_wav(wav_path)
@@ -140,7 +147,7 @@ async def generate_image(payload:LyricsPayload):
         model="dall-e-3",
         prompt=prompt,
         n=1,
-        size="1024*1024")
+        size="1024x1024")
 
     image_url = response.data[0].url
     logging.info(f"Generated image for lyrics: {image_url}")
