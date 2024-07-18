@@ -1,0 +1,4100 @@
+I think that the Cs has kind of been
+
+lazy in their curriculum because it
+
+doesn't matter what they teach because
+
+you know they teach you know 80% of it
+
+is a waste and 20% of it is good and
+
+then I think you and I could teach the
+
+20% without the 80% and re achieve the
+
+same result
+
+[Music]
+
+welcome back to the freeco camp podcast
+
+I'm Quincy Larson teacher and founder of
+
+freeco camp.org each week we're bringing
+
+you Insight from developers Founders and
+
+ambitious people in Tech this week we
+
+are talking to Dr Chuck Dr Charles sance
+
+computer science professor
+
+at University of Michigan one of the top
+
+computer science programs in the world
+
+Dr Chuck has created many free learning
+
+resources over the years including his
+
+python for everyone course extremely
+
+popular he's created courses on C
+
+programming language D Jango web
+
+development framework so many different
+
+things and he's made them freely
+
+available for Learners we published
+
+several courses of his on the freeo camp
+
+YouTube channel Dr Chuck it's an honor
+
+to have you on the podcast how are you
+
+doing
+
+today I'm doing great Quincy and it is
+
+an honor to be on the podcast you have
+
+lots and lots of people and you're so
+
+successful to free code camp and and I
+
+know I knew you when you were like
+
+smaller but you just keep growing and
+
+growing you're staff your your
+
+viewership and everything and so it's
+
+exciting to see see you grow thank you
+
+sir uh again like uh I don't want to be
+
+overly differential but like you have
+
+been a huge inspiration to me over the
+
+years and I know to boars and to a lot
+
+of the folks on the Freo Camp team who
+
+are building these open learning
+
+resources uh so I I'm just gonna like we
+
+we usually talk about like programmer
+
+origin stories and stuff like that but
+
+I've got so many things that I want to
+
+talk to you about I'm just going to dive
+
+right into it uh and we're going to
+
+start talking about programming the
+
+craft the art the thing that it like
+
+most developers do
+
+day-to-day what is a master programmer
+
+well it is the art and it is the craft
+
+the master programmer is my way of
+
+emphasizing that programming is not
+
+mathematics right programming is a
+
+creative thing and um margin story is
+
+really simple I mean I am an artist at
+
+heart uh I wanted to be in theater I
+
+mean I wanted to go to New York City
+
+after I graduated from high school my
+
+mom said why don't you go be an engineer
+
+first and um and so I'm I'm a very
+
+creative person right and and I but
+
+every time I try to draw art it's
+
+terrible because I just don't have high
+
+ey coordination or maybe it's not
+
+patience and when I'm at computers I'm
+
+like I can make a Hangman game and I can
+
+just sit at my keyboard as long as I
+
+type it right then I got a Hangman game
+
+and so the key to it was it was a way of
+
+expressing creative artistic Concepts
+
+but not requiring like a charcoal pencil
+
+to kind of shade everything and
+
+so the master the master programmer is
+
+the same concept let's just say applied
+
+to carpentry I know Master carpenters
+
+and you can literally drop a master
+
+Carpenter into any situation right you
+
+might have like a Stairway that's gotten
+
+wet and started to rot and the master
+
+compentent looks in goes like okay I've
+
+never seen this situation before but
+
+it's like a jillion other situations
+
+that I looked at before and they all of
+
+a sudden creatively are just generating
+
+a solution it's carpentry is not just
+
+like you know order a bunch of stuff and
+
+then go and um you know plug that thing
+
+in and make it all happen and so I think
+
+of the master programmer in the same way
+
+and the master programmer are these
+
+people that I know who are you know mid
+
+to late career people that can learn
+
+anything can do anything you can switch
+
+them to from java to react and they
+
+they're they're com comfortable in a
+
+couple of weeks and so they're just like
+
+amazing and you can throw them into any
+
+situation and then I I think of sort of
+
+the the way a master Carpenter becomes a
+
+master Carpenter and I want to imitate
+
+that by sort of mentoring by observation
+
+by slowly learning more stuff and then
+
+applying that stuff and getting really
+
+good at things and then eventually you
+
+are the master programmer and so
+
+the other reason I'm talking about the
+
+master programmer is I the one thing
+
+that the master programmer is
+
+not is a computer science degree I've
+
+literally never met a
+
+person who graduated with a bachelor's
+
+degree in computer science that I would
+
+consider even partially a master
+
+programmer frankly they're terrible
+
+programmers computer science encourages
+
+extremely bad programming
+
+behavior and that's because they they
+
+they tell you to do this assignment and
+
+you got a week to do it and then you get
+
+it done on time and then you throw it
+
+away and then they give you a different
+
+thing to do and they give you a week to
+
+do it and you throw it away that's not
+
+what Master programmers do they come
+
+into your house and your stairs have got
+
+a rotted part and they're going to leave
+
+your house and you're going to have a
+
+fixed stairs for the next 20 years and a
+
+master programmer is the same way they
+
+they can work on software that lives
+
+long it's not maybe the most upto-date
+
+thing and and and and so I'm I'm kind of
+
+like also the enemy of things like lead
+
+code I hate lead code because leak code
+
+turns such a creative person and I'm not
+
+saying computer science students aren't
+
+creative and aren't smart and aren't
+
+wonderful and aren't talented what I'm
+
+saying is they have been taught that
+
+lead code is the purpose of their life
+
+and that's leak code is like the the
+
+Amazon fulfillment center version of you
+
+know creativ of artwork right yeah
+
+meaning that leite code you are a robot
+
+I will stick you in this room I will
+
+measure you I'll watch your blood
+
+pressure and heart rate and then based
+
+on your blood pressure and heart rate
+
+and how much how many packages you get
+
+done in an hour then I'm going to give
+
+you some numeric rating and by the way
+
+your your your average which is like oh
+
+I can't be average that must be terrible
+
+and so leak code computer science take
+
+away all the
+
+humanity of what it is that we do and if
+
+you think for example of what you've
+
+done since free code Camp was created
+
+it's not mathematical it's it's like you
+
+just have to sit and go like what what
+
+could we do whoa that's a let's try that
+
+right it's so
+
+getting things done quickly and moving
+
+on to the next thing and like you said
+
+like the Amazon Fulfillment of software
+
+as opposed to um actually like learning
+
+how to do it right and then doing every
+
+job right so that it you know it kind of
+
+stand to the the rigors of time uh and
+
+uh you know not be reclaimed by Nature
+
+as so many code bases are the moment
+
+that the programmer walks away from them
+
+right yeah um yes well
+
+you know we're not we are going to talk
+
+about computer science programs and and
+
+I I think it's oh you're back yeah I'm
+
+back sorry okay so um just just a quick
+
+uh heads up we're using the uh we're
+
+using Riverside to record this and
+
+sometimes uh if people disconnect and
+
+reconnect uh my apologies to those
+
+watching the video version but um yes so
+
+uh one of the things that you've been a
+
+huge advocate of uh for helping people
+
+learn programming is to really encourage
+
+people to learn C properly C being
+
+probably one of the most primordial
+
+programming languages still in use today
+
+uh most Things are Written In C it's
+
+like when we talk about layers of
+
+abstraction they're usually layers of
+
+abstraction on top of C somewhere in the
+
+the pile of pillows right um why should
+
+people study C in 2024
+
+the the reason is is that the the best
+
+programmers like I said can be dropped
+
+into a completely new environment and
+
+you give them four weeks and then they
+
+probably will be the best at that new
+
+environment than other mediocre
+
+programmers who've been working in that
+
+environment for years and the reason is
+
+is that they have a mental model of
+
+what's going on inside of computers and
+
+so they're like oh we're going to do
+
+Rust and react okay rust and react is
+
+just another syntax
+
+and but the computer is the same and so
+
+all they need to do in their four weeks
+
+of coming up to speed and rust and react
+
+is kind of just glue the rust stuff to
+
+all the wonderful structures that are in
+
+their brain already and so the problem
+
+is is if if we just teach people python
+
+they're they're they're going to be
+
+capable of doing things but they don't
+
+understand what's really happening so if
+
+I take someone who's really good in
+
+Python and say you're going to go into a
+
+rough and react project they're like uh
+
+how about we convert your 10-year-old
+
+rust and reactor software to python so I
+
+understand it like no no no I didn't
+
+hire you to tell me to convert my rust
+
+program to python where is a a master
+
+programmer goes like yeah rust is just
+
+another thing I'll figure that out and
+
+how is it that a master programmer can
+
+go from python to rust and then to Scala
+
+and then and Java and whatever and just
+
+do that every few months as needed maybe
+
+even every few weeks as needed and so
+
+what I'm thinking is I'm like how do
+
+people get that sort of agility in their
+
+mind that nothing is nothing is hard for
+
+them nothing scares them anymore and
+
+that's where C comes in and that is
+
+python is a great place to start right
+
+it's kind of a middle level abstraction
+
+there's lots of things that build on top
+
+of it things that you know you can do in
+
+Python and it it brings people into the
+
+Technology field than
+
+career with the least amount of wasted
+
+time I mean you just take a python
+
+class a month or two later you you're
+
+ready to do some work right you're let
+
+ready to learn the problem is is you're
+
+not ready to be agile you're not ready
+
+to evolve think of like Pokemons right
+
+you get this Pokemon and then you want
+
+to evolve your evolve your Pokemon well
+
+you're a python programmer you want to
+
+evolve your Python program and you're
+
+not capable of evolving so C learning C
+
+and then later learning Hardware even
+
+though it's a very gentle introduction
+
+to see and a very gentle introduction to
+
+Hardware is an investment in later being
+
+able to evolve to anything programming
+
+language that don't exist UI Frameworks
+
+that don't currently exist if there's
+
+one thing in Tech it changes all the
+
+time and so if you want to be ready for
+
+what goes on there is no way you can go
+
+to college and learn the 250 different
+
+technologies that are being used used in
+
+the industry today you got to learn each
+
+of those when the time comes so what can
+
+I teach you I can teach you C you know
+
+that's 1978 so that's like 50 years old
+
+and 40 years old whatever it's old and
+
+uh if I teach you C then I can give you
+
+the tools that let you learn a new thing
+
+every few weeks and master that new
+
+thing not just like oh okay I printed
+
+hello world and C then I printed hello
+
+world Rost I put it hello world in react
+
+no no no no no you got to go in and
+
+maintain a large application in Rust and
+
+react and and see is the key to that and
+
+because I can't just teach you rust and
+
+I can't teach you schola and I can't
+
+teach you all the hundreds of things
+
+that you're going to encounter in the
+
+real world but I can teach you see and I
+
+want you to really understand it and
+
+that way you've got a mental model of
+
+how computers work and that's why
+
+Hardware is important too so the next
+
+class I'm going to uh create after the
+
+cclass is a hardware class but it'll be
+
+like everything I do it'll be gentle and
+
+fun it'll take you a little while and
+
+you walk away with this solid knowledge
+
+in the back of your mind that you keep
+
+forever and then you can apply it to any
+
+new situation that you you run
+
+into awesome and is that of course going
+
+to also be in the uh for everybody like
+
+line you you got absolutely you got C I
+
+think you got C for everybody you've got
+
+python for everybody Django for
+
+everybody uh you may not know this but
+
+Kylie Ying uh she's a software engineer
+
+at Google and she also works at fre Cod
+
+camp and she creates courses for us and
+
+a few years ago I reached out and I said
+
+hey could we do uh a course called
+
+machine learning for everybody and like
+
+have it be a spiritual successor to your
+
+uh you know python for everybody because
+
+you know it's uses Python and that
+
+course has like five million views on
+
+YouTube that's it's like one of the most
+
+popular machine learning courses of all
+
+time and it's very much in the vein of
+
+the work that you've already done uh
+
+thank you for giving us permission to
+
+kind of use that that title
+
+structure it's an honor and I'm glad
+
+that someone other than me is doing AI
+
+for everybody because I I don't I I find
+
+AI too difficult right I'm trying to
+
+create people who can drop into Ai and
+
+figure it all out but I don't want to
+
+figure it out myself right and so part
+
+of with the whole for everybody thing is
+
+I gotta think very deeply about every
+
+second of every course so that I don't
+
+inadvertently make it more difficult
+
+than it needs to be so for her to do AI
+
+for everybody thumbs up awesome yeah
+
+well I am very excited to talk about AI
+
+um I but this Hardware thing uh I I
+
+really want to talk about this because
+
+uh a lot of people don't appreciate how
+
+networks work how operating systems work
+
+how things get written to memory uh all
+
+these different uh Concepts that you
+
+learn if you get like a a traditional
+
+Computer Engineering degree which not
+
+very many people get anymore because
+
+it's the computer science degrees that
+
+the employers are looking for right uh
+
+maybe you could talk a little bit about
+
+what you think if if you could just
+
+almost kind of list like a table of
+
+contents of what your course is
+
+ultimately likely to contain that would
+
+be really cool just kind of like
+
+information people can put in their back
+
+pocket so they can be looking out for
+
+those things when they're sifting around
+
+for courses on YouTube or if they're
+
+like at the library like trying to check
+
+out some books to like backfill their
+
+knowledge and understanding of these
+
+things
+
+absolutely let me I'll get to the table
+
+of contents because that's pretty easy
+
+um let me talk about my own education
+
+and where I encountered hardware and how
+
+it affected me um so you know I'm in the
+
+middle of a computer science degree chug
+
+chug chug chug chug and then I I take a
+
+hardware class right and
+
+um
+
+I I all of a sudden sort of get this
+
+situation where I'm completely obsessed
+
+with like chip layout and in chip layout
+
+it's very artistic and it's pretty and
+
+there's colors and it's like red and
+
+blue and and black and on this
+
+background and you're drawing these
+
+little traces to make chips or to make
+
+boards you draw traces and it's like
+
+this is so visual and so in this class
+
+we were laying out some and Gates and or
+
+Gates and flipflops using painting
+
+basically because you paint various
+
+materials then you make masks and they
+
+put those materials down and then you
+
+make chips out of that and I saw that
+
+and I had this project and I sat down at
+
+a computer back then it was a sun
+
+workstation and I literally didn't get
+
+up from that computer for 48 hours I was
+
+so like it's like Gamers right I just 48
+
+Hours laying out chips learning the
+
+software this is the greatest thing
+
+ever and then I finished the class and I
+
+never took another Hardware class again
+
+right because I didn't need to know
+
+how to do that professionally but the
+
+the sense of what a professional
+
+Hardware Builder does is been very
+
+precious to me and I loved the kind of
+
+quick brief interlude into how that
+
+works and and again I I have no interest
+
+in building Hardware none whatsoever I
+
+like software and so uh hardware for
+
+everybody is just the right
+
+sampling and so uh the the key thing in
+
+hardware for everybody or computer
+
+architecture for everybody is what I
+
+call it um first we're going to start
+
+with
+
+transistors and then we're going to
+
+build a notot gate and then we're going
+
+to build a nand gate and then we're
+
+going to you know build a couple other
+
+Gates out of
+
+transistors and then we will build a
+
+flip-flop out of transistors and then
+
+we'll start playing with things like
+
+flip-flops and and Gates and or Gates
+
+and we'll make a half adder then we'll
+
+make a full adder
+
+um then we'll you know do a ripple carry
+
+add for like four bits and then we will
+
+stop on the hardware on the lowlevel
+
+like circuitry ones and zeros going
+
+through traces and wires and turning
+
+lights on and turning lights off that's
+
+enough that that's enough and then what
+
+we're going to do is we're going to
+
+start looking at machine language and
+
+that is how programs can be written with
+
+zeros and ones I mean what it does it
+
+mean it's all full of zeros and ones
+
+well it's not really zeros and ones it's
+
+little electric traces that are the
+
+little little electric pulses that are
+
+moving down wires that's what's going on
+
+and so but some at some point it goes
+
+from gates to instructions so I will
+
+have a machine language which is you
+
+program a you will write code with zeros
+
+and ones and I will teach you machine
+
+language then I'll teach you Assembly
+
+Language which is nothing more than a
+
+direct translation to those zero zero
+
+and ones each line of an assembling
+
+language program trans directly
+
+translates directly to a series of zeros
+
+and ones and so we'll write a machine
+
+language we'll write in Assembly
+
+Language we'll even write a simple
+
+assembler
+
+and and that's pretty much well we will
+
+do one little thing where we will run
+
+the C compiler and look at the assembler
+
+output of a c compiler so we understand
+
+how compilers create assembly language
+
+and then how that Assembly Language
+
+turns into machine code and how that
+
+machine code runs uh on computers and so
+
+everything that I ever do and we're not
+
+very good at making all my autog graders
+
+work well on free code Camp everyone has
+
+to come to my site like CC free.com and
+
+do the auto GD which is okay free code
+
+Camp is kind of the video part of it and
+
+my websites are free and they are the
+
+the autog grader part of it but the
+
+hardest part for the computer
+
+architecture for everybody is going to
+
+be the Auto graders cuz I'm going to
+
+build a chip layout system cuz I can't
+
+find one free that's kind of me right I
+
+mean there are products out there but I
+
+think they're a too hard and B they're
+
+they want to make money off this stuff
+
+they should just give me a free one but
+
+they're not going to give me a free one
+
+so I have got to build an in browser
+
+JavaScript based chip layout system
+
+where I can give an assignment to lay
+
+out a chip or lay out a circuit in the
+
+browser and then I can put probe points
+
+on that chip and then I can autograde
+
+the fact that you have actually built a
+
+half adder so I got to I got to build
+
+all that technology and when I build
+
+courses autog graders come first I just
+
+the assignments need to scale and the
+
+assignments are where the actual
+
+Learning Happens not just the me talking
+
+um and so that's the basic outline right
+
+transistors
+
+Gates kind of small circuits made up of
+
+gates machine language assembler
+
+compiler to
+
+assembler it'll be shorter than most of
+
+my courses that I
+
+teach awesome I just want to say on the
+
+note of the autog grader we're
+
+developing our own uh Auto graders
+
+around like networks and uh chips and
+
+like systems on chips like there's only
+
+so much you can really simulate in like
+
+a browser uh and accurately test but uh
+
+we're working with a software engineer
+
+who also has like a hardware background
+
+and we're we're developing kind of our
+
+own autog graders for those sorts of
+
+things so we may be able to collaborate
+
+on that and make it open source I mean
+
+you got to you got to find a way to get
+
+learning tools interoperability to your
+
+infrastructure so that anybody can write
+
+an auto grader in any topic and plug it
+
+into your your system that's the key you
+
+you and com Academy build a complete
+
+custom system and corsera that's all
+
+just blobbed into one thing for every
+
+course but if you use learning tools
+
+interoperability then you can kind of
+
+have a nice bright boundary point where
+
+autog grads live out there and the core
+
+system that you're doing grading and
+
+tracking that lives in here but yeah and
+
+one of these days you're still netlify
+
+right so we were using netlify we may be
+
+using it for some things uh we just uh I
+
+mean we have like hund like more than
+
+aund servers around the world uh so
+
+people in Singapore uh like we have a
+
+Singapore server so people in East Asia
+
+we've got like Latin American servers so
+
+everybody has like a low ping and um and
+
+we do have autog graders for JavaScript
+
+we have autog graders uh for or a lot of
+
+them just run inside a Google
+
+collaboratory for like the machine
+
+learning related tasks um and then we
+
+have uh autog graders for python but uh
+
+and we we'd like to build like a more
+
+generic like Auto grader where people
+
+could essentially have this library that
+
+they could include um so that is like a
+
+long-term goal of ours uh but like
+
+pretty much everything we design in
+
+terms of interactive design Interactive
+
+Learning we start from the premise of
+
+like how can we test this program
+
+atically so that they don't have to
+
+submit something and wait for a human to
+
+review it so that we can keep this like
+
+abut millisecond length feedback loop so
+
+people can rapidly iterate and yeah it's
+
+like a game you're you're at a boss
+
+right you're just you're just struggling
+
+with it you're figuring it out that's
+
+the moment of learning right and if we
+
+can make something that does not require
+
+the delay of a human being involved that
+
+means it's more like playing a video
+
+game where you can you got an hour and
+
+you struggle and you learn and you
+
+struggle and you learn and you and then
+
+you're you break through and then you're
+
+like oh and you didn't have to wait and
+
+so that's what why autog graders are
+
+always for me the most important part
+
+because then I like I make autog graders
+
+then I create assignments in the autog
+
+graders and then I make sure that I have
+
+a lecture that supports the learning
+
+objectives of what I'm going to assign
+
+as homework right and so it's a
+
+assessments are important and they're
+
+the most they're the most intricate to
+
+me part of of anything and now now
+
+you're probably building a much more
+
+sophisticated Hardware environment than
+
+I am because my circuit layout the hard
+
+the most difficult thing it needs to
+
+build is a 4bit ripple carry Adder which
+
+really tiny compared to like a chip or
+
+anything like that and this is where I'd
+
+let the if you're going to be a
+
+professional Hardware designer go go go
+
+to get a bachelor's degree in electrical
+
+engineering or computer engineering
+
+that's fine but I don't I think for
+
+everybody we just need to know enough to
+
+believe that we could figure out if we
+
+had
+
+to yeah I'm I'm right there with you
+
+like and one of the things that you've
+
+advocated for over the years is learning
+
+fewer things but learning them more
+
+deeply um and and retaining them and
+
+retaining them can you talk about like
+
+let's say somebody's like a first year
+
+computer science or maybe they're a
+
+fourth year and they're about to
+
+graduate and they have to make up for
+
+just kind of coasting along and doing
+
+what their teachers have been saying um
+
+and they need they need to backfill and
+
+they need to to fill in this knowledge
+
+or uh like about a third of the people
+
+in the free cam Community are career
+
+Changers who are coming from completely
+
+different fields maybe accounting maybe
+
+driving a truck uh maybe doing any
+
+number of uh different jobs that have
+
+various levels of technical proficiency
+
+associated with them or basically not
+
+not even using a computer as part of
+
+their job right um what advice would you
+
+have as far as the few things that they
+
+should focus on learning deeply if you
+
+just had to Rattle off a list
+
+well I think that uh python
+
+C like any web framework I pick Django
+
+um I mean everything is going to have
+
+the web there should be some API stuff
+
+in there and I look at like what are the
+
+four or five courses that you need in
+
+order to learn everything else and I've
+
+got this talk I I give and I gave it in
+
+India back in February to a bunch of
+
+schools and the idea was is I took all
+
+the things that you might encounter in
+
+the real world at work and I'm like okay
+
+among all these topics which of them
+
+fall below the line which means that we
+
+should teach everybody these topics and
+
+um I came up with four
+
+topics um and then three more topics and
+
+then I called that the path to the
+
+master programmer and that is what are
+
+what in effect in
+
+2024 is a computer science degree
+
+equivalent because computer science
+
+degrees designed in 1978 when it was
+
+actually difficult and so yeah it took
+
+four years and that's the problem is is
+
+that they just make it harder but it
+
+they don't they don't they don't teach
+
+more essential things and so for me I
+
+want to cut it down to the essentials so
+
+that a person who's switching from a
+
+truck driving job to a programming job
+
+can do so in less than a
+
+year and so the path and master
+
+programmer is python see D Jango which
+
+is really more about web object
+
+orientation is a real important learning
+
+objective that I don't think has done
+
+well in computer science at all um
+
+Hardware
+
+JavaScript
+
+Java and then an internship in open
+
+source and then I going to take that
+
+truck driver and
+
+say you can go to work and the first
+
+thing that they're going to learn when
+
+they go to work is potentially none of
+
+those things that I just taught
+
+them because they'll probably react in
+
+scholar or some crazy thing like that
+
+but they'll figure it out and so that's
+
+the that is my distilling of the essence
+
+of a computer science degree into in
+
+effect seven three credit college
+
+courses now my secret hidden
+
+agenda is the time we should teach these
+
+seven
+
+courses is between the age of 14 uh 13
+
+and
+
+16 because people who are 15 years old
+
+their minds are like a vacuum cleaner CU
+
+if you want
+
+retention teach somebody something when
+
+they're 14 15 or 16 years
+
+old and the the way I teach courses is
+
+they're ready for high school and I got
+
+a friend who's a high school teacher and
+
+he keeps testing this and you'd be
+
+amazed at how brilliant they are
+
+graduating from high school and so
+
+imagine if we could take 25% of the
+
+people graduating from high school and
+
+give them what I consider to be the
+
+equivalent of computer science
+
+bachelor's light which is what the
+
+master programmer
+
+is how would the world change if a
+
+person could make 40 50 or $60,000 as a
+
+software
+
+developer graduating at 17 years old
+
+from high school what would their next
+
+education look like when they don't have
+
+to go get a computer science education
+
+when we taught it to him in high school
+
+and I mean I think that's a fun thing to
+
+think about and I'll
+
+you know the future looks like the past
+
+just later and that is wouldn't it be
+
+amazing
+
+if our children in 10 years were could
+
+make 60,000 bucks a year out of high
+
+school and then when we went to college
+
+they could take a really cool liberal
+
+arts degree I mean they're already
+
+professional
+
+programmers and then they go on liberal
+
+arts degree and they're like yeah I know
+
+how to program and then I want to be a
+
+lawyer or I want to be an economist oh
+
+and by the way
+
+coming along with me is professional
+
+programmer skills so every person who
+
+goes in the Congress every person who
+
+drives a train every person who drives a
+
+truck is already a software developer
+
+right yeah and I mean that's that's why
+
+the for everybody is for everybody it's
+
+really for high school students that you
+
+know but but I don't think anyone would
+
+take a class called python for high
+
+school students but that's really what I
+
+am building
+
+that's cool I had no idea that that was
+
+like like I didn't really think that
+
+much about the the name because like
+
+free C Camp like a vast majority of
+
+people who use free C Camp are in their
+
+20s 30s 40s 50s 60s um we even have some
+
+people in their 70s and 80s doing it but
+
+like the median learner age is like 30
+
+so these are people who've already
+
+gotten out of college and studied some
+
+field that like is difficult to pay off
+
+their student debt with a lot of times
+
+uh like I I studied liberal arts and I I
+
+definitely will uh stand for Liberal
+
+Arts like I uh like I think like a more
+
+than a quarter of liberal of like
+
+Fortune 500 CEOs and stuff are like
+
+liberal arts Majors it's one of the more
+
+common things and obviously it's a great
+
+Pathway to to working in uh law uh and
+
+ultimately in work working in any kind
+
+of creative field I think but at the
+
+same
+
+time it's not immediately clear what you
+
+do with a LS degree when you graduate
+
+most people just go to graduate school
+
+which is what I did um and I think the
+
+notion that like if people already had
+
+some skill that they could go and sell
+
+on the market and then they could decide
+
+what to do and they could pursue an
+
+actual field that they're interested in
+
+instead of just going into one of the
+
+you know highest like they look at like
+
+us news and World Report what are the
+
+highest paid majors and then they they
+
+basically make decisions around that
+
+because everything is about covering
+
+your initial cost and and potentially
+
+especially if you're coming from
+
+overseas and you're flying to the United
+
+States and you're getting like a student
+
+visa and all that stuff how in the world
+
+am I gon to make this worth it because
+
+my like two generations saved up money
+
+to be able to eventually send me to the
+
+US to get a degree right so so people
+
+basically have this economic
+
+imperative you have no idea how bad that
+
+is getting and the United States high
+
+red economy is driven by U student visas
+
+and uh they're not the deal that they
+
+want were we we can uh we can talk about
+
+that if you like it's kind of scary
+
+let's just talk about it now this is a
+
+field near and dear to something else
+
+you said in that you there was something
+
+oh the liberal arts okay let me say one
+
+thing and then we'll talk about
+
+International students let's talk about
+
+let's talk about liberal arts first
+
+think about this you went through that
+
+whole liberal arts thing think about
+
+this you come out of college as a
+
+professional programmer and now you're
+
+going to a liberal Art School but you
+
+need some spending money do you spend
+
+the next four years while you're taking
+
+cool Li large classes making coffee or
+
+flipping burgers or standing at a
+
+McDonald's
+
+drive-thru or do you work as a remote
+
+worker part-time 20 hours a week riding
+
+software for companies and making
+
+instead of minimum wage you're making 20
+
+hours a week you're making $30,000 a
+
+year cash and you're learning like crazy
+
+at the same time as you're teaching
+
+taking classes like comparative
+
+Shakespearean literature which is fun as
+
+heck when you're 22 years old right yeah
+
+and so think of not just the time you're
+
+in class in the liberal arts but think
+
+of what you're doing to make money while
+
+you're in the liberal arts degree you're
+
+learning on the job to become even
+
+better software Developers for that four
+
+years that you're in Liberal Arts
+
+because you're not working as a barista
+
+I'm saying but it doesn't mean you can't
+
+work as a barista it just means that you
+
+don't have to work as a barista you'd be
+
+surprised
+
+I'm from the University of Michigan
+
+right it's the Ivory Tower everybody at
+
+the University of Michigan is insanely
+
+wealthy and they have like you know
+
+drivers to take them to class wrong
+
+people at the University of Michigan in
+
+the undergrad when we post an
+
+undergraduate position at the University
+
+of Michigan people line up out the door
+
+and that's because some of the students
+
+undergrads are wealthy from the east
+
+coast and some are not and we have to
+
+educate everybody we can't just say well
+
+we're a we're a Midwest ivy league like
+
+school and so we're going to only wait
+
+until rich people show up and the answer
+
+is no we have lots of non-rich people
+
+and I think about if those students at
+
+the University of Michigan could be
+
+making good money because they really
+
+need survival money I'm not talking
+
+about International students now I'm
+
+talking about you know students from the
+
+state of Michigan going to the
+
+University of Michigan to get the best
+
+education you can get in that state they
+
+can't afford to eat they're hungry and
+
+we we don't we just assume that
+
+everybody at Princeton or Michigan or
+
+whatever can afford to eat and it's not
+
+a good
+
+assumption so that's why I want people
+
+to have employable skills before they
+
+come to college so they have the freedom
+
+to take a place like the University of
+
+Michigan or Princeton and see some
+
+really weird course about International
+
+economy and say you know what I want to
+
+take five more courses about
+
+International economy and I can because
+
+I'm making a decent living I mean I went
+
+to
+
+college making a living because I worked
+
+at the University full-time so I had
+
+benefits I had money I had an apartment
+
+I had a family and I was going to school
+
+for a long time but it was so fun to go
+
+to school and not have to work at a
+
+coffee shop 20 hours a week at 2 o'clock
+
+in the morning taken away from my
+
+education okay
+
+yeah so let's talk about International
+
+students
+
+so the problem with higher education
+
+right now and and and everyone like
+
+since 1990 has basically said that
+
+higher education is is running towards a
+
+brick wall something bad's going to
+
+happen and I'm like that's not right
+
+that's not right that's not right that's
+
+not right and most of the things that
+
+they're saying is like well if you can
+
+learn something on YouTube therefore you
+
+don't need to go to school but what
+
+people don't quite understand is the
+
+purpose of an undergraduate education is
+
+not to learn anything but it's to grow
+
+up and become an awesome person and and
+
+learn to meet people your high school
+
+and your family are all kind of
+
+homogeneous and when you go to college
+
+it's people all over the world and you
+
+learn so many things when you first go
+
+to college and meet so many people that
+
+prepares you for the world that's not
+
+exactly the same as the high school that
+
+you went to yeah right and so it's
+
+important in high school to kind of not
+
+overc confuse our our young people
+
+people let them learn math and algebra
+
+and Python and hardware and C just focus
+
+in that little world and then their
+
+their minds expand and and and so the
+
+the key to a undergraduate education is
+
+mostly to grow up but then we talk about
+
+graduate education and graduate
+
+education is where we have a lot of uh
+
+foreign students and they're it's very
+
+lucrative you mentioned people save up
+
+for two generations to send one child to
+
+America so that they can get US
+
+citizenship through an H1B and their
+
+great grandchildren or
+
+great-grandchildren can be US citizens
+
+and it's a beautiful story right the
+
+problem is that with the last two years
+
+of turndown in the tech economy and we
+
+can talk a bit about the turndown in
+
+Tech economy if you like why I think
+
+that is but with the turn down in Tech
+
+economy our graduate students who are
+
+not US citizens are are encountering uh
+
+job posting after job posting after job
+
+posting that in not so many words says
+
+foreign people need not
+
+apply have you heard
+
+that I know some people that have been
+
+going through the H1B struggle uh I know
+
+people that have been almost like kind
+
+of forced out of their employers just
+
+because like that it's cheaper to hire
+
+because it cost it the employer has to
+
+support you in your H1B effort and that
+
+cost money money and when you have a
+
+whole bunch of US citizens just walking
+
+around unemployed with lots of skills
+
+not bad
+
+people why bother going through the H1B
+
+fuss if you don't have to so these
+
+companies slowly but surely want HR
+
+decision at a Time start taking H1B off
+
+the
+
+table and as long as they take H1B off
+
+the table and they get away with it and
+
+there's enough people in the economy and
+
+enough you know citizens can be hired
+
+you pretty much make it so that it's
+
+really difficult for a
+
+non-citizen to get a job and then get
+
+H1B and then become a citizen so that
+
+their children can be US citizens which
+
+is what two generations in their home
+
+country went through yeah the
+
+beneficiary of up until two years ago of
+
+that was places like the University of
+
+Michigan that can command a high premium
+
+but really what we're selling is
+
+h-1bs right
+
+the students that come to us are super
+
+talented already they have a whole
+
+bachelor's degree in computer science
+
+and they're super talented we throw a
+
+couple years of master's degree charge
+
+them outstate tuition and then you know
+
+dump them off into the H1B process and
+
+then you know that if you after you
+
+graduate if you don't have a job within
+
+60 days you literally have to get on a
+
+plane and go
+
+home back to that family that save two
+
+generations to get you here it is not
+
+going to take long at all for for people
+
+to realize that that's becoming a very
+
+bad
+
+investment right I'm saying the quiet
+
+part out loud right and so the question
+
+becomes the United States has benefited
+
+greatly from all these brilliant people
+
+coming here and making their whole life
+
+sacrifice to be here and to help us and
+
+to make our economy better and make us
+
+the most creative and productive tech
+
+place in the world but if we're going to
+
+shut them off at the
+
+border things are going to change and
+
+universities Revenue are going to I mean
+
+I'm talking now about top ones you know
+
+the michigans the
+
+Harvard's it's not it's if if the
+
+international student population stops
+
+coming it's not like we can't fill up
+
+and do instate master's degrees we'll
+
+always have people it's just a massive
+
+amount of Revenue that we make from that
+
+will go away and honestly that's the to
+
+me as a higher ed person that to me is
+
+the quiet part out loud about the danger
+
+of the next 10 years and you might well
+
+guas that I also have a solution to
+
+that yeah well let's hear let's let's
+
+hear your prop think
+
+about well my proposed solution is um is
+
+we've got to start
+
+creating uh education high quality
+
+education that can be delivered online
+
+at scale to all corners of the
+
+world at a reasonable cost
+
+so let's just say at the University of
+
+Michigan and by the way I'm just making
+
+this up no one's agreed to this yet we
+
+make a master programmer certificate and
+
+instead of costing
+
+$35,000 it costs
+
+3,000 and instead of 300 students we
+
+have 10,000 students but you don't have
+
+to come to United States and at the end
+
+of this not only are you programmer but
+
+we have an internship we we hook you up
+
+with jobs we hook you up with open
+
+source
+
+um and I can educate let's just say 6 to
+
+8,000 people every year sitting in my
+
+comfy Ann Arbor going to my favorite
+
+restaurants and they don't have to come
+
+to the United States and they don't need
+
+two generations of savings to get here
+
+and we can still make money on that
+
+right we can still make money on that
+
+now here's the
+
+problem I have been in educational
+
+technology software for last 25 years
+
+and I will just say that all the
+
+software that's ever been built in
+
+educational technology is not suitable
+
+to achieve what I just
+
+described corera software is bad edx is
+
+bad Saka is bad moodle's bad canvas is
+
+bad I'm going to guess if I look closely
+
+at your stuff it's bad meaning it's just
+
+kind of like hacked up to face the
+
+moment and I think that in order to
+
+build this the first thing we got to do
+
+is build really really good education
+
+technology software I mean stuff that
+
+that is Eclipse is what Corsair is
+
+trying to do and eclipse is what edex is
+
+trying to do and eclipse what canvas is
+
+trying to do even these are all billion
+
+dollar companies right but they don't
+
+care because they're making a billion
+
+dollars they don't want to make a better
+
+piece of software they just want to keep
+
+selling the same crappy software that
+
+they've been
+
+selling so that's my solution and my
+
+solution prere requires building an
+
+entire new generation of educational
+
+technology that has not been seen on
+
+this planet
+
+yet and you think 30 years later from
+
+the mid 90s to today they've been
+
+building these things called Learning
+
+Management Systems you'd think they'
+
+have made some
+
+progress they made progress making
+
+money that's one way to put it uh
+
+ruining people they made progress making
+
+money and ruining people's
+
+privacy stealing their
+
+data don't get me started on privacy
+
+okay well I won't get you started on
+
+privacy cuz uh there's already so much
+
+to unpack there uh like obviously we
+
+feel very strongly about privacy I'm
+
+very proud to say if you go to free Cod
+
+Camp SL settings you scroll to the
+
+bottom you can delete your account and
+
+all data we have on you permanently
+
+there's no way back like we literally
+
+just delete it and there's a backup that
+
+will get deleted after like a week right
+
+so like there's no path to reclaiming
+
+your data uh and we we make it trivial
+
+there's like one are you sure yes it's
+
+done um and the other thing you could uh
+
+you could add a add a thing to that
+
+where you say look I want you to Auto
+
+delete my data after two years
+
+yeah and so there's this kind of like
+
+rolling thing like and if I'm gone two
+
+years it's just all gone right and I
+
+make it so I can extend it if I want
+
+right you send me a note to say hey it's
+
+uh it's June we're doing our annual dat
+
+a clean up I'm going to clean your data
+
+up unless you come and click this button
+
+to extend it another another year the
+
+button I can extend which means that
+
+it's like a dead man switch on a train
+
+right where it and I stole this from
+
+python anywhere by the way they give a
+
+thing say your site's going away but all
+
+you gotta do is click this button and
+
+you got another three months right and
+
+um and so a privacy perspective the key
+
+thing is auto expiring data right it's
+
+not just getting rid of it which I like
+
+that and that's good for furpa and good
+
+for all the Privacy standards but Auto
+
+expiring data and and the key to Auto
+
+expiring data not that free code
+
+Camp uh is subject to this but a
+
+commercial company should also Auto
+
+expire data because that commercial
+
+company could be sold 10 years from now
+
+so if I use some commercial company to
+
+do homework and I upload my stuff to
+
+this and my teacher grades it on this
+
+uploaded thing yeah um and that company
+
+10 years later gets sold to say a
+
+Chinese company and they didn't Auto
+
+expire my data but I long ago forgot
+
+about it and I really don't care if it
+
+exists or not and then my homework is in
+
+China right not good not good and so
+
+that's where we got to learn Auto expire
+
+data so I zoom at the University of
+
+Michigan we've got to configured to Auto
+
+expire data after like 18 months or
+
+something and I'm always getting like
+
+emails from Zoom saying we're about to
+
+delete your data from from 18 months ago
+
+and I'm like I'm so happy when I see
+
+that email like yes that's what I want
+
+just I don't whatever that was I don't
+
+care about it I mean it was important 18
+
+months ago I was like a office hours or
+
+a lecture or something but it's 18
+
+months old actively delete my stuff yeah
+
+yeah for us like because people rely on
+
+these certifications that we put like
+
+and we track like all the work that
+
+they've done and we want to be able to
+
+have like a forensic chain of like in
+
+case there's ever academic dishonesty
+
+accusations or something like that yep
+
+uh but but this is definitely something
+
+that I'm thinking like you got my wheels
+
+turning I hadn't even really thought
+
+about that I think like from to extend
+
+and if they want to keep it for 20 years
+
+keep it for 20 years I mean so many of
+
+our emails end up in Gmail spam box
+
+anyway that I am kind of worried that a
+
+lot of people would be like I never got
+
+the email and all my data is gone and
+
+then we'd be spending a whole lot of
+
+support time trying to explain to people
+
+sorry we really can't get your data back
+
+like I'm sorry this went to spam uh like
+
+with my email newsletter I just C my EMA
+
+newsletter from 7 million people down to
+
+you know less than 100 thousand people
+
+and the way I did that was I sent out an
+
+email and said hey if you're enjoying
+
+this email and you want to keep getting
+
+it please click like fill out this form
+
+real quick like it's like just confirm
+
+basically uh and uh and yeah like a
+
+whole lot of people were probably it was
+
+showing up in their spam box or they
+
+were just like you know filtering it out
+
+oh I get to this someday maybe you know
+
+but um but the result is fewer people
+
+are getting the email but it's the
+
+people who really want it so I do like
+
+this this notion uh there's so many
+
+things we could talk about about privacy
+
+like again like I'm a huge believer in
+
+respecting people's privacy and asking
+
+for the bare minimum information all you
+
+need for a free Camp account is like
+
+literally an email it can be a fake
+
+email we're not going to stop you from
+
+using five minute mail or whatever but
+
+you're not going to be able to off after
+
+that because we don't use passwords
+
+because passwords are a huge security
+
+thing so we we do like basically we use
+
+uh onetime pins to get into your account
+
+for example so so like we're thinking
+
+about all these things but I I want to
+
+get back to what you said because I
+
+think it's worth noting like a lot of
+
+people may not know what Sakai is but
+
+you mentioned you you mentioned like you
+
+know Sakai is probably not like good
+
+enough uh you know of course there are
+
+all these other companies and you
+
+mentioned you know free C Camp of course
+
+we're actively working to improve and to
+
+build a more general purpose uh you know
+
+validation environment to like be able
+
+to validate that people have actually
+
+completed assignments and being able to
+
+test different things but Sakai is your
+
+own project so I just want to point out
+
+like if people haven't heard of that the
+
+humility uh in you mentioning that you
+
+know that your own stuff is not good
+
+enough either and that you're working on
+
+it can you talk about Sakai real
+
+quick absolutely Sakai is an open source
+
+learning management system competing
+
+with Blackboard Moodle canvas and desire
+
+to learn uh as an Enterprise learning
+
+management system and uh we we were
+
+founded in uh 2004 and we end up peing
+
+at about a 6% worldwide market share in
+
+like 200 eight and we've been syncing
+
+ever since uh canvas basically is the
+
+current market leader in this space and
+
+they stole all our ideas and they stole
+
+all the standards that I helped
+
+build there's the standards the IMs
+
+learning tools interoperability ring of
+
+Appliance canvas is on there but they
+
+changed their logo since I put the
+
+tattoo on um and and what happened uh
+
+that makes why Sakai doesn't have a 6%
+
+or even 100% market share is that uh
+
+University's it organizations have given
+
+up on the notion of protecting student
+
+privacy and they just want a cloud
+
+provider that they like Google or
+
+Facebook that's going to make it so they
+
+don't have to worry about the software
+
+Sakai is open source software and so
+
+there's some worry involved in it that
+
+you got to run servers if it goes down
+
+if there's a bug that needs fixing you
+
+got to kind of go fix it whereas if you
+
+just Outsource to a cloud provider like
+
+canvas you you um don't have to think
+
+about it I mean our canvas was down for
+
+3 Days the be beginning of the semester
+
+and the IT people were just cool as a
+
+cucumber because it's like it down but
+
+it's not my problem right it's very
+
+secure if they were running sakay at
+
+that same point in time they would be
+
+people on site 24 hours a day you know
+
+and so it the it organizations of these
+
+colleges are making convenience choices
+
+for the it organization that are
+
+completely compromising the student
+
+privacy and so Sakai is a competent
+
+piece of software that's on par with all
+
+these other ones the difference is is
+
+Sakai is not purely a cloud offering
+
+Blackboard canvas desired to learn is
+
+purely a cloud offering mood and Sakai
+
+are open source which means you can as a
+
+school keep the data in your own hands
+
+rather than just give it to a company
+
+that could be sold on a whim any day you
+
+wake up in the morning and you got a
+
+contract with them that says you'll be
+
+notified when they're sold and the
+
+answer is yep you'll be notified when
+
+they're sold but your data is gone by
+
+noon and you're like well I'm going to
+
+sue you for that and the answer is yep
+
+you sue but by then the money's all gone
+
+and it's all it's whatever so thing
+
+really annoys me about uh learning
+
+management system Marketplace is that it
+
+organizations are making decisions based
+
+on their staffs and Ci's convenience and
+
+they are making a powerful choice that
+
+is the wrong choice for their students
+
+privacy yeah they are handing that data
+
+off to third parties without even
+
+telling the student that their homework
+
+assignment on human sexuality is in the
+
+hands of a private company that could be
+
+sold anytime because if they express it
+
+that way the students be like I'm not
+
+going to turn my homework in anymore but
+
+they don't express it that way right
+
+they're like and it's it people that are
+
+like got their motivations all screwed
+
+up because they don't have talented
+
+people in it anymore
+
+so that's Sakai sakai's awesome but the
+
+the key thing that why I say Sakai I
+
+need to Beyond Sakai I need to Beyond
+
+corsera I need to Beyond edx and it has
+
+to do with that high school thing we
+
+talked about because what you are not
+
+capable doing with free code camp and
+
+what Sakai is not really capable of
+
+doing is also being a publisher into
+
+other people's Learning Management
+
+Systems of content people have to come
+
+to free code Camp they experience it on
+
+free code camp but what if a high school
+
+in Singapore wanted to take a course
+
+from free code camp and teach it on
+
+their system not just tell all the kids
+
+go log into free code Camp show me your
+
+certificate when you're you're done I'll
+
+give you a grade no no no no no it needs
+
+to be resources like a publisher like
+
+Pearson and Pearson my math lab Etc like
+
+what they would do what Pearson did with
+
+my math lab is they plug it into
+
+whatever school from ninth from seventh
+
+grade to PhD they plug it into wherever
+
+you're at and nothing including Sakai
+
+and what you've written does that and so
+
+we need to think like a
+
+publisher and so that's why I need to
+
+build a whole new generation of these
+
+things that look much like learning
+
+management systems but also function as
+
+publisher systems and so the problem is
+
+is we've gotten we've sort of just gone
+
+off into this like teach a course teach
+
+a course teach a course but we haven't
+
+thought so much about authoring and
+
+reuse modification and sharing courses
+
+because College professors don't want to
+
+think about teaching until August 27th
+
+and then on May 15th they want to stop
+
+thinking about teaching and so it's it's
+
+okay so but we need a whole new
+
+generation of
+
+software yeah which I'm working on
+
+awesome yeah and and uh I'm excited
+
+about this because again you're you're
+
+correct like free Cod camp like
+
+technically it's open source any
+
+University Professor or any uh you know
+
+admin at uh High School could just spin
+
+up a local version of free Coke game or
+
+even just white label and have it be
+
+like you know charger High um computer
+
+science program and it could basically
+
+be free Cod Camp running and that's
+
+totally fine that's within the terms of
+
+free C Camp is open source we use the
+
+bstd 3 license which is extremely
+
+permissive uh the only restriction that
+
+BSD has three has that MIT doesn't have
+
+is you can't pretend that you're free C
+
+Camp and that's for obvious reasons
+
+because we don't want people like
+
+capitalizing on our good open folks are
+
+very protective of trademarks and that's
+
+appropriate yeah yeah and we have
+
+Ironclad trademark here in the US and uh
+
+and other municipalities as well
+
+municipalities other other regions uh
+
+because we don't want scammers to
+
+pretend they're free go camp and rip
+
+people off yeah yeah yeah uh
+
+so wow uh like talking about higher
+
+education uh what would your advice be
+
+to a learner who's in India because we
+
+have a lot of people in like free C
+
+Camp's Community the way to look at it
+
+is like America is by far the biggest
+
+segment of people who use free code Camp
+
+the United States specifically then we
+
+have um India is second and then we have
+
+uh Brazil Nigeria uh and then like
+
+Europe if you want to look at like the
+
+EU area and and the UK like that would
+
+be kind of like the the there's a lot of
+
+people over there that use it too but
+
+but like India is huge and you just got
+
+back from India you flew over there my
+
+understanding is you went to like 10
+
+different universities like some
+
+Whirlwind tour can you talk about what
+
+that was like and then uh my main goal
+
+is to like understand what that was like
+
+but also to understand for Indian people
+
+that are watching this who are thinking
+
+about traveling to the US to get a
+
+master's degree like what they should
+
+consider doing or or people who are
+
+hoping to send their kids to the US to
+
+get a master's degree like you are an
+
+authority on computer science education
+
+and like I would you know presume also
+
+International students coming to the US
+
+to try to study computer science and get
+
+hb1 BS and work as software Engineers
+
+like you know a lot more about that than
+
+I
+
+do so
+
+first off my twoe trip to India was I
+
+got to feel like what it was like to be
+
+a celebrity in a real tiny little narrow
+
+world of computer science and that I was
+
+treated very well and uh you know people
+
+were applauding and there was standing
+
+room only rooms with 3,000 people in it
+
+and so and cars would take me places and
+
+food and airplane flights not private
+
+jets or anything but we just it was just
+
+fun to kind of be a
+
+celebrity um so I think and I actually
+
+think Quincy you are way ahead of the
+
+curve on this particular topic um you
+
+may or may not know that you're ahead of
+
+the curve on this particular topic but I
+
+I'll tell you what I envisioned 10 years
+
+from now and then what I'm going to try
+
+to put into place is we have
+
+historically thought of
+
+India as a place where um you can kind
+
+of Outsource stuff but you can't trust
+
+them you got to you know you know and
+
+then you hire someone in India to hire
+
+the people in India and then you're
+
+still not happy because you think I
+
+can't hire people directly in India and
+
+like what how would that work and and so
+
+there's been this kind of like
+
+Outsourcing business where all the
+
+Indian computer scientists work for
+
+companies who then resell them to United
+
+States to do kind of crap work right the
+
+work we just don't want to do and that's
+
+complet completely the wrong model
+
+that's completely the wrong model the
+
+other alternative is you save for two
+
+generations you come to United States
+
+and then you go work in Silicon Valley
+
+that's also completely the wrong model
+
+here's what the right model is the right
+
+model is that people who live in India
+
+like living in India their families are
+
+there their food is there they just like
+
+that people love India it's a great
+
+place to live you know it's a great
+
+place to raise a family it's there's
+
+lots of things about the Indian culture
+
+that you know that are just unnatural
+
+you know and when they come to America
+
+it's unnatural so how can't we come up
+
+with a scheme by
+
+which given what we learned in the
+
+pandemic about remote work can't we come
+
+up with a scheme by which companies
+
+simply directly hire Indian
+
+individuals and make them just part of
+
+the team and in doing so they pay them
+
+probably a quarter of the amount of
+
+money they'd have to pay them to live in
+
+Silicon Valley they live with their in
+
+their culture they enjoy their
+
+culture they're within their culture
+
+they're very well paid and then you just
+
+treat them like any other employee right
+
+and I I see you're nodding because
+
+you're already doing this and I know you
+
+are already doing this we have lots of
+
+teams from South team members from South
+
+Asia but they're not hidden behind some
+
+kind of like firewall of a of a
+
+consulting company right they're just
+
+people on your team that happen to show
+
+up in Zoom like everybody else shows up
+
+in Zoom right yeah and you know them and
+
+you get to grow and care for them now
+
+then imagine for a moment that you were
+
+a bigger company and you could afford to
+
+fly him to the United States for a while
+
+and you know have like a company Retreat
+
+and take all your Indian employees and
+
+your Singapore employees and bring
+
+everybody United States and so that they
+
+could enjoy United States they could get
+
+to know it they could like eat our food
+
+and then we they'd be like oh your
+
+food's no good I want to go home and eat
+
+really good food in my country right and
+
+so we got to get to the point where we
+
+the United States companies and
+
+organizations can benefit from this
+
+amazing pool of talent but without
+
+hiding behind like the contractors right
+
+they're just employees and we've learned
+
+to use zoom since 2020 we know it and so
+
+like you I have an Indian employee I
+
+figured out how taxes work I figured out
+
+how to write paychecks to Indian people
+
+and it's easy and it's great and there's
+
+companies that make it really really
+
+easy for a US organization to hire
+
+someone directly in India and then you
+
+become they're just another employee and
+
+you again
+
+locality post pandemic locality is less
+
+and less of an issue if we could fix it
+
+so that they could come on a tourist
+
+visa or a business visa for two weeks
+
+and enjoy meeting them in person so when
+
+I went to India I met my employee in
+
+person because it just turned out that
+
+he lives in one of the cities that I was
+
+in so I met him and he's doing really
+
+well I don't pay him nearly as much as I
+
+would pay a US employee and yet he is
+
+upper middle class where he lives right
+
+he's paying debts off and living a good
+
+life and and whatever and it's costing
+
+me not nearly as much money it would
+
+cause to have the same talent in the
+
+United States so what do we need to have
+
+that happen well it would be great if we
+
+had an educational
+
+system that at the end of their
+
+education they had some internships and
+
+the internships were Global and
+
+distributed and there was an
+
+organization that mediated all this so
+
+that maybe you know there would be like
+
+a kind of a code camp where you know
+
+people all over the world would
+
+participate in this posteducation camp
+
+where they're learning to work with
+
+people they're learning to work on
+
+professional software there's workshops
+
+there is internships there is connection
+
+between employers and employees there is
+
+funds from nonprofits to this
+
+hypothetical organization that creates
+
+free camp-like experiences around the
+
+world for
+
+technologists and we just like scale the
+
+crap out of that I mean does that sound
+
+like an okay thing
+
+yeah I think that'd be amazing uh I mean
+
+if it involves interfacing with the US
+
+government you're the closest to it
+
+right that's why the name of your
+
+company free code Camp about
+
+togetherness not just like free
+
+education but it's about togetherness
+
+yeah yeah I mean anything that
+
+interfaces with the US government and
+
+the Visa system like I used to be a
+
+School director and I worked for like
+
+this big Japanese conglomerate we had
+
+schools I ran a school in China I ran
+
+schools here in the United States and it
+
+was such an ordeal even with this giant
+
+corporation that was really old um like
+
+50 60 years old uh that had all these
+
+connections with like the state
+
+department and had like this entire team
+
+that understood like government
+
+relations and all this stuff like it was
+
+an ordeal to be able to get people to
+
+come to the US uh and what you just said
+
+earlier about like flying are Indian
+
+team members uh we have uh a team member
+
+in India we have two in Bangladesh we
+
+have one in Pakistan uh and then we have
+
+like 21 different countries are
+
+represented on the freeo camp team 36
+
+people 21 different countries right um
+
+it is an ordeal to get even a tourist
+
+visa to get people like uh mesh uh who
+
+who's like basically the head of like
+
+all of our infrastructure he's kind of
+
+the equivalent of the CTO at free C Camp
+
+right he has been waiting for like a
+
+year to get his visa interview so
+
+hopefully he'll be able to come next
+
+year right uh but it's just it's a lot
+
+of paperwork and I don't really have the
+
+heart for it to be completely Ked like
+
+as much as I would like to bring people
+
+together I I I'm not the right person to
+
+do that but maybe there could be a
+
+charity that's focused on that that we
+
+could potentially partner with uh yeah I
+
+I'm talking about things 10 years I'm
+
+not talking about you got to do it next
+
+week right we know it's hard right yeah
+
+but we've got to lay down path in front
+
+of us that eventually leads to that as a
+
+natural thing right you know we're doing
+
+what we can do right now um I think the
+
+thing we got to work on in the short
+
+term is distributed scalable
+
+internships that's but the problem with
+
+that is that uh students have to have
+
+enough talent to be worthy of that
+
+because you can't just say I don't know
+
+anything about programming I'm a TR
+
+truck driver why don't I start with an
+
+internship and the answer is you will be
+
+ejected from that internship at at a
+
+very high velocity right because you're
+
+useless yeah mentoring only happens when
+
+you have skills it doesn't happen
+
+because you want skills it happens
+
+because you have skills and so our job
+
+yours and mine is to create a curriculum
+
+where they get the skills so that when
+
+they're sort of nominated for an
+
+internship people go like o yummy that's
+
+the kind of skills I could use at a very
+
+low cost and it's all taken care of by
+
+whatever and now I can get them to work
+
+on my project and and and and oh in a
+
+year I'm going to just hire them anyway
+
+so away we go and so that to me is the
+
+thing is it's not just let's do
+
+internships let's not just have free
+
+code camps around fires around the world
+
+if there's no skills involved you know
+
+and non-trivial skills right this is the
+
+back to the master programmer so for me
+
+the master programmer is the
+
+prerequisite to entry into internships
+
+because I don't like mentoring people
+
+who have no skills I've just not going
+
+to do
+
+it yeah and the reason why these
+
+internships are so selective in like
+
+Silicon Valley and the reason why they
+
+are so remunerative is is a twofold
+
+reason from the way I understand one
+
+they want to identify the best talent
+
+before they even bring them in they want
+
+to make sure they're actually going to
+
+be able to productively get things done
+
+and it's also like kind of a cheap
+
+pipeline for identifying talent that
+
+they can bring on cuz like most of the
+
+people I know they got an internship at
+
+Google or Microsoft or like a big tech
+
+company
+
+they also at the end of that internship
+
+got extended like a job offer and then
+
+they could join that was that was
+
+basically like corporate training for
+
+being able to join their company it's
+
+kind of the equivalent of going through
+
+like an employ employee boot camp almost
+
+being an intern and I agree internships
+
+are great because they're paid and uh
+
+they can they work within the US
+
+framework of visas and I know we're
+
+talking about letting people stay in
+
+their home country and not having to go
+
+through this you know naturalization
+
+process my wife went through that
+
+naturalization process by the way uh we
+
+met when I was in grad school in China
+
+uh in tingan uh and uh she eventually
+
+you know came to the US got a green card
+
+worked here for many years and uh was
+
+able to naturalize as a US citizen but
+
+like it was it was a big ordeal and you
+
+know apart from reforming the
+
+immigration system which we don't talk a
+
+lot about political things on uh the
+
+free C Camp podcast but like I'm I'm a
+
+huge believer in making it much easier
+
+for skilled immigrants to come to this
+
+country uh and I'm I'm very vocal about
+
+that I'm not I'm not going to put you on
+
+the spot and see what you think about
+
+immigration or anything like that but
+
+like apart from making it easier for
+
+talented people to come and work and
+
+contribute to the economic activity help
+
+us build up the tech ecosystem here in
+
+the United States pay taxes uh all of
+
+those things uh I do love the idea of
+
+just making it easier for people to get
+
+promising internships and helping more
+
+companies realize that internships are a
+
+path forward and that they can actually
+
+get really talented internships so that
+
+like even small businesses could
+
+potentially have interns that have a
+
+certain Baseline of skills who can come
+
+on board and there's an independent
+
+Arbiter of those skills right now the
+
+Arbiters of those skills are like Linux
+
+Foundation CompTIA and of course
+
+University degree programs whom it
+
+sounds like you would say those degree
+
+programs like computer sized programs
+
+are not sufficiently robust in uh
+
+helping sort people who are ready for an
+
+internship from people who just coasted
+
+through a CS program and aren't even
+
+that passionate about it just went
+
+because their parents pushed them to go
+
+to CS because it's a remunerative degree
+
+program
+
+right yeah I just I think that the Cs
+
+has kind of been lazy in their
+
+curriculum because it doesn't matter
+
+what they teach because you know they
+
+teach you know 80% of it is a waste and
+
+20% of it is good and then I think you
+
+and I could teach the 20% without the
+
+80% and achieve the same result yeah I
+
+mean from an from an immigration
+
+perspective what if the demand isn't
+
+there and United States and we just
+
+can't assume that the it's been demand
+
+has been infinite for kind of for 35 or
+
+40 years for new software developers
+
+because that's the that's the crash in
+
+the software industry right and now and
+
+so let me just and I got to go to my
+
+flying lesson in a little bit you're
+
+looking at the clock and I'm looking at
+
+I got to go to my flying lesson bit
+
+um the reason in my opinion for the
+
+crash in the tech
+
+industry and the reason it's not going
+
+to
+
+recover is
+
+simple in 2006 Google needed to build a
+
+low latency distributed file system a
+
+thing that had never been invented and
+
+never been
+
+built that could have like 11 copies of
+
+your data and have 12 nines of
+
+reliability and so in 2006 they
+
+needed 5,000 software developers to
+
+solve that extremely difficult problem
+
+properly what problem and then they had
+
+to do like big table and then they used
+
+page Rank and then they did this and
+
+they did
+
+that the question if you look at Amazon
+
+let's just say you're the CTO of Amazon
+
+right now what are the five most
+
+important strategic innovations that
+
+Amazon needs to do right now in terms of
+
+its infrastructure and whatever can you
+
+think of anything that Amazon even needs
+
+to do that would require a thousand
+
+people technology wise I mean I have a
+
+limited you know uh view into like what
+
+their day-to-day I mean if they if
+
+they're going to be serious about drone
+
+delivery maybe that would be an area
+
+like that they would need to invest
+
+a but I I can't really think anything
+
+off the top of my head how about we
+
+invent a technology that makes it so
+
+robots can do Pick and Pull in large
+
+warehouses so that we can more
+
+efficiently fill trucks up so people can
+
+get stuff in one day instead of two days
+
+why don't why don't we hire a bunch of
+
+people to figure out that robot
+
+technology oh
+
+wait it's already done right so that's
+
+the problem right you look at the things
+
+that Amazon Google Facebook Twitter and
+
+you look at what they've accomplished so
+
+far you they have a achieved a lot and
+
+then un yet as as yet unachieved things
+
+are way smaller in 2024 than they were
+
+in 2012 or
+
+2006 so we shouldn't expect that
+
+whatever the number of software
+
+developers Amazon
+
+needs that is now shrunk is going to get
+
+big again that's not saying it's zero
+
+right because drone delivery and who
+
+knows what else right you
+
+know but man there has been a lot of
+
+technology achievement in the last 20
+
+years and these guys have products and
+
+systems and trucks and people and that
+
+stuff works and you don't need to invent
+
+a new
+
+thing right Maps worldwide accurate Maps
+
+solved I'm not saying it doesn't need
+
+any software developers it just doesn't
+
+need tens of thousands of software
+
+developers so that notion if you think
+
+about why we needed an H1B and I'm not
+
+anti- H1B I'm just looking at the things
+
+that lead to the lack of demand the
+
+reduced demand that I think is
+
+permanent now that doesn't mean that we
+
+don't that we don't need any programmers
+
+we just don't need the kinds of people
+
+with a PhD in computer
+
+science that they needed at Google in
+
+2010 it's never coming back and so what
+
+you and I need to do is we need to
+
+educate a
+
+populace for the things the market
+
+actually wants in 2024
+
+not pretend that it's still
+
+2010 yeah and so we think about how does
+
+that
+
+work and that gets us back a bit to the
+
+the problems that really are important
+
+our people problems and the technical
+
+problems are getting easier and easier
+
+so if we kind of start teaching
+
+technical stuff in high school and
+
+letting people take liberal arts degrees
+
+and work great with people and create
+
+wonderful distributed teams to solve
+
+whatever human problem we need to solve
+
+that is the humans will always want a
+
+new thing right they'll they'll want a
+
+new Uber like thing and that's going to
+
+take some work but the human problems
+
+are as important as the technology
+
+problems if you're starting a company
+
+like uber so yeah how many minutes do
+
+you have before your flight lesson I
+
+want to make sure you make that and uh
+
+but I I do have like a ton of additional
+
+questions we got about five more minutes
+
+okay I'm just gonna fire these more
+
+minutes fire these off first of all
+
+you're doing you're doing flight this is
+
+this is like a soft question but you
+
+also in addition to flying planes you
+
+race
+
+cars what's the story behind that I do
+
+race
+
+cars um well I just I just like um I
+
+like I like very organic racing local
+
+racing I don't like F1 or NASCAR
+
+anything like that uh what I really like
+
+doing is driving fast around a track in
+
+a track prepared car so that when I so I
+
+don't have to speed to get my jollies on
+
+entrance ramps to to highways and so can
+
+afford I race in this thing called the
+
+24 hours of lemons which is supposedly a
+
+$500 car that races a 16-hour endurance
+
+race but it just lets me get my
+
+excitement out of my system with uh
+
+without having to be highly testosterone
+
+so I'm not a I'm like I have a five on
+
+my race car my racing team I am either
+
+the worst or the second tourist racer
+
+meaning in terms of you look at the
+
+times my times are terrible compared to
+
+my brother and my NE you and but we
+
+don't care because we're not trying to
+
+win we're just trying to really enjoy
+
+the day and drive around the track so
+
+it's just it's a very fun hobby we like
+
+preparing the cars and building them and
+
+uh and so that's where the racing hobby
+
+comes in awesome uh well we didn't even
+
+have time to talk about AI uh if I know
+
+you've answered this question like
+
+repeatedly when you were traveling
+
+through India and probably a whole lot
+
+since then but if you had just like a
+
+one minute answer to why people
+
+shouldn't be worried specifically about
+
+AI as programmers but you know all the
+
+other things that you mentioned that
+
+they should be worried about what would
+
+be
+
+like I was asked the question of why
+
+take any classes when AI is going to
+
+solve every problem yeah and I in a
+
+space of 14 days I gave the same talk
+
+over and over and over again and answer
+
+that question over and over and over
+
+again and as I was experiencing all the
+
+other things I was refining the answer
+
+to that question so I got to the point
+
+in the second to last one where I came
+
+up with an answer that that silenced the
+
+whole room right they're like why should
+
+I learn to program with AI and it
+
+happened because they were giving me a
+
+tour at the lovely professional
+
+University in Northern India and they
+
+were showing me people working on
+
+drones building new drones and I walked
+
+into that room and these young people
+
+were showing me their drones and the
+
+thing that was going off in my head is
+
+like aren't drones a solved problem I
+
+can go to Best Buy and buy a drone and I
+
+go like and it just drives around are
+
+drones a solve problem and then I
+
+started thinking about this because I'm
+
+old enough to remember when we first
+
+started hearing about quadcopters and Ai
+
+and WiFi and coordination of them and I
+
+remember seeing videos of like person
+
+starting up a quadcopter and it like
+
+crash they got nets all around it and it
+
+crashes into the the wall and breaks
+
+into a million pieces and they make
+
+another quadcopter and I'm thinking like
+
+there was a time when we the world did
+
+not know how to make quadcopters so
+
+here's what I'm telling you to do let's
+
+just say
+
+quadcopters were not in existence in
+
+2000 so what I want you to do is I want
+
+you to
+
+grab uh all the Nvidia processors you
+
+want um and I want you to put those in a
+
+suitcase
+
+and grab all the like AI Wizards that
+
+you can grab software developers and
+
+stuff and I want you to time travel back
+
+to
+
+2000 and I want you to arrive in 2000
+
+and you plug Invidia processors in you
+
+plug the internet in and you
+
+say llm read everything in the world
+
+today and so we take an llm back to 2000
+
+and the LM reads everything in 2000 and
+
+the llm finally comes up
+
+like in hit trer Guide to the Galaxy the
+
+hit llm comes up and the people gather
+
+and we're going to ask it one
+
+question and that
+
+is I am interested in building a
+
+quadcopter that's automatically
+
+self-leveling that uses Wi-Fi to find
+
+its way Wi-Fi existed in 2000 uses Wi-Fi
+
+to find its way around and I want to
+
+hold a thing in my hand and drive it
+
+around that AI the the perfect Genius of
+
+all Humanity's future has no data in
+
+2000 to invent a quad
+
+copper nothing it's like uh what's a
+
+quadcopter right that's it that's all
+
+you get from it and so we're excited
+
+about the fact that it's looking
+
+backwards in time at already solved
+
+problems and it can regurgitate the
+
+already solved problems with a little
+
+remixing a bit and we're like that's the
+
+future and the answer is no that's not
+
+the future the future is things we can't
+
+even conceive
+
+of so AI doesn't help us with the things
+
+we can't conceive of it does help us
+
+with the things that are passed it's
+
+really good search engine and I love it
+
+I mean it's great I use it all the time
+
+but to say that there is no need for
+
+futur looking creativity or any kind of
+
+research because AI is going to do it
+
+for us the answer is no it's not it's
+
+terrible at looking forward it really is
+
+terrible at looking forward it's great
+
+at looking back so there's that that's
+
+the AI thing and when I said that
+
+finally I'm they like oh yeah they right
+
+it can't know things that it's not been
+
+told yeah yeah I mean that's very much
+
+my sentiment like it's great I use it
+
+almost like as a replacement for Google
+
+in some situations like if I have a
+
+longtail query that Google's I know I'm
+
+just going to get gibberish on Google
+
+I'll go and ask it and it does a decent
+
+job uh or if I needed to make it like
+
+really specific associations like with
+
+language learning stuff it's super
+
+useful I really appreciate your time
+
+sharing these insights uh sharing the
+
+reassurance that people are still going
+
+to need to learn programming people are
+
+still going to need to have domain
+
+expertise people are still going to need
+
+to do all the things they're doing
+
+today even though we have this tool that
+
+makes it much easier to synthesize past
+
+knowledge it's not going to create new
+
+knowledge right I mean it may be able to
+
+do very specific things like go out and
+
+try all these novel combinations of you
+
+know like for drug Discovery for example
+
+I think I that it's got a lot of
+
+potential in that area but it's not
+
+going to be able to do anything you
+
+don't really tell it to do within like a
+
+kind of a bounded space
+
+so thank you again for your Time Dr
+
+Chuck it's been an absolute honor having
+
+you on the podcast this is you've been
+
+on my list of guests to have for
+
+literally years at this point and uh I'm
+
+I'm very excited to meet with you
+
+hopefully talk with you some more about
+
+the future of higher education uh
+
+practical kind of like vocational
+
+programming education uh so uh is there
+
+any message you want to leave people
+
+with before we sign
+
+off I I think uh the importance of fre
+
+code C Camp is going to go up not down I
+
+mean I think that there are things about
+
+your model that are more scalable and
+
+sustainable than any other model for
+
+educating the
+
+world thank you I'm gon to incorporate
+
+as much of your feedback as possible and
+
+we're going to keep this momentum going
+
+that we have with the free C Camp
+
+Community thanks again for all your
+
+support for all your uh thoughtful
+
+feedback over the years and for creating
+
+these amazing free learning resources
+
+many of which we're publishing on fre C
+
+Camp so be sure to check the show notes
+
+and you can you can see some of Dr
+
+Chuck's amazing coursework I'll also
+
+include links to some of your various
+
+websites thanks again Dr
+
+Chuck thank you Quincy and until next
+
+week everybody happy
+
+coding cheers
+
