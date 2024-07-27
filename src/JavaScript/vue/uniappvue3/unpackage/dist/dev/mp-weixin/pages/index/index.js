@@ -4,7 +4,8 @@ const common_assets = require("../../common/assets.js");
 const _sfc_main = {
   data() {
     return {
-      title: "Hello"
+      title: "Hello",
+      pictures: [{ id: "1", url: "" }]
     };
   },
   onLoad() {
