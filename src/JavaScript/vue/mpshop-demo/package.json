@@ -40,7 +40,6 @@
     "build:quickapp-webview-union": "uni build -p quickapp-webview-union",
     "tsc": "vue-tsc --noEmit --skipLibCheck",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
-    "prepare": "husky install",
     "lint-staged": "lint-staged"
   },
   "lint-staged": {
