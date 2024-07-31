@@ -1,14 +1,16 @@
 <script setup lang="ts">
 import { useMemberStore } from '@/stores'
-import '@/utils/http.ts'
+import { http } from '@/utils/http.ts'
 
 const memberStore = useMemberStore()
 // test interceptor
-const getData = () => {
-  uni.request({
-    method: 'GET',
+const getData = async () => {
+  const res = await http<string[]>({
+    method: 'get',
     url: '/home/banner',
+    header: {},
   })
+  console.log('res', res)
 }
 </script>
 
