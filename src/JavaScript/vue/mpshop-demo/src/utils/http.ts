@@ -67,13 +67,29 @@ export const http = <T>(options: UniApp.RequestOptions) => {
     uni.request({
       ...options,
       success(response) {
-        console.log('response', response)
-        resolve(response.data as Data<T>)
+        if (response.statusCode >= 200 && response.statusCode < 300) {
+          resolve(response.data as Data<T>)
+        } else if (response.statusCode === 401) {
+          const memberStore = useMemberStore()
+          memberStore.clearProfile()
+          uni.navigateTo({
+            url: '/pages/login/login',
+          })
+          reject(response)
+        } else {
+          uni.showToast({
+            title: (response.data as Data<T>)?.message || '请求错误',
+            icon: 'none',
+          })
+          reject(response)
+        }
       },
-      // fail(error) {
-      //   console.log('error', error)
-      //   reject(error)
-      // },
+      fail(err) {
+        uni.showToast({
+          title: '网络错误',
+          icon: 'none',
+        })
+      },
     })
   })
 }

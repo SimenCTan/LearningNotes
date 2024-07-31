@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import { useMemberStore } from '@/stores'
-import { http } from '@/utils/http.ts'
+import { useMemberStore } from '@/stores';
+import { http } from '@/utils/http.ts';
 
 const memberStore = useMemberStore()
 // test interceptor
 const getData = async () => {
   const res = await http<string[]>({
-    method: 'get',
+    method: 'GET',
     url: '/home/banner',
     header: {},
   })
