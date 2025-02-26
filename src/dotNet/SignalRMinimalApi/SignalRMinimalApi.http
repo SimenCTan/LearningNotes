@@ -1,0 +1,6 @@
+@SignalRMinimalApi_HostAddress = http://localhost:5146
+
+GET {{SignalRMinimalApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
