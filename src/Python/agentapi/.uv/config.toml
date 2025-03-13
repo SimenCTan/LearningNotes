@@ -1,0 +1,12 @@
+[tool.uv]
+# uv 特定配置
+include-prerelease = false
+exclude-newer = false
+resolution = "highest"
+link = false
+python = "3.9"
+system = false
+
+[sources]
+index-url = "https://pypi.org/simple"
+verify-ssl = true

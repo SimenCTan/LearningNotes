@@ -365,5 +365,7 @@ FodyWeavers.xsd
 *.po
 
 Localization
-
+claude_desktop_config.json
 App_Data
+
+mcp_github_integration.sh
