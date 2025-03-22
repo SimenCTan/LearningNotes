@@ -6,7 +6,7 @@ import uuid
 from datetime import datetime
 from typing import Any, Dict, List, Optional, Union
 
-from agents import Agent, Runner  # 添加 openai-agents 的导入
+from agents import Agent, Runner, WebSearchTool  # 添加 openai-agents 的导入
 from fastapi import APIRouter, Depends, Header, HTTPException
 from IPython.display import Image, display
 from pydantic import BaseModel, Field
@@ -20,6 +20,10 @@ os.environ["OPENAI_API_KEY"] = settings.OPENAI_API_KEY or ""
 
 router = APIRouter()
 
+
+class Tool(BaseModel):
+    type: str
+    settings: Optional[Dict[str, Any]] = None
 class AgentRequest(BaseModel):
     prompt: str
     max_tokens: Optional[int] = 100
@@ -34,10 +38,7 @@ class OpenAIAgentRequest(BaseModel):
     prompt: str
     instructions: Optional[str] = "You are a helpful assistant"
     name: Optional[str] = "Assistant"
-
-class Tool(BaseModel):
-    type: str
-    settings: Optional[Dict[str, Any]] = None
+    tools: List[Tool]
 
 class ToolsRequest(BaseModel):
     model: str = "gpt-4o"
@@ -119,8 +120,15 @@ async def openai_agent_response(request: OpenAIAgentRequest):
         if not settings.OPENAI_API_KEY:
             raise ValueError("未设置 OPENAI_API_KEY 环境变量。请在 .env 文件中添加有效的 API 密钥。")
 
+        # 转换工具为OpenAI API格式
+        tools_for_api = [{"type": tool.type, **(tool.settings or {})} for tool in request.tools]
+
         # 创建 Agent 并在事件循环中运行
-        agent = Agent(name=request.name, instructions=request.instructions)
+        agent = Agent(
+            name=request.name,
+            instructions=request.instructions,
+            tools=[WebSearchTool()]
+        )
         result = await Runner.run(agent, request.prompt)
 
         # 返回结果
